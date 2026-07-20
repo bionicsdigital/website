@@ -6,10 +6,6 @@ import type { ComponentType, HTMLAttributes } from 'react'
 import { useRef, useState } from 'react'
 import { Volume2, VolumeX } from 'lucide-react'
 
-const MotionDiv = motion.div as unknown as ComponentType<
-  HTMLAttributes<HTMLDivElement> & MotionProps
->
-
 export default function HeroVideoCard() {
   const reduceMotion = useReducedMotion()
 
@@ -24,27 +20,50 @@ export default function HeroVideoCard() {
     setIsMuted(videoRef.current.muted)
   }
 
+  const MotionDiv =
+  motion.div as unknown as ComponentType<
+    HTMLAttributes<HTMLDivElement> & MotionProps
+  >
+
   return (
     <MotionDiv
       initial={reduceMotion ? false : { opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.35 }}
-      className="mx-auto w-full max-w-[650px]"
+      className="
+        mx-auto
+        w-full
+        max-w-[360px]
+
+        sm:max-w-[540px]
+
+        lg:max-w-[650px]
+      "
     >
-      <div className="relative overflow-hidden rounded-[28px] shadow-[0_30px_80px_rgba(15,23,42,0.18)]">
-
-        {/* Mute Button */}
-
+      <div className="relative overflow-hidden rounded-[24px] shadow-2xl">
         <button
-          type="button"
           onClick={toggleMute}
           aria-label={isMuted ? 'Unmute video' : 'Mute video'}
-          className="absolute right-5 top-5 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur transition hover:bg-white"
+          className="
+            absolute
+            right-4
+            top-4
+            z-20
+
+            flex
+            h-11
+            w-11
+            items-center
+            justify-center
+
+            rounded-full
+            bg-white/90
+            shadow-lg
+            backdrop-blur
+          "
         >
           {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
         </button>
-
-        {/* Video */}
 
         <video
           ref={videoRef}
@@ -53,7 +72,18 @@ export default function HeroVideoCard() {
           loop
           playsInline
           preload="auto"
-          className="aspect-video w-full object-cover"
+          className="
+            w-full
+            object-cover
+
+            aspect-video
+
+            max-h-[220px]
+
+            sm:max-h-[320px]
+
+            lg:max-h-none
+          "
         >
           <source
             src="/videos/Intro Video.mp4"
@@ -63,10 +93,7 @@ export default function HeroVideoCard() {
           Your browser does not support the video tag.
         </video>
 
-        {/* Gradient Overlay */}
-
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/20 via-transparent to-transparent" />
       </div>
     </MotionDiv>
   )

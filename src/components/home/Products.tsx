@@ -1,39 +1,46 @@
+import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 
 const products = [
   {
+    slug: 'aerobic-bioculture',
     name: 'Aerobic Bioculture',
     description:
       'High-performance Nanozyme microbial culture for aerobic wastewater treatment systems, ensuring faster COD & BOD reduction with stable biological performance.',
     image: 'aerobic-bioculture.png',
   },
   {
+    slug: 'anaerobic-bioculture',
     name: 'Anaerobic Bioculture',
     description:
       'Scientifically engineered microbial formulation for anaerobic digesters, improving biogas generation, sludge reduction and treatment efficiency.',
     image: 'anaerobic-bioculture.png',
   },
   {
+    slug: 'stp-bioculture',
     name: 'STP Bioculture',
     description:
       'Advanced microbial culture developed for sewage treatment plants (STP/CSTP), providing odour control, faster degradation and consistent treatment results.',
     image: 'stp-bioculture.png',
   },
   {
+    slug: 'etp-bioculture',
     name: 'ETP Bioculture',
     description:
       'Specialized Nanozyme culture for industrial Effluent Treatment Plants (ETP/CETP), helping industries achieve PCB compliance while reducing operating costs.',
     image: 'etp-bioculture.png',
   },
   {
+    slug: 'sugar-distillery-bioculture',
     name: 'Sugar & Distillery Bioculture',
     description:
       'High-strength microbial culture specially formulated for sugar factories and distilleries, delivering superior COD reduction, enhanced anaerobic digestion and improved wastewater treatment stability.',
     image: 'sugar-distillery-bioculture.png',
   },
   {
+    slug: 'organic-compost-culture',
     name: 'Organic Compost Culture',
     description:
       'Accelerates decomposition of organic solid waste into nutrient-rich compost while reducing odour and composting time through advanced microbial technology.',
@@ -90,13 +97,13 @@ export default function Products() {
                   {product.description}
                 </p>
 
-                <a
-                  href="#contact"
+                <Link
+                  href={`/products/${product.slug}`}
                   className="mt-7 inline-flex items-center gap-2 font-semibold text-[#00C853] transition-all duration-300 hover:gap-3 hover:text-green-700"
                 >
                   Learn More
                   <ArrowUpRight size={18} />
-                </a>
+                </Link>
 
               </div>
 

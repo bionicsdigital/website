@@ -1,4 +1,69 @@
-import { ArrowUpRight, Beaker, Building2, Factory, Milk, Pill, Shirt, Utensils } from 'lucide-react'
+import Link from 'next/link'
+import { ArrowUpRight } from 'lucide-react'
+import industries from '@/data/industries'
 import SectionHeading from './SectionHeading'
-const industries = [['Textile', Shirt], ['Sugar', Factory], ['Distillery', Factory], ['Chemical', Beaker], ['Pharma', Pill], ['Paper', Factory], ['Food', Utensils], ['Dairy', Milk], ['Municipal', Building2], ['ETP', Factory], ['STP', Building2], ['CETP', Factory]] as const
-export default function Industries() { return <section id='industries' className='bg-white py-24'><div className='mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-10'><SectionHeading eyebrow='Industries we serve' title='Built for the wastewater demands of every sector.' /><div className='mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4'>{industries.map(([name, Icon]) => <article key={name} className='group flex min-h-43 flex-col justify-between rounded-3xl border border-gray-200 bg-white p-5 shadow-lg transition hover:-translate-y-1.5 hover:border-green-400 hover:shadow-2xl'><Icon size={27} className='text-green-600' /><div><h3 className='text-xl font-extrabold text-slate-900'>{name}</h3><a href='#contact' className='mt-2 inline-flex items-center gap-1 text-xs font-bold text-slate-500 group-hover:text-green-600'>Read More <ArrowUpRight size={14} /></a></div></article>)}</div></div></section> }
+
+export default function Industries() {
+  return (
+    <section
+      id="industries"
+      className="bg-gradient-to-b from-white to-slate-50 py-20 lg:py-24"
+    >
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <SectionHeading
+          eyebrow="Industries We Serve"
+          title="Built for the Wastewater Demands of Every Industry"
+        />
+
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {industries.map((industry) => {
+            const Icon = industry.icon
+
+            return (
+              <article
+                key={industry.name}
+                className="
+                  group
+                  rounded-3xl
+                  border
+                  border-slate-200
+                  bg-white
+                  p-6
+                  shadow-sm
+                  transition-all
+                  duration-300
+                  hover:-translate-y-2
+                  hover:border-green-500
+                  hover:shadow-2xl
+                "
+              >
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-green-50 transition group-hover:bg-green-600">
+                  <Icon
+                    size={28}
+                    className="text-green-600 transition group-hover:text-white"
+                  />
+                </div>
+
+                <h3 className="text-xl font-bold text-slate-900">
+                  {industry.name}
+                </h3>
+
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {industry.desc}
+                </p>
+
+                <Link
+                  href={`/industries/${industry.slug}`}
+                  className="mt-6 inline-flex items-center gap-2 font-semibold text-green-600 transition hover:gap-3"
+                >
+                  Learn More
+                  <ArrowUpRight size={18} />
+                </Link>
+              </article>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}

@@ -1,2 +1,135 @@
-import { ArrowRight } from 'lucide-react'
-export default function CTA() { return <section id='contact' className='bg-white py-12'><div className='mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-10'><div className='relative overflow-hidden rounded-[32px] bg-gradient-to-r from-[#006D3A] via-[#00C853] to-[#00E676] px-6 py-14 text-center text-white shadow-2xl sm:px-12'><div className='absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,.26),transparent_52%)]' /><div className='relative'><p className='text-xs font-extrabold uppercase tracking-[.18em] text-green-100'>Technical consultation</p><h2 className='mx-auto mt-3 max-w-3xl text-3xl font-black tracking-[-.035em] sm:text-5xl'>Ready to improve your wastewater treatment?</h2><p className='mt-4 text-green-50'>Get a Free Technical Consultation</p><a href='mailto:info@bionicsenviro.com?subject=Technical%20Consultation' className='mt-8 inline-flex items-center gap-2 rounded-2xl bg-white px-6 py-4 font-extrabold text-green-700 shadow-lg transition hover:-translate-y-1'>Request Quote <ArrowRight size={18} /></a></div></div></div></section> }
+'use client'
+
+import { ArrowRight, Mail, MessageCircle, Phone } from 'lucide-react'
+import { useState } from 'react'
+import QuoteModal from '@/components/forms/QuoteModal'
+
+export default function CTA() {
+  const [open, setOpen] = useState(false)
+  return (
+    <section
+      id="contact"
+      className="bg-white py-20 lg:py-24"
+    >
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <div
+          className="
+            relative
+            overflow-hidden
+            rounded-[36px]
+            bg-gradient-to-r
+            from-[#006D3A]
+            via-[#00A94F]
+            to-[#00E676]
+            px-6
+            py-14
+            shadow-[0_25px_80px_rgba(0,0,0,0.18)]
+            sm:px-12
+            lg:px-16
+          "
+        >
+          {/* Background Glow */}
+
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,.22),transparent_60%)]" />
+
+          <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+
+          <div className="absolute -left-20 bottom-0 h-60 w-60 rounded-full bg-black/10 blur-3xl" />
+
+          <div className="relative text-center text-white">
+            {/* <span className="inline-flex rounded-full bg-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] backdrop-blur">
+              FREE TECHNICAL CONSULTATION
+            </span> */}
+
+            <h2 className="mx-auto mt-6 max-w-4xl text-3xl font-black leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+              Ready to Improve Your
+              <br />
+              Wastewater Treatment?
+            </h2>
+
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-green-50 sm:text-lg">
+              Speak with our technical experts and discover how Nanozyme
+              Bioculture can reduce COD, BOD, sludge generation and operating
+              costs for your treatment plant.
+            </p>
+
+            {/* Buttons */}
+
+            <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+              <button
+                type="button"
+                onClick={() => setOpen(true)}
+                className="
+                  inline-flex
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-2xl
+                  bg-white
+                  px-7
+                  py-4
+                  font-bold
+                  text-green-700
+                  shadow-lg
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-2xl
+                "
+              >
+                <Mail size={20} />
+                Request Quote
+                <ArrowRight size={18} />
+              </button>
+
+              <a
+                href="https://wa.me/919095000090"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  inline-flex
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-2xl
+                  border
+                  border-white/40
+                  bg-white/10
+                  px-7
+                  py-4
+                  font-bold
+                  text-white
+                  backdrop-blur
+                  transition-all
+                  duration-300
+                  hover:bg-white
+                  hover:text-green-700
+                "
+              >
+                <MessageCircle size={20} />
+                WhatsApp Us
+              </a>
+            </div>
+
+            {/* Trust Bar */}
+
+            <div className="mt-10 flex flex-wrap justify-center gap-8 text-sm text-green-100">
+              <div className="flex items-center gap-2">
+                <Phone size={16} />
+                Technical Support
+              </div>
+
+              <div>✔ Scientific Manufacturer</div>
+
+              <div>✔ PAN India Service</div>
+
+              <div>✔ Expert Consultation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <QuoteModal open={open} onClose={() => setOpen(false)} />
+    </section>
+  )
+}

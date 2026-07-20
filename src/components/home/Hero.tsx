@@ -11,13 +11,12 @@ export default function Hero() {
       aria-label="Bionics Enviro Tech introduction"
       className="relative isolate overflow-hidden bg-white"
     >
-      {/* Background Glow */}
+      {/* Background */}
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(0,200,83,0.08),transparent_70%)]"
       />
 
-      {/* Decorative Blur */}
       <div className="absolute left-0 top-20 h-64 w-64 rounded-full bg-green-100 blur-3xl opacity-50" />
       <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-blue-100 blur-3xl opacity-40" />
 
@@ -26,36 +25,37 @@ export default function Hero() {
           relative
           mx-auto
           max-w-7xl
+
           px-5
           sm:px-8
           lg:px-10
 
-          pt-28
-          sm:pt-32
+          pt-20
+          sm:pt-24
           lg:pt-36
 
-          pb-16
-          sm:pb-20
+          pb-10
+          sm:pb-16
           lg:pb-24
 
           grid
           items-center
-          gap-12
+          gap-8
+          lg:gap-12
           lg:grid-cols-[52%_48%]
         "
       >
-        {/* Mobile shows video first */}
-        <div className="order-1 flex justify-center lg:order-2">
-          <HeroVideoCard />
+        {/* Content First on Mobile */}
+        <div className="order-1">
+          <HeroContent />
         </div>
 
-        {/* Content */}
-        <div className="order-2 text-center lg:order-1 lg:text-left">
-          <HeroContent />
+        {/* Video */}
+        <div className="order-2 flex justify-center">
+          <HeroVideoCard />
         </div>
       </div>
 
-      {/* Scroll Indicator only desktop */}
       <div className="hidden lg:block">
         <ScrollIndicator />
       </div>

@@ -6,10 +6,8 @@ import Clients from '@/components/home/Clients'
 import CTA from '@/components/home/CTA'
 import FAQ from '@/components/home/FAQ'
 import Features from '@/components/home/Features'
-import Footer from '@/components/home/Footer'
 import Hero from '@/components/home/Hero'
 import Industries from '@/components/home/Industries'
-import Navbar from '@/components/home/Navbar'
 import Process from '@/components/home/Process'
 import Products from '@/components/home/Products'
 import ScrollToTop from '@/components/home/ScrollToTop'
@@ -25,8 +23,8 @@ export const metadata: Metadata = {
 
 const schema = { '@context': 'https://schema.org', '@graph': [{ '@type': 'Organization', name: 'Bionics Enviro Tech Pvt Ltd', url: 'https://www.bionicsenviro.com', description: 'Scientific Nanozyme Bioculture Manufacturer for Industrial Wastewater Treatment.' }, { '@type': 'Product', name: 'Nanozyme Bioculture', brand: { '@type': 'Brand', name: 'Bionics Enviro Tech' }, description: 'Scientific microbial culture for ETP, STP and industrial wastewater treatment.' }, { '@type': 'FAQPage', mainEntity: [{ '@type': 'Question', name: 'What is Nanozyme Bioculture?', acceptedAnswer: { '@type': 'Answer', text: 'Nanozyme Bioculture is a scientific microbial formulation developed to strengthen biological wastewater treatment.' } }, { '@type': 'Question', name: 'Can bioculture be used in both ETP and STP plants?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, formulations are selected for wastewater characteristics and treatment process needs.' } }] }] }
 
-export default function Home() { return <><script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-    <Navbar />
+export default function Home() {
+  return <><script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     <main>
       <Hero />
       <Awards />
@@ -42,6 +40,6 @@ export default function Home() { return <><script type='application/ld+json' dan
       <FAQ />
       <CTA />
     </main>
-    <Footer />
     <ScrollToTop />
-  </> }
+  </>
+}

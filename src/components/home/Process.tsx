@@ -1,4 +1,120 @@
-import { Activity, Beaker, ClipboardCheck, SearchCheck, Settings2 } from 'lucide-react'
+import {
+  Activity,
+  Beaker,
+  ClipboardCheck,
+  SearchCheck,
+  Settings2,
+} from 'lucide-react'
 import SectionHeading from './SectionHeading'
-const steps = [['Consultation', 'Understand the treatment challenge and operational objectives.', ClipboardCheck], ['Water Analysis', 'Assess influent characteristics and biological conditions.', Beaker], ['Product Recommendation', 'Match the Nanozyme culture to the application.', SearchCheck], ['Implementation', 'Commission with expert dosing and process support.', Settings2], ['Performance Monitoring', 'Track results and continuously optimize performance.', Activity]] as const
-export default function Process() { return <section id='case-studies' className='bg-slate-50 py-24'><div className='mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-10'><SectionHeading eyebrow='Our process' title='From wastewater analysis to lasting performance.' /><ol className='relative mt-14 grid gap-6 lg:grid-cols-5'>{steps.map(([title, text, Icon], i) => <li key={title} className='relative rounded-3xl border border-gray-200 bg-white p-6 shadow-lg transition hover:-translate-y-1.5 hover:shadow-2xl lg:after:absolute lg:after:left-full lg:after:top-11 lg:after:h-px lg:after:w-6 lg:after:bg-green-500 last:after:hidden'><span className='text-xs font-extrabold text-green-600'>0{i + 1}</span><Icon className='mt-5 text-green-600' size={25} /><h3 className='mt-5 font-extrabold text-slate-900'>{title}</h3><p className='mt-2 text-sm leading-6 text-slate-600'>{text}</p></li>)}</ol></div></section> }
+
+const steps = [
+  {
+    title: 'Consultation',
+    description:
+      'Understand the treatment challenge, operational objectives and wastewater issues.',
+    icon: ClipboardCheck,
+  },
+  {
+    title: 'Water Analysis',
+    description:
+      'Evaluate influent characteristics, COD, BOD and biological conditions.',
+    icon: Beaker,
+  },
+  {
+    title: 'Product Recommendation',
+    description:
+      'Select the ideal Nanozyme Bioculture based on plant requirements.',
+    icon: SearchCheck,
+  },
+  {
+    title: 'Implementation',
+    description:
+      'Expert dosing, commissioning and process optimization support.',
+    icon: Settings2,
+  },
+  {
+    title: 'Performance Monitoring',
+    description:
+      'Monitor treatment efficiency and continuously improve performance.',
+    icon: Activity,
+  },
+]
+
+export default function Process() {
+  return (
+    <section
+      id="process"
+      className="bg-slate-50 py-20 lg:py-24"
+    >
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <SectionHeading
+          eyebrow="Our Process"
+          title="From Wastewater Analysis to Sustainable Performance"
+        />
+
+        <ol className="relative mt-16 grid gap-8 lg:grid-cols-5">
+          {steps.map((step, index) => {
+            const Icon = step.icon
+
+            return (
+              <li
+                key={step.title}
+                className="
+                  relative
+                  rounded-3xl
+                  border
+                  border-slate-200
+                  bg-white
+                  p-6
+                  shadow-sm
+                  transition-all
+                  duration-300
+                  hover:-translate-y-2
+                  hover:border-green-500
+                  hover:shadow-xl
+
+                  lg:after:absolute
+                  lg:after:left-full
+                  lg:after:top-10
+                  lg:after:h-[2px]
+                  lg:after:w-8
+                  lg:after:bg-green-500
+                  last:after:hidden
+                "
+              >
+                {/* Step Number */}
+
+                <div className="flex items-center justify-between">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-green-600 text-sm font-bold text-white">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                </div>
+
+                {/* Icon */}
+
+                <div className="mt-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-green-50 transition group-hover:bg-green-600">
+                  <Icon
+                    size={30}
+                    className="text-green-600 transition"
+                  />
+                </div>
+
+                {/* Title */}
+
+                <h3 className="mt-6 text-xl font-bold text-slate-900">
+                  {step.title}
+                </h3>
+
+                {/* Description */}
+
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {step.description}
+                </p>
+              </li>
+            )
+          })}
+        </ol>
+      </div>
+    </section>
+  )
+}
