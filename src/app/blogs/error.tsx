@@ -1,0 +1,2 @@
+'use client'
+export default function Error({reset}:{reset:()=>void}){return <main className="flex min-h-screen items-center justify-center bg-slate-50 p-6 text-center"><div><h1 className="text-3xl font-black text-slate-900">We could not load the articles.</h1><p className="mt-3 text-slate-600">Please try again in a moment.</p><button onClick={reset} className="mt-6 rounded-full bg-emerald-700 px-5 py-3 font-bold text-white">Try again</button></div></main>}

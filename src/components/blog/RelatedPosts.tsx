@@ -1,0 +1,2 @@
+import BlogCard from './BlogCard'; import type { BlogArticle } from '@/types/blog'
+export default function RelatedPosts({ articles }: { articles: BlogArticle[] }) { return <section className="mt-14 border-t border-slate-200 pt-12"><p className="text-xs font-bold uppercase tracking-wider text-emerald-700">Continue learning</p><h2 className="mt-2 text-3xl font-black text-slate-900">Related articles</h2><div className="mt-7 grid gap-6 md:grid-cols-3">{articles.map((article)=><BlogCard key={article.slug} article={article}/>)}</div></section> }

@@ -1,5 +1,4 @@
 import type { LucideIcon } from 'lucide-react'
-import { ArrowDown } from 'lucide-react'
 
 type MechanismItem = {
     title: string
@@ -16,25 +15,23 @@ type MechanismTimelineProps = {
 
 export default function MechanismTimeline({ eyebrow, title, description, items }: MechanismTimelineProps) {
     return (
-        <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
-            <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm sm:p-10 lg:p-12">
+        <section className="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:px-10 lg:py-14">
+            <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
                 <div className="max-w-3xl">
                     <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">{eyebrow}</p>
                     <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{title}</h2>
-                    {description ? <p className="mt-4 text-lg leading-8 text-slate-600">{description}</p> : null}
+                    {description ? <p className="mt-3 text-base leading-7 text-slate-600">{description}</p> : null}
                 </div>
 
-                <div className="mt-10 flex flex-col gap-4 lg:flex-row lg:flex-wrap lg:justify-between">
-                    {items.map((item, index) => {
+                <div className="mt-7 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                    {items.map((item) => {
                         const Icon = item.icon
                         return (
-                            <div key={item.title} className="flex flex-1 min-w-[200px] flex-col items-center rounded-3xl border border-slate-200 bg-slate-50 p-6 text-center">
-                                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-600 text-white">
-                                    <Icon className="h-6 w-6" />
+                            <div key={item.title} className="flex min-h-[110px] items-center gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 transition duration-300 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-md">
+                                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white">
+                                    <Icon className="h-5 w-5" />
                                 </div>
-                                <h3 className="mt-4 text-lg font-semibold text-slate-900">{item.title}</h3>
-                                <p className="mt-2 text-sm leading-7 text-slate-600">{item.description}</p>
-                                {index < items.length - 1 ? <ArrowDown className="mt-4 h-4 w-4 text-emerald-600" /> : null}
+                                <div><h3 className="text-base font-semibold text-slate-900">{item.title}</h3><p className="mt-1 text-sm leading-6 text-slate-600">{item.description}</p></div>
                             </div>
                         )
                     })}

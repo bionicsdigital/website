@@ -14,7 +14,7 @@ const links = [
   { label: 'Applications', href: '/#applications' },
   { label: 'Case Studies', href: '/#process' },
   { label: 'Clients', href: '/#clients' },
-  { label: 'Blog', href: '/#contact' },
+  { label: 'Blog', href: '/blogs' },
   { label: 'Contact', href: '/#contact' },
 ]
 

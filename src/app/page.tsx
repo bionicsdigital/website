@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import About from '@/components/home/About'
 import Awards from '@/components/home/Awards'
-import Certificates from '@/components/home/Certificates'
 import Clients from '@/components/home/Clients'
 import CTA from '@/components/home/CTA'
 import FAQ from '@/components/home/FAQ'
@@ -13,9 +12,10 @@ import Products from '@/components/home/Products'
 import ScrollToTop from '@/components/home/ScrollToTop'
 import Stats from '@/components/home/Stats'
 import Testimonials from '@/components/home/Testimonials'
+import PanIndiaPresence from '@/components/footer/PanIndiaPresence'
 
 export const metadata: Metadata = {
-  title: 'Nanozyme Bioculture Manufacturer for ETP & STP | Bionics Enviro Tech',
+  title: 'Bioculture Manufacturer in India | Bionics Enviro Tech',
   description: 'Bionics Enviro Tech is an Indian scientific Nanozyme Bioculture manufacturer for ETP, STP and industrial wastewater treatment.',
   openGraph: { title: 'Bionics Enviro Tech | Scientific Nanozyme Bioculture', description: 'Advanced bioculture for industrial wastewater treatment.', url: 'https://www.bionicsenviro.com', siteName: 'Bionics Enviro Tech', type: 'website' },
   twitter: { card: 'summary_large_image', title: 'Bionics Enviro Tech', description: 'Scientific Nanozyme Bioculture for wastewater treatment.' },
@@ -34,11 +34,11 @@ export default function Home() {
       <Stats />
       <Industries />
       <Process />
-      {/* <Certificates /> */}
       <Clients />
       <Testimonials />
       <FAQ />
       <CTA />
+      <PanIndiaPresence />
     </main>
     <ScrollToTop />
   </>
