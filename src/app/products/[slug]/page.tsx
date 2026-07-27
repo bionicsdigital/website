@@ -10,6 +10,7 @@ import ProductOverview from '@/components/product/ProductOverview'
 import ProductRecommendation from '@/components/product/ProductRecommendation'
 import ProductSpecification from '@/components/product/ProductSpecification'
 import products from '@/data/products'
+import ScrollToTop from '@/components/home/ScrollToTop'
 
 export function generateStaticParams() {
     return products.map((product) => ({ slug: product.slug }))
@@ -48,7 +49,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         'Monitoring and performance optimization',
     ]
 
-    return (
+    return (<>
         <main className="min-h-screen bg-slate-50">
             <ProductHero title={product.title} subtitle={product.subtitle} heroImage={product.heroImage} overview={product.overview} />
 
@@ -132,5 +133,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
             <ProductCTA title="Need a tailored solution for your wastewater treatment plant?" description="Speak with our technical experts to select the right bioculture and application strategy for your site." />
         </main>
+        <ScrollToTop />
+        </>
     )
 }

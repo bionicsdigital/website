@@ -13,6 +13,7 @@ import ProcessFlow from '@/components/industry/ProcessFlow'
 import ReactionCards from '@/components/industry/ReactionCards'
 import RecommendationCard from '@/components/industry/RecommendationCard'
 import industries, { getIndustryDetail } from '@/data/industries'
+import ScrollToTop from '@/components/home/ScrollToTop'
 
 export function generateStaticParams() {
     return industries.map((industry) => ({ slug: industry.slug }))
@@ -49,7 +50,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
 
     const detail = getIndustryDetail(slug)
 
-    return (
+    return (<>
         <main className="min-h-screen bg-slate-50">
             <section className="relative overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-900 to-green-800 text-white">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.16),_transparent_35%)]" />
@@ -101,7 +102,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
             <section className="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:px-10 lg:py-14">
                 <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
                     <div className="max-w-3xl">
-                        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">Applications</p>
+                        <p className="text-sm -semibold uppercase tracking-[0.2em] text-emerald-600">Applications</p>
                         <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Where the Solution Is Applied</h2>
                     </div>
                     <div className="mt-7 flex flex-wrap gap-3">
@@ -116,5 +117,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
 
             <CTASection title={detail.ctaTitle} description={detail.ctaDescription} primaryLabel="Get Technical Consultation" secondaryLabel="Contact Sales" />
         </main>
+        <ScrollToTop />
+        </>
     )
 }

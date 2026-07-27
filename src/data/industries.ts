@@ -70,7 +70,7 @@ const textileDetail: IndustryDetail = {
     title: 'Nanozyme Bioculture for Textile and Dye Effluent Treatment',
     subtitle: 'High-performance microbial treatment for colour, COD and chemical load reduction',
     description: 'Engineered for textile mills, dye houses and CETPs that need reliable biological treatment for complex effluent streams.',
-    heroImage: '/products/etp-bioculture.png',
+    heroImage: '/industries/Textile.png',
     badges: ['Reduce COD', 'Reduce BOD', 'Odour Control', 'Zero Sludge', 'Eco Friendly', 'PCB Compliance'],
     overviewParagraphs: [
         'Textile processing operations generate highly variable wastewater with strong colour, elevated organic loading and recurring chemical shocks. These streams often challenge conventional biological systems due to dye residues, surfactants and varying pH conditions.',
@@ -171,7 +171,7 @@ const genericDetail: IndustryDetail = {
     title: 'Nanozyme Bioculture for Industrial Effluent Treatment',
     subtitle: 'Reliable biological support for complex wastewater streams',
     description: 'A scientific microbial solution designed to strengthen treatment stability and support digital process control in demanding industrial environments.',
-    heroImage: '/products/etp-bioculture.png',
+    heroImage: '/industries/Industrial ETP.png',
     badges: ['Reduce COD', 'Reduce BOD', 'Odour Control', 'Improve Stability'],
     overviewParagraphs: [
         'Industrial wastewater systems require dependable biological support, especially where effluent characteristics vary with production cycles and process chemistry.',
@@ -311,7 +311,7 @@ const industryDetails: Record<string, IndustryDetail> = {
     },
     cetp: {
         ...textileDetail,
-        eyebrow: 'CETP Treatment',
+        eyebrow: 'Common Effluent Treatment Plant',
         title: 'Nanozyme Bioculture for CETP Operations',
         subtitle: 'Shared treatment support for mixed industrial wastewater',
         description: 'A practical microbial solution for common effluent treatment plants dealing with mixed and variable influent streams.',
@@ -362,10 +362,10 @@ const industries: Industry[] = [
     { name: 'Paper & Pulp Mill', slug: 'paper-and-pulp-mill', icon: Factory, desc: 'Reduce sludge and improve treatment efficiency.' },
     { name: 'Food Processing Industry', slug: 'food-processing-industry', icon: Utensils, desc: 'Organic wastewater treatment solutions.' },
     { name: 'Dairy Industry', slug: 'dairy-industry', icon: Milk, desc: 'Reduce BOD, COD and odour generation.' },
-    { name: 'Municipal', slug: 'municipal', icon: Building2, desc: 'Reliable STP and sewage treatment solutions.' },
+    { name: 'Municipal Solid Waste Compost', slug: 'municipal', icon: Building2, desc: 'Reliable STP and sewage treatment solutions.' },
     { name: 'Industrial ETP', slug: 'industrial-etp', icon: Factory, desc: 'Microbial culture for industrial ETP.' },
     { name: 'Domestic and Commercial STP', slug: 'domestic-and-commercial-stp', icon: Building2, desc: 'Improve biological sewage treatment.' },
-    { name: 'CETP', slug: 'cetp', icon: Factory, desc: 'Centralized effluent treatment optimization.' },
+    { name: 'Common Effluent Treatment Plant', slug: 'cetp', icon: Factory, desc: 'Centralized effluent treatment optimization.' },
 ]
 
 export default industries

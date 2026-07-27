@@ -20,10 +20,12 @@ export default function Industries() {
             const Icon = industry.icon
 
             return (
-              <article
+              <Link
                 key={industry.name}
+                href={`/industries/${industry.slug}`}
                 className="
                   group
+                  block
                   rounded-3xl
                   border
                   border-slate-200
@@ -35,12 +37,16 @@ export default function Industries() {
                   hover:-translate-y-2
                   hover:border-green-500
                   hover:shadow-2xl
+                  focus:outline-none
+                  focus:ring-2
+                  focus:ring-green-500
+                  focus:ring-offset-2
                 "
               >
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-green-50 transition group-hover:bg-green-600">
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-green-50 transition-colors duration-300 group-hover:bg-green-600">
                   <Icon
                     size={28}
-                    className="text-green-600 transition group-hover:text-white"
+                    className="text-green-600 transition-colors duration-300 group-hover:text-white"
                   />
                 </div>
 
@@ -52,14 +58,11 @@ export default function Industries() {
                   {industry.desc}
                 </p>
 
-                <Link
-                  href={`/industries/${industry.slug}`}
-                  className="mt-6 inline-flex items-center gap-2 font-semibold text-green-600 transition hover:gap-3"
-                >
+                <div className="mt-6 inline-flex items-center gap-2 font-semibold text-green-600 transition-all duration-300 group-hover:gap-3">
                   Learn More
                   <ArrowUpRight size={18} />
-                </Link>
-              </article>
+                </div>
+              </Link>
             )
           })}
         </div>

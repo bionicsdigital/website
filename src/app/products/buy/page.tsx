@@ -7,6 +7,7 @@ import GSTSummary from '@/components/forms/GSTSummary'
 import OrderSummary from '@/components/forms/OrderSummary'
 import ProductSelector from '@/components/forms/ProductSelector'
 import type { OrderFormValues } from '@/components/forms/OrderSummary'
+import ScrollToTop from '@/components/home/ScrollToTop'
 
 const initialValues: OrderFormValues = {
     companyName: '',
@@ -68,7 +69,7 @@ export default function BuyProductPage() {
         }, 600)
     }
 
-    return (
+    return ( <>
         <main className="min-h-screen bg-slate-50 px-4 py-24 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-7xl">
                 <div className="mb-8 text-center">
@@ -90,5 +91,6 @@ export default function BuyProductPage() {
                 </div>
             </div>
         </main>
-    )
+        <ScrollToTop />
+    </> )
 }

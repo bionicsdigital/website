@@ -1,2 +1,4 @@
-import { redirect } from 'next/navigation'
-export default function LegacyBlogPage() { redirect('/blogs') }
+import { redirect } from "next/navigation";
+export default function LegacyBlogPage() {
+  redirect("/blogs");
+}

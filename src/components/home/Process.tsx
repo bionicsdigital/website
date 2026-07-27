@@ -9,33 +9,33 @@ import SectionHeading from './SectionHeading'
 
 const steps = [
   {
-    title: 'Consultation',
+    title: "Requirement Assessment",
     description:
-      'Understand the treatment challenge, operational objectives and wastewater issues.',
+      "Understand the wastewater characteristics, treatment process and operational challenges.",
     icon: ClipboardCheck,
   },
   {
-    title: 'Water Analysis',
+    title: "Water Analysis",
     description:
-      'Evaluate influent characteristics, COD, BOD and biological conditions.',
+      "Evaluate influent characteristics, COD, BOD and biological conditions.",
     icon: Beaker,
   },
   {
-    title: 'Product Recommendation',
+    title: "Product Recommendation",
     description:
-      'Select the ideal Nanozyme Bioculture based on plant requirements.',
+      "Recommend the appropriate Nanozyme Bioculture based on treatment requirements.",
     icon: SearchCheck,
   },
   {
-    title: 'Implementation',
+    title: "Implementation",
     description:
-      'Expert dosing, commissioning and process optimization support.',
+      "Provide dosing guidelines and support during product application and commissioning.",
     icon: Settings2,
   },
   {
-    title: 'Performance Monitoring',
+    title: "Performance Monitoring",
     description:
-      'Monitor treatment efficiency and continuously improve performance.',
+      "Track biological treatment performance and recommend improvements where required.",
     icon: Activity,
   },
 ]

@@ -74,7 +74,10 @@ export default function Products() {
               {/* Product Image */}
 
               <div className="relative aspect-square overflow-hidden rounded-t-3xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900">
-
+                <Link
+                  href={`/products/${product.slug}`}
+                  className="mt-7 inline-flex items-center gap-2 font-semibold text-[#00C853] transition-all duration-300 hover:gap-3 hover:text-green-700"
+                >
                 <Image
                   src={`/products/${product.image}`}
                   alt={product.name}
@@ -82,7 +85,7 @@ export default function Products() {
                   priority={false}
                   className="object-contain p-6 transition-transform duration-700 group-hover:scale-105"
                 />
-
+                </Link>
               </div>
 
               {/* Content */}

@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   --color-bionics-green: #00C853;
@@ -11,10 +11,6 @@
   }
 
   body {
-    scroll-behavior: smooth;
-  }
-
-  body {
     @apply overflow-x-hidden bg-white text-slate-600 antialiased;
   }
 
@@ -23,20 +19,42 @@
   }
 }
 
-/* Light grid */
+/* ===========================
+   Background Grid
+=========================== */
+
 .site-grid {
   background-image:
     linear-gradient(rgb(0 0 0 / 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgb(0 0 0 / 0.04) 1px, transparent 1px);
   background-size: 56px 56px;
-  mask-image: linear-gradient(to bottom, transparent, black 18%, black 80%, transparent);
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 18%,
+    black 80%,
+    transparent
+  );
 }
 
-/* Light particles */
+/* ===========================
+   Hero Particles
+=========================== */
+
 .hero-particles {
-  background-image: radial-gradient(circle, rgb(0 200 83 / 0.15) 1px, transparent 1px);
+  background-image: radial-gradient(
+    circle,
+    rgb(0 200 83 / 0.15) 1px,
+    transparent 1px
+  );
   background-size: 32px 32px;
-  mask-image: linear-gradient(to bottom, transparent, black 25%, black 70%, transparent);
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 25%,
+    black 70%,
+    transparent
+  );
 }
 
 .hero-blob-one {
@@ -59,48 +77,65 @@
   }
 }
 
-@keyframes marquee {
+/* ==========================================
+   CLIENT MARQUEE
+========================================== */
+
+.marquee-left,
+.marquee-right {
+  display: flex;
+  width: max-content;
+}
+
+.marquee-left {
+  animation: marqueeLeft 40s linear infinite;
+}
+
+.marquee-right {
+  animation: marqueeRight 40s linear infinite;
+}
+
+/* Pause only the scrolling */
+.marquee-left:hover,
+.marquee-right:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeLeft {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes marqueeRight {
+  from {
+    transform: translateX(0%);
+  }
+
   to {
     transform: translateX(-50%);
   }
 }
 
-.marquee-track {
-  animation: marquee 28s linear infinite;
+@media (prefers-reduced-motion: reduce) {
+  .marquee-left,
+  .marquee-right {
+    animation: none;
+  }
 }
 
-.marquee-track:hover {
-  animation-play-state: paused;
-}
+/* ===========================
+   Reduced Motion
+=========================== */
 
 @media (prefers-reduced-motion: reduce) {
   .hero-blob-one,
   .hero-blob-two,
   .marquee-track {
     animation: none;
-  }
-}
-
-/* ===========================
-   Client Logo Marquee
-=========================== */
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 55s linear infinite;
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
   }
 }
