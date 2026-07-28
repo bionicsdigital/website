@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google'
 
 import Navbar from '@/components/home/Navbar'
 import Footer from '@/components/footer/Footer'
+import BackgroundParticles from '@/components/background/BackgroundParticles'
 
 import './globals.css'
 
@@ -38,6 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={poppins.className}>
       <body className="overflow-x-hidden bg-white text-slate-600 antialiased">
+        <BackgroundParticles />
         <Navbar />
         {children}
         <Footer />

@@ -68,11 +68,11 @@ export const presenceStats = [
     label: 'Support',
   },
   {
-    value: '15+',
+    value: '100+',
     label: 'Industries Served',
   },
   {
-    value: '500+',
+    value: '15000+',
     label: 'Customers',
   },
 ]
