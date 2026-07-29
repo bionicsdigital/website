@@ -13,14 +13,14 @@ export default function ProductHero({ title, subtitle, heroImage, overview }: Pr
     return (
         <section className="relative overflow-hidden bg-gradient-to-br from-emerald-950 via-green-900 to-emerald-800 text-white">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.16),_transparent_35%)]" />
-            <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-28">
+            <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-12 pt-28 sm:px-8 sm:pb-16 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-28">
                 <div className="flex flex-col justify-center">
-                    <p className="inline-flex w-fit items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm font-medium uppercase tracking-[0.2em] text-emerald-100">
+                    <p className="inline-flex w-fit items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-emerald-100 sm:text-sm sm:tracking-[0.2em]">
                         Advanced Bioculture Solution
                     </p>
-                    <h1 className="mt-6 text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">{title}</h1>
-                    <p className="mt-4 text-lg font-semibold text-emerald-100 sm:text-xl">{subtitle}</p>
-                    <p className="mt-5 max-w-2xl text-base leading-8 text-emerald-50/90 sm:text-lg">{overview}</p>
+                    <h1 className="mt-5 text-3xl font-black leading-tight sm:text-5xl lg:mt-6 lg:text-6xl">{title}</h1>
+                    <p className="mt-3 text-base font-semibold text-emerald-100 sm:mt-4 sm:text-xl">{subtitle}</p>
+                    <p className="mt-4 max-w-2xl text-sm leading-7 text-emerald-50/90 sm:mt-5 sm:text-lg sm:leading-8">{overview}</p>
                     <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                         <Link href="/#contact" className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-emerald-800 transition hover:bg-emerald-50">
                             Request Consultation
@@ -32,7 +32,7 @@ export default function ProductHero({ title, subtitle, heroImage, overview }: Pr
                     </div>
                 </div>
 
-                <div className="rounded-[2rem] border border-white/20 bg-white/10 p-4 shadow-2xl backdrop-blur">
+                <div className="rounded-[1.5rem] border border-white/20 bg-white/10 p-3 shadow-2xl backdrop-blur sm:rounded-[2rem] sm:p-4">
                     <div className="overflow-hidden rounded-[1.5rem] bg-slate-950/20">
                         <Image
                             src={heroImage}
@@ -40,7 +40,7 @@ export default function ProductHero({ title, subtitle, heroImage, overview }: Pr
                             width={700}
                             height={560}
                             priority
-                            className="h-[320px] w-full object-contain bg-white/5 p-6 sm:h-[400px]"
+                            className="h-[220px] w-full object-contain bg-white/5 p-4 sm:h-[400px] sm:p-6"
                         />
                     </div>
                 </div>

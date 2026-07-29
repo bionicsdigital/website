@@ -135,7 +135,7 @@ export default async function BlogDetail({
           }),
         }}
       />
-      <div className="mx-auto max-w-7xl px-5 pb-16 pt-28 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-7xl px-4 pb-12 pt-24 sm:px-8 sm:pb-16 sm:pt-28 lg:px-10">
         <BlogBreadcrumb title={article.title} />
         <Image
           src={article.coverImage}
@@ -143,18 +143,18 @@ export default async function BlogDetail({
           width={1440}
           height={720}
           priority
-          className="mt-7 h-56 w-full rounded-3xl object-cover sm:h-96"
+          className="mt-6 h-44 w-full rounded-2xl object-cover sm:mt-7 sm:h-96 sm:rounded-3xl"
         />
-        <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,1fr)_18rem]">
+        <div className="mt-8 grid min-w-0 gap-10 lg:mt-10 lg:gap-12 lg:grid-cols-[minmax(0,1fr)_18rem]">
           <ArticleBody article={article} />
           <BlogSidebar article={article} />
         </div>
         <RelatedPosts articles={related} />
-        <nav className="mt-12 grid gap-4 border-t border-slate-200 pt-8 sm:grid-cols-2">
+        <nav className="mt-10 grid gap-4 border-t border-slate-200 pt-6 sm:mt-12 sm:grid-cols-2 sm:pt-8">
           {adjacent.previous ? (
             <Link
               href={`/blogs/${adjacent.previous.slug}`}
-              className="rounded-2xl border border-slate-200 p-5 hover:border-emerald-300"
+              className="rounded-2xl border border-slate-200 p-4 hover:border-emerald-300 sm:p-5"
             >
               <span className="text-xs font-bold uppercase text-slate-500">
                 Previous
@@ -169,7 +169,7 @@ export default async function BlogDetail({
           {adjacent.next && (
             <Link
               href={`/blogs/${adjacent.next.slug}`}
-              className="rounded-2xl border border-slate-200 p-5 text-right hover:border-emerald-300"
+              className="rounded-2xl border border-slate-200 p-4 text-left hover:border-emerald-300 sm:p-5 sm:text-right"
             >
               <span className="text-xs font-bold uppercase text-slate-500">
                 Next

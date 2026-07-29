@@ -9,7 +9,7 @@ export default function CTA() {
   return (
     <section
       id="contact"
-      className="bg-white py-20 lg:py-24"
+      className="bg-white py-12 lg:py-24"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div
@@ -22,10 +22,11 @@ export default function CTA() {
             via-[#00A94F]
             to-[#00E676]
             px-6
-            py-14
+            py-10
             shadow-[0_25px_80px_rgba(0,0,0,0.18)]
             sm:px-12
             lg:px-16
+            lg:py-14
           "
         >
           {/* Background Glow */}
@@ -41,7 +42,7 @@ export default function CTA() {
               FREE TECHNICAL CONSULTATION
             </span> */}
 
-            <h2 className="mx-auto mt-6 max-w-4xl text-3xl font-black leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+            <h2 className="mx-auto max-w-4xl text-3xl font-black leading-tight tracking-tight sm:text-5xl lg:mt-6 lg:text-6xl">
               Ready to Improve Your
               <br />
               Wastewater Treatment?
@@ -55,7 +56,7 @@ export default function CTA() {
 
             {/* Buttons */}
 
-            <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:mt-10 lg:gap-4">
               <button
                 type="button"
                 onClick={() => setOpen(true)}
@@ -67,7 +68,7 @@ export default function CTA() {
                   rounded-2xl
                   bg-white
                   px-7
-                  py-4
+                  py-3.5
                   font-bold
                   text-green-700
                   shadow-lg
@@ -75,6 +76,8 @@ export default function CTA() {
                   duration-300
                   hover:-translate-y-1
                   hover:shadow-2xl
+                  sm:min-w-48
+                  lg:py-4
                 "
               >
                 <Mail size={20} />
@@ -96,7 +99,7 @@ export default function CTA() {
                   border-white/40
                   bg-white/10
                   px-7
-                  py-4
+                  py-3.5
                   font-bold
                   text-white
                   backdrop-blur
@@ -104,6 +107,8 @@ export default function CTA() {
                   duration-300
                   hover:bg-white
                   hover:text-green-700
+                  sm:min-w-48
+                  lg:py-4
                 "
               >
                 <MessageCircle size={20} />
@@ -113,7 +118,7 @@ export default function CTA() {
 
             {/* Trust Bar */}
 
-            <div className="mt-10 flex flex-wrap justify-center gap-8 text-sm text-green-100">
+            <div className="mt-8 flex flex-wrap justify-center gap-4 text-xs text-green-100 lg:mt-10 lg:gap-8 lg:text-sm">
               <div className="flex items-center gap-2">
                 <Phone size={16} />
                 Technical Support

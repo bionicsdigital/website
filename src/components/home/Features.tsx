@@ -69,7 +69,7 @@ export default function Features() {
   return (
     <section
       id="applications"
-      className="bg-gradient-to-b from-white to-slate-50 py-20 lg:py-24"
+      className="bg-gradient-to-b from-white to-slate-50 py-12 lg:py-24"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHeading
@@ -78,7 +78,7 @@ export default function Features() {
           description="Every Nanozyme formulation is engineered to deliver high microbial activity, consistent biological performance and lower operating costs across diverse industrial applications."
         />
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-14 lg:gap-6 lg:grid-cols-5">
           {features.map((feature) => {
             const Icon = feature.icon
 
@@ -87,33 +87,43 @@ export default function Features() {
                 key={feature.title}
                 className="
                   group
+                  flex
+                  items-start
+                  gap-4
                   rounded-3xl
                   border
                   border-slate-200
                   bg-white
-                  p-6
+                  p-5
                   shadow-sm
                   transition-all
                   duration-300
-                  hover:-translate-y-2
+                  odd:flex-row
+                  even:flex-row-reverse
+                  hover:-translate-y-1
                   hover:border-green-500
                   hover:shadow-2xl
+                  lg:block
+                  lg:p-6
+                  lg:hover:-translate-y-2
                 "
               >
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-green-50 transition-colors duration-300 group-hover:bg-green-600">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-green-50 transition-colors duration-300 group-hover:bg-green-600 lg:h-14 lg:w-14">
                   <Icon
-                    size={28}
+                    size={24}
                     className="text-green-600 transition-colors duration-300 group-hover:text-white"
                   />
                 </div>
 
-                <h3 className="mt-5 text-lg font-bold leading-6 text-slate-900">
-                  {feature.title}
-                </h3>
+                <div className="min-w-0">
+                  <h3 className="text-base font-bold leading-6 text-slate-900 lg:mt-5 lg:text-lg">
+                    {feature.title}
+                  </h3>
 
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {feature.description}
-                </p>
+                  <p className="mt-2 text-sm leading-6 text-slate-600 lg:mt-3">
+                    {feature.description}
+                  </p>
+                </div>
               </article>
             )
           })}

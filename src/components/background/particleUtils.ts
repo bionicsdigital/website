@@ -13,4 +13,4 @@ export function createParticles(total: number, seed = 20260728): ParticleSpec[] 
   })
 }
 
-export function particleCountForWidth(width: number) { if (width < 640) return 40; if (width < 1024) return 70; if (width < 1440) return 100; return 140 }
+export function particleCountForWidth(width: number) { if (width < 640) return 80; if (width < 1024) return 120; if (width < 1440) return 170; return 210 }

@@ -98,7 +98,7 @@ export default function Stats() {
     HTMLAttributes<HTMLDivElement> & MotionProps
   >
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-[#006D3A] via-[#00C853] to-[#00E676] py-20">
+    <section className="relative overflow-hidden bg-gradient-to-r from-[#006D3A] via-[#00C853] to-[#00E676] py-12 lg:py-20">
       {/* Background */}
 
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,.15),transparent_60%)]" />
@@ -108,7 +108,7 @@ export default function Stats() {
       <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-black/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 lg:gap-5">
           {stats.map((item, index) => (
             <MotionDiv
               key={item.label}
@@ -136,23 +136,24 @@ export default function Stats() {
                 border
                 border-white/20
                 bg-white/10
-                p-6
+                p-4
                 text-center
                 backdrop-blur-md
                 transition-all
                 duration-300
                 hover:bg-white/15
                 hover:shadow-2xl
+                lg:p-6
               "
             >
-              <h3 className="text-3xl font-black tracking-tight text-white sm:text-5xl">
+              <h3 className="text-2xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl">
                 <Counter
                   value={item.value}
                   suffix={item.suffix}
                 />
               </h3>
 
-              <p className="mt-3 text-xs font-bold uppercase tracking-[0.16em] text-green-100 sm:text-sm">
+              <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.13em] text-green-100 sm:text-xs lg:mt-3 lg:text-sm lg:tracking-[0.16em]">
                 {item.label}
               </p>
             </MotionDiv>

@@ -57,11 +57,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
             <ProductSpecification title="Product Details" description="Designed for efficient performance and practical field use across industrial wastewater systems." items={product.specifications} />
 
-            <section className="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10 lg:py-12">
-                <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm sm:p-10 lg:p-12">
+            <section className="mx-auto max-w-7xl px-4 py-8 sm:px-8 lg:px-10 lg:py-12">
+                <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm sm:rounded-[2rem] sm:p-10 lg:p-12">
                     <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">Impact on Effluent</p>
-                    <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Improved Treatment Performance</h2>
-                    <div className="mt-10 overflow-hidden rounded-3xl border border-slate-200">
+                    <h2 className="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">Improved Treatment Performance</h2>
+                    <div className="mt-7 overflow-hidden rounded-3xl border border-slate-200 sm:mt-10">
                         <div className="overflow-x-auto">
                             <table className="min-w-full divide-y divide-slate-200 text-left">
                                 <thead className="bg-slate-50">
@@ -91,13 +91,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
             <ProductBenefits title="Product Benefits" description="Engineered to provide reliable, field-ready biological treatment support." benefits={product.benefits} />
 
-            <section className="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10 lg:py-12">
-                <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm sm:p-10 lg:p-12">
+            <section className="mx-auto max-w-7xl px-4 py-8 sm:px-8 lg:px-10 lg:py-12">
+                <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm sm:rounded-[2rem] sm:p-10 lg:p-12">
                     <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">Applications</p>
-                    <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Where It Performs</h2>
-                    <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                    <h2 className="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">Where It Performs</h2>
+                    <div className="mt-7 grid gap-3 md:grid-cols-2 sm:mt-10 sm:gap-4 xl:grid-cols-3">
                         {product.applications.map((application) => (
-                            <div key={application} className="rounded-3xl border border-slate-200 bg-slate-50 p-6 text-sm font-medium text-slate-700">
+                            <div key={application} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm font-medium text-slate-700 sm:rounded-3xl sm:p-6">
                                 {application}
                             </div>
                         ))}
@@ -105,13 +105,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 </div>
             </section>
 
-            <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
-                <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm sm:p-10 lg:p-12">
+            <section className="mx-auto max-w-7xl px-4 py-10 sm:px-8 lg:px-10 lg:py-20">
+                <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm sm:rounded-[2rem] sm:p-10 lg:p-12">
                     <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">Working Mechanism</p>
-                    <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">How the Product Works</h2>
-                    <div className="mt-10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <h2 className="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">How the Product Works</h2>
+                    <div className="mt-7 flex flex-col gap-3 md:flex-row md:items-center md:justify-between sm:mt-10 sm:gap-4">
                         {mechanismSteps.map((step, index) => (
-                            <div key={step} className="flex flex-1 flex-col items-center rounded-3xl border border-slate-200 bg-slate-50 p-5 text-center">
+                            <div key={step} className="flex flex-1 flex-col items-center rounded-2xl border border-slate-200 bg-slate-50 p-4 text-center sm:rounded-3xl sm:p-5">
                                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-600 text-sm font-semibold text-white">{index + 1}</div>
                                 <p className="mt-4 text-sm font-semibold text-slate-700">{step}</p>
                                 {index < mechanismSteps.length - 1 ? <ArrowDown className="mt-4 h-4 w-4 text-emerald-600" /> : null}

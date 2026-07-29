@@ -43,7 +43,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden bg-white py-24"
+      className="relative overflow-hidden bg-white py-12 lg:py-24"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,#E9FFF1_0%,transparent_35%),radial-gradient(circle_at_bottom_right,#F3FFF8_0%,transparent_35%)]" />
 
@@ -55,13 +55,13 @@ export default function About() {
           title="Engineering Better Biology for Industrial Wastewater Treatment"
         />
 
-        <div className="mt-14 grid gap-14 lg:grid-cols-[1.35fr_0.85fr]">
+        <div className="mt-10 grid gap-8 lg:mt-14 lg:gap-14 lg:grid-cols-[1.35fr_0.85fr]">
 
           {/* Left */}
 
           <div>
 
-            <p className="text-lg leading-8 text-slate-700">
+            <p className="text-base leading-7 text-slate-700 lg:text-lg lg:leading-8">
               <strong className="text-slate-900">
                 Bionics Enviro Tech Pvt. Ltd.
               </strong>{' '}
@@ -75,7 +75,7 @@ export default function About() {
               compliance with environmental regulations.
             </p>
 
-            <p className="mt-6 leading-8 text-slate-600">
+            <p className="mt-4 leading-7 text-slate-600 lg:mt-6 lg:leading-8">
               Backed by continuous research and innovation, our solutions are
               designed for ETP, STP, CETP, CSTP, anaerobic digesters and organic
               waste composting. We help industries reduce COD, BOD, colour,
@@ -83,7 +83,7 @@ export default function About() {
               lowering operational costs.
             </p>
 
-            <p className="mt-6 leading-8 text-slate-600">
+            <p className="mt-4 leading-7 text-slate-600 lg:mt-6 lg:leading-8">
               Today, Bionics Enviro Tech serves clients across India and global
               markets with scientifically proven microbial cultures trusted by
               textile, pharmaceutical, chemical, food processing, sugar,
@@ -95,7 +95,7 @@ export default function About() {
 
           {/* Right Card */}
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-xl">
+          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl lg:p-8">
 
             <span className="inline-flex rounded-full bg-green-100 px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-green-700">
               Company Overview
@@ -107,7 +107,7 @@ export default function About() {
               Sustainable Results.
             </h3>
 
-            <div className="mt-8 space-y-4">
+            <div className="mt-6 space-y-3 lg:mt-8 lg:space-y-4">
 
               {[
                 'Government Awarded Technology',
@@ -140,14 +140,14 @@ export default function About() {
 
         {/* Statistics */}
 
-        <div className="mt-20 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:mt-20 lg:grid-cols-3 xl:grid-cols-6">
 
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:border-green-500 hover:shadow-lg"
+              className="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm transition hover:-translate-y-1 hover:border-green-500 hover:shadow-lg lg:p-6"
             >
-              <h3 className="text-3xl font-extrabold text-green-600">
+              <h3 className="text-2xl font-extrabold text-green-600 lg:text-3xl">
                 {stat.value}
               </h3>
 
@@ -161,7 +161,7 @@ export default function About() {
 
         {/* Features */}
 
-        <div className="mt-20 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:mt-20 lg:gap-6 xl:grid-cols-4">
 
           {features.map((feature) => {
             const Icon = feature.icon
@@ -169,22 +169,24 @@ export default function About() {
             return (
               <div
                 key={feature.title}
-                className="rounded-3xl border border-slate-200 bg-white p-7 transition duration-300 hover:-translate-y-2 hover:border-green-500 hover:shadow-xl"
+                className="group flex items-start gap-4 rounded-3xl border border-slate-200 bg-white p-5 transition duration-300 odd:flex-row even:flex-row-reverse hover:-translate-y-1 hover:border-green-500 hover:shadow-xl lg:block lg:p-7 lg:hover:-translate-y-2"
               >
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-green-100">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-green-100 lg:h-14 lg:w-14">
                   <Icon
-                    size={28}
+                    size={24}
                     className="text-green-600"
                   />
                 </div>
 
-                <h3 className="mt-6 text-xl font-bold text-slate-900">
-                  {feature.title}
-                </h3>
+                <div className="min-w-0">
+                  <h3 className="text-lg font-bold text-slate-900 lg:mt-6 lg:text-xl">
+                    {feature.title}
+                  </h3>
 
-                <p className="mt-3 leading-7 text-slate-600">
-                  {feature.text}
-                </p>
+                  <p className="mt-2 text-sm leading-6 text-slate-600 lg:mt-3 lg:text-base lg:leading-7">
+                    {feature.text}
+                  </p>
+                </div>
               </div>
             )
           })}

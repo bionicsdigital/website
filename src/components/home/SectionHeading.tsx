@@ -61,7 +61,7 @@ export default function SectionHeading({
       <h2
         className="
           mt-5
-          text-3xl
+          text-2xl
           font-black
           leading-tight
           tracking-[-0.03em]
@@ -98,7 +98,7 @@ export default function SectionHeading({
         <p
           className="
             mt-6
-            text-base
+            text-[15px]
             leading-8
             text-slate-600
             sm:text-lg

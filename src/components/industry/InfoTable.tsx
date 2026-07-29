@@ -7,12 +7,12 @@ type InfoTableProps = {
 
 export default function InfoTable({ eyebrow, title, description, rows }: InfoTableProps) {
     return (
-        <section className="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10 lg:py-12">
-            <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:p-10">
+        <section className="mx-auto max-w-7xl px-4 py-8 sm:px-8 lg:px-10 lg:py-12">
+            <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm sm:rounded-[2rem] sm:p-8 lg:p-10">
                 <div className="max-w-3xl">
                     <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">{eyebrow}</p>
-                    <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{title}</h2>
-                    {description ? <p className="mt-3 text-base leading-7 text-slate-600">{description}</p> : null}
+                    <h2 className="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">{title}</h2>
+                    {description ? <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">{description}</p> : null}
                 </div>
 
                 <div className="mt-7 overflow-hidden rounded-2xl border border-slate-200">

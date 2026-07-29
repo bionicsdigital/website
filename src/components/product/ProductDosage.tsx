@@ -12,12 +12,12 @@ type ProductDosageProps = {
 
 export default function ProductDosage({ title, description, rows }: ProductDosageProps) {
     return (
-        <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
+        <section className="mx-auto max-w-7xl px-4 py-10 sm:px-8 lg:px-10 lg:py-20">
             <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
-                <div className="border-b border-slate-200 bg-slate-50 p-8 sm:p-10 lg:p-12">
+                <div className="border-b border-slate-200 bg-slate-50 p-5 sm:p-10 lg:p-12">
                     <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">Dosage Guidance</p>
-                    <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">{title}</h2>
-                    {description ? <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-600">{description}</p> : null}
+                    <h2 className="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">{title}</h2>
+                    {description ? <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600 sm:text-lg sm:leading-8">{description}</p> : null}
                 </div>
 
                 <div className="overflow-x-auto">

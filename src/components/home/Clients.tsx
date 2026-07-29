@@ -41,7 +41,7 @@ export default function Clients() {
   return (
     <section
       id="clients"
-      className="relative overflow-hidden bg-slate-50 py-24"
+      className="relative overflow-hidden bg-slate-50 py-12 lg:py-24"
     >
       <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-green-100 blur-3xl opacity-40" />
       <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-blue-100 blur-3xl opacity-30" />
@@ -54,14 +54,14 @@ export default function Clients() {
         />
 
         {/* Row 1 */}
-        <div className="mt-16 overflow-hidden">
-          <div className="marquee-left flex w-max gap-8">
+        <div className="mt-10 overflow-hidden lg:mt-16">
+          <div className="marquee-left flex w-max gap-4 lg:gap-8">
             {[...row1, ...row1].map((logo, index) => (
               <div
                 key={index}
-                className="flex h-32 w-60 shrink-0 items-center justify-center rounded-3xl border border-slate-200 bg-white p-6 shadow-md"
+                className="flex h-20 w-36 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white p-4 shadow-md lg:h-32 lg:w-60 lg:rounded-3xl lg:p-6"
               >
-                <div className="relative h-20 w-40">
+                <div className="relative h-12 w-24 lg:h-20 lg:w-40">
                   <Image
                     src={`/clients/${logo}`}
                     alt="Client"
@@ -75,14 +75,14 @@ export default function Clients() {
         </div>
 
         {/* Row 2 */}
-        <div className="mt-8 overflow-hidden">
-          <div className="marquee-right flex w-max gap-8">
+        <div className="mt-4 overflow-hidden lg:mt-8">
+          <div className="marquee-right flex w-max gap-4 lg:gap-8">
             {[...row2, ...row2].map((logo, index) => (
               <div
                 key={index}
-                className="flex h-32 w-60 shrink-0 items-center justify-center rounded-3xl border border-slate-200 bg-white p-6 shadow-md"
+                className="flex h-20 w-36 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white p-4 shadow-md lg:h-32 lg:w-60 lg:rounded-3xl lg:p-6"
               >
-                <div className="relative h-20 w-40">
+                <div className="relative h-12 w-24 lg:h-20 lg:w-40">
                   <Image
                     src={`/clients/${logo}`}
                     alt="Client"
@@ -95,8 +95,8 @@ export default function Clients() {
           </div>
         </div>
 
-        <div className="mt-14 text-center">
-          <p className="mx-auto max-w-3xl text-lg leading-8 text-slate-600">
+        <div className="mt-8 text-center lg:mt-14">
+          <p className="mx-auto max-w-3xl text-sm leading-7 text-slate-600 lg:text-lg lg:leading-8">
             Serving industries including
             <span className="font-semibold text-slate-900">
               {" "}

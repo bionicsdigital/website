@@ -44,7 +44,7 @@ export default function Process() {
   return (
     <section
       id="process"
-      className="bg-slate-50 py-20 lg:py-24"
+      className="bg-slate-50 py-12 lg:py-24"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHeading
@@ -52,7 +52,7 @@ export default function Process() {
           title="From Wastewater Analysis to Sustainable Performance"
         />
 
-        <ol className="relative mt-16 grid gap-8 lg:grid-cols-5">
+        <ol className="relative mt-10 grid gap-4 lg:mt-16 lg:gap-8 lg:grid-cols-5">
           {steps.map((step, index) => {
             const Icon = step.icon
 
@@ -61,17 +61,23 @@ export default function Process() {
                 key={step.title}
                 className="
                   relative
+                  flex
+                  items-start
+                  gap-4
                   rounded-3xl
                   border
                   border-slate-200
                   bg-white
-                  p-6
+                  p-5
                   shadow-sm
                   transition-all
                   duration-300
-                  hover:-translate-y-2
+                  hover:-translate-y-1
                   hover:border-green-500
                   hover:shadow-xl
+                  lg:block
+                  lg:p-6
+                  lg:hover:-translate-y-2
 
                   lg:after:absolute
                   lg:after:left-full
@@ -84,7 +90,7 @@ export default function Process() {
               >
                 {/* Step Number */}
 
-                <div className="flex items-center justify-between">
+                <div className="flex shrink-0 items-center justify-between lg:block">
                   <span className="flex h-10 w-10 items-center justify-center rounded-full bg-green-600 text-sm font-bold text-white">
                     {String(index + 1).padStart(2, '0')}
                   </span>
@@ -92,7 +98,7 @@ export default function Process() {
 
                 {/* Icon */}
 
-                <div className="mt-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-green-50 transition group-hover:bg-green-600">
+                <div className="mt-6 hidden h-16 w-16 items-center justify-center rounded-2xl bg-green-50 transition group-hover:bg-green-600 lg:flex">
                   <Icon
                     size={30}
                     className="text-green-600 transition"
@@ -101,15 +107,19 @@ export default function Process() {
 
                 {/* Title */}
 
-                <h3 className="mt-6 text-xl font-bold text-slate-900">
-                  {step.title}
-                </h3>
+                <div className="min-w-0">
+                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-xl bg-green-50 lg:hidden">
+                    <Icon size={20} className="text-green-600" />
+                  </div>
 
-                {/* Description */}
+                  <h3 className="text-lg font-bold text-slate-900 lg:mt-6 lg:text-xl">
+                    {step.title}
+                  </h3>
 
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {step.description}
-                </p>
+                  <p className="mt-2 text-sm leading-6 text-slate-600 lg:mt-3">
+                    {step.description}
+                  </p>
+                </div>
               </li>
             )
           })}

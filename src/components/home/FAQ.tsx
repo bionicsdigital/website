@@ -39,7 +39,7 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="bg-slate-50 py-20 lg:py-24"
+      className="bg-slate-50 py-12 lg:py-24"
     >
       <div className="mx-auto max-w-4xl px-5 sm:px-8">
         <SectionHeading
@@ -47,7 +47,7 @@ export default function FAQ() {
           title="Everything You Need to Know About Nanozyme Bioculture"
         />
 
-        <div className="mt-14 space-y-5">
+        <div className="mt-10 space-y-4 lg:mt-14 lg:space-y-5">
           {questions.map((item, index) => (
             <div
               key={item.question}
@@ -75,12 +75,13 @@ export default function FAQ() {
                   justify-between
                   gap-4
                   px-6
-                  py-6
+                  py-4
+                  lg:py-6
                   text-left
                 "
                 aria-expanded={open === index}
               >
-                <span className="text-lg font-semibold text-slate-900">
+                <span className="text-base font-semibold text-slate-900 lg:text-lg">
                   {item.question}
                 </span>
 
@@ -108,7 +109,7 @@ export default function FAQ() {
                       duration: 0.3,
                     }}
                   >
-                    <p className="px-6 pb-6 leading-7 text-slate-600">
+                    <p className="px-6 pb-5 text-sm leading-7 text-slate-600 lg:pb-6 lg:text-base">
                       {item.answer}
                     </p>
                   </motion.div>

@@ -1,6 +1,6 @@
 export type Office = {
   id: string
-  type: 'Head Office' | 'Corporate Office' | 'Regional Office'
+  type: 'Head Office' | 'Corporate Office'
   city: string
   address: string[]
   x: number
@@ -40,27 +40,11 @@ export const offices: Office[] = [
     y: 75.4,
     pinColor: '#0EA5E9',
   },
-
-  {
-    id: 'jaunpur',
-    type: 'Regional Office',
-    city: 'Jaunpur',
-    address: [
-      'Pratap Colony',
-      'Near Holy Child School',
-      'Ruhatta',
-      'Jaunpur - 222002',
-      'Uttar Pradesh',
-    ],
-    x: 46.6,
-    y: 37.8,
-    pinColor: '#F97316',
-  },
 ]
 
 export const presenceStats = [
   {
-    value: '3',
+    value: '2',
     label: 'Offices',
   },
   {
@@ -68,7 +52,7 @@ export const presenceStats = [
     label: 'Support',
   },
   {
-    value: '100+',
+    value: '1000+',
     label: 'Industries Served',
   },
   {
