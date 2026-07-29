@@ -4,6 +4,7 @@ import { Poppins } from 'next/font/google'
 import Navbar from '@/components/home/Navbar'
 import Footer from '@/components/footer/Footer'
 import BackgroundParticles from '@/components/background/BackgroundParticles'
+import Assistant from '@/components/assistant/Assistant'
 
 import './globals.css'
 
@@ -42,6 +43,7 @@ export default function RootLayout({
         <BackgroundParticles />
         <Navbar />
         {children}
+        <Assistant />
         <Footer />
       </body>
     </html>

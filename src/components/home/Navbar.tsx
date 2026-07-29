@@ -47,14 +47,14 @@ export default function Navbar() {
     <MotionDiv
       layout
       initial={false}
-      animate={isFloating ? { width: isDesktop ? '94%' : 'calc(100% - 24px)', maxWidth: 1380, top: isDesktop ? 12 : 10, borderRadius: isDesktop ? 999 : 24, paddingLeft: isDesktop ? 12 : 0, paddingRight: isDesktop ? 12 : 0, boxShadow: isDesktop ? '0 20px 45px rgba(15, 23, 42, 0.14)' : '0 14px 30px rgba(15, 23, 42, 0.12)' } : { width: '100%', maxWidth: '100%', top: 0, borderRadius: 0, paddingLeft: 0, paddingRight: 0, boxShadow: '0 0 0 rgba(15, 23, 42, 0)' }}
+      animate={isFloating ? { width: isDesktop ? '94%' : 'calc(100% - 24px)', top: isDesktop ? 12 : 10, borderRadius: isDesktop ? 999 : 24, paddingLeft: isDesktop ? 12 : 0, paddingRight: isDesktop ? 12 : 0, boxShadow: isDesktop ? '0 20px 45px rgba(15, 23, 42, 0.14)' : '0 14px 30px rgba(15, 23, 42, 0.12)' } : { width: '100%', top: 0, borderRadius: 0, paddingLeft: 0, paddingRight: 0, boxShadow: '0 0 0 rgba(15, 23, 42, 0)' }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       className="relative mx-auto border border-transparent text-slate-900 max-lg:overflow-visible"
-      style={{ borderColor: isFloating ? 'rgba(15, 23, 42, 0.08)' : 'transparent', backdropFilter: isFloating ? 'blur(24px)' : 'none', backgroundColor: isFloating ? 'rgba(255,255,255,0.96)' : 'transparent' }}
+      style={{ maxWidth: isFloating ? 1380 : '100%', borderColor: isFloating ? 'rgba(15, 23, 42, 0.08)' : 'transparent', backdropFilter: isFloating ? 'blur(24px)' : 'none', backgroundColor: isFloating ? 'rgba(255,255,255,0.96)' : 'transparent' }}
     >
-      <MotionDiv layout="position" animate={{ height: isFloating ? 72 : 84, paddingLeft: isFloating ? 12 : 24, paddingRight: isFloating ? 12 : 24, maxWidth: isFloating ? 1380 : 1320 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }} className="mx-auto flex w-full items-center justify-between lg:px-0">
+      <MotionDiv layout="position" animate={{ height: isFloating ? 72 : 84, paddingLeft: isFloating ? 12 : 24, paddingRight: isFloating ? 12 : 24 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }} className="mx-auto flex w-full max-w-[1320px] items-center justify-between lg:px-0">
         <Link href="/" className="flex items-center" aria-label="Bionics Enviro Tech home">
-          <Image src="/logo.png" alt="Bionics Enviro Tech" width={220} height={60} priority className="h-12 w-auto lg:h-14" />
+          <Image src="/logo.png" alt="Bionics Enviro Tech" width={220} height={60} priority className="h-12 w-auto lg:h-14" style={{ width: 'auto' }} />
         </Link>
 
         <nav className="hidden items-center gap-8 xl:flex" aria-label="Primary navigation">

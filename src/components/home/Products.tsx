@@ -76,7 +76,8 @@ export default function Products() {
               <div className="relative aspect-[16/10] overflow-hidden rounded-t-3xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 lg:aspect-square">
                 <Link
                   href={`/products/${product.slug}`}
-                  className="mt-7 inline-flex items-center gap-2 font-semibold text-[#00C853] transition-all duration-300 hover:gap-3 hover:text-green-700"
+                  className="absolute inset-0 block"
+                  aria-label={`View ${product.name}`}
                 >
                 <Image
                   src={`/products/${product.image}`}
