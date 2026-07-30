@@ -1,8 +1,42 @@
 @import "tailwindcss";
+@import "react-phone-number-input/style.css";
 
 @theme {
   --color-bionics-green: #00C853;
   --color-bionics-mint: #00E676;
+}
+
+.quote-phone-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  border-radius: 0.75rem;
+  border-width: 1px;
+  background: #ffffff;
+  padding: 0.72rem 0.75rem;
+  font-size: 0.875rem;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.quote-phone-input:focus-within {
+  border-color: #10b981;
+  box-shadow: 0 0 0 2px rgb(16 185 129 / 0.12);
+}
+
+.quote-phone-input .PhoneInputCountry {
+  margin-right: 0.25rem;
+}
+
+.quote-phone-input .PhoneInputInput {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  background: transparent;
+  color: #0f172a;
+  outline: none;
 }
 
 @layer base {

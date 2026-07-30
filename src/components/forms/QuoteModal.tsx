@@ -24,7 +24,7 @@ export type QuoteFormValues = {
 const initialValues: QuoteFormValues = {
     plantType: '',
     industry: '',
-    product: 'Nanozyme Bioculture',
+    product: '',
     plantCapacity: '',
     companyName: '',
     contactPerson: '',
@@ -39,11 +39,13 @@ const initialValues: QuoteFormValues = {
 export default function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
     const [formData, setFormData] = useState(initialValues)
     const [showSuccess, setShowSuccess] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
     useEffect(() => {
         if (!open) {
             setFormData(initialValues)
             setShowSuccess(false)
+            setIsSubmitting(false)
         }
     }, [open])
 
@@ -58,13 +60,33 @@ export default function QuoteModal({ open, onClose }: { open: boolean; onClose: 
         return () => window.removeEventListener('keydown', onKeyDown)
     }, [open, onClose])
 
-    const handleQuoteSubmit = () => {
-        console.log('Quote request submitted', formData)
-        // TODO: Integrate Email API
-        // TODO: Save Lead to Database
-        // TODO: CRM Integration
-        setShowSuccess(true)
-        toast.success('Quote request submitted successfully.')
+    const handleQuoteSubmit = async () => {
+        if (isSubmitting) return
+
+        setIsSubmitting(true)
+
+        try {
+            const response = await fetch('/api/request-quote', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+
+            if (!response.ok) {
+                toast.error('Something went wrong. Please try again.')
+                return
+            }
+
+            setShowSuccess(true)
+            setFormData(initialValues)
+            toast.success('Thank you! Our technical team will contact you shortly.')
+        } catch {
+            toast.error('Something went wrong. Please try again.')
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     const dialogClassName = useMemo(() => {
@@ -99,6 +121,7 @@ export default function QuoteModal({ open, onClose }: { open: boolean; onClose: 
                             onSubmit={handleQuoteSubmit}
                             showSuccess={showSuccess}
                             onClose={onClose}
+                            isSubmitting={isSubmitting}
                         />
                     </div>
                 </DialogPanel>

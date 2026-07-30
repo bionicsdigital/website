@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { isValidPhoneNumber } from 'libphonenumber-js'
 import { toast } from 'react-hot-toast'
 import CompanyForm from '@/components/forms/CompanyForm'
 import GSTSummary from '@/components/forms/GSTSummary'
@@ -8,6 +9,7 @@ import OrderSummary from '@/components/forms/OrderSummary'
 import ProductSelector from '@/components/forms/ProductSelector'
 import type { OrderFormValues } from '@/components/forms/OrderSummary'
 import ScrollToTop from '@/components/home/ScrollToTop'
+import { emailRegex } from '@/lib/request-quote'
 
 const initialValues: OrderFormValues = {
     companyName: '',
@@ -20,7 +22,7 @@ const initialValues: OrderFormValues = {
     city: '',
     address: '',
     pincode: '',
-    product: 'Nanozyme Bioculture',
+    product: '',
     quantity: 1,
     unitPrice: 1000,
 }
@@ -31,7 +33,7 @@ export default function BuyProductPage() {
     const [isSubmitting, setIsSubmitting] = useState(false)
 
     const subtotal = formData.quantity * formData.unitPrice
-    const isTamilNadu = formData.state === 'Tamil Nadu'
+    const isTamilNadu = formData.country === 'India' && formData.state === 'Tamil Nadu'
     const cgst = isTamilNadu ? subtotal * 0.09 : 0
     const sgst = isTamilNadu ? subtotal * 0.09 : 0
     const igst = isTamilNadu ? 0 : subtotal * 0.18
@@ -45,7 +47,12 @@ export default function BuyProductPage() {
         else if (!/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(formData.gstNumber.toUpperCase())) nextErrors.gstNumber = 'GST number format is invalid.'
         if (!formData.contactPerson) nextErrors.contactPerson = 'Contact person is required.'
         if (!formData.email) nextErrors.email = 'Email is required.'
-        if (!formData.phone) nextErrors.phone = 'Phone is required.'
+        else if (!emailRegex.test(formData.email.trim())) nextErrors.email = 'Please enter a valid email address.'
+        const phoneValue = formData.phone.trim()
+        const indiaDigits = phoneValue.startsWith('+91') ? phoneValue.replace(/^\+91/, '').replace(/\D/g, '') : ''
+        if (!phoneValue) nextErrors.phone = 'Phone is required.'
+        else if (phoneValue.startsWith('+91') && indiaDigits.length !== 10) nextErrors.phone = 'Please enter a valid 10 digit mobile number.'
+        else if (!isValidPhoneNumber(phoneValue)) nextErrors.phone = 'This phone number is not valid.'
         if (!formData.state) nextErrors.state = 'State is required.'
         if (!formData.product) nextErrors.product = 'Product is required.'
         if (!formData.quantity || formData.quantity < 1) nextErrors.quantity = 'Quantity must be at least 1.'
@@ -81,7 +88,7 @@ export default function BuyProductPage() {
                 <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
                     <div className="space-y-6">
                         <CompanyForm formData={formData} setFormData={setFormData} errors={errors} setErrors={setErrors} />
-                        <ProductSelector formData={formData} setFormData={setFormData} errors={errors} />
+                        <ProductSelector formData={formData} setFormData={setFormData} errors={errors} setErrors={setErrors} />
                     </div>
 
                     <div className="space-y-6">
