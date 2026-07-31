@@ -15,19 +15,19 @@ type MechanismTimelineProps = {
 
 export default function MechanismTimeline({ eyebrow, title, description, items }: MechanismTimelineProps) {
     return (
-        <section className="mx-auto max-w-7xl px-4 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-14">
-            <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm sm:rounded-[2rem] sm:p-8 lg:p-10">
+        <section className="mx-auto max-w-7xl px-4 py-5 sm:px-8 lg:px-10 lg:py-8">
+            <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm sm:rounded-[2rem] sm:p-7 lg:p-8">
                 <div className="max-w-3xl">
                     <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">{eyebrow}</p>
                     <h2 className="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">{title}</h2>
                     {description ? <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">{description}</p> : null}
                 </div>
 
-                <div className="mt-7 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                <div className="mt-5 grid gap-3 sm:mt-6 sm:grid-cols-2 xl:grid-cols-4">
                     {items.map((item) => {
                         const Icon = item.icon
                         return (
-                            <div key={item.title} className="flex min-h-[110px] items-center gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 transition duration-300 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-md">
+                            <div key={item.title} className="flex min-h-[96px] items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 transition duration-300 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-md">
                                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-600 text-white">
                                     <Icon className="h-5 w-5" />
                                 </div>

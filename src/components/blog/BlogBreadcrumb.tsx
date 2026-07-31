@@ -1,2 +1,5 @@
-import Link from 'next/link'; import { ChevronRight } from 'lucide-react'
-export default function BlogBreadcrumb({ title }: { title: string }) { return <nav className="flex flex-wrap items-center gap-1 text-sm text-slate-500" aria-label="Breadcrumb"><Link href="/" className="hover:text-emerald-700">Home</Link><ChevronRight className="h-4 w-4"/><Link href="/blogs" className="hover:text-emerald-700">Blogs</Link><ChevronRight className="h-4 w-4"/><span className="max-w-[16rem] truncate text-slate-700">{title}</span></nav> }
+import PageBreadcrumb from '@/components/ui/PageBreadcrumb'
+
+export default function BlogBreadcrumb({ title }: { title: string }) {
+  return <PageBreadcrumb items={[{ label: 'Blogs', href: '/blogs' }, { label: title }]} />
+}

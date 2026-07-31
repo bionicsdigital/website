@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import PageBreadcrumb from '@/components/ui/PageBreadcrumb'
 
 type ProductHeroProps = {
     title: string
@@ -15,6 +16,7 @@ export default function ProductHero({ title, subtitle, heroImage, overview }: Pr
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.16),_transparent_35%)]" />
             <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-12 pt-28 sm:px-8 sm:pb-16 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-28">
                 <div className="flex flex-col justify-center">
+                    <div className="mb-4"><PageBreadcrumb dark items={[{ label: 'Products', href: '/#products' }, { label: title }]} /></div>
                     <p className="inline-flex w-fit items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-emerald-100 sm:text-sm sm:tracking-[0.2em]">
                         Advanced Bioculture Solution
                     </p>

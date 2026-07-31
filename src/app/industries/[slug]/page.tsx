@@ -14,6 +14,7 @@ import ReactionCards from '@/components/industry/ReactionCards'
 import RecommendationCard from '@/components/industry/RecommendationCard'
 import industries, { getIndustryDetail } from '@/data/industries'
 import ScrollToTop from '@/components/home/ScrollToTop'
+import PageBreadcrumb from '@/components/ui/PageBreadcrumb'
 
 export function generateStaticParams() {
     return industries.map((industry) => ({ slug: industry.slug }))
@@ -54,26 +55,27 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
         <main className="min-h-screen bg-slate-50">
             <section className="relative overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-900 to-green-800 text-white">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.16),_transparent_35%)]" />
-                <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-12 pt-28 sm:px-8 sm:pb-16 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-28">
+                <div className="relative mx-auto grid max-w-7xl gap-6 px-4 pb-9 pt-24 sm:px-8 sm:pb-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-stretch lg:gap-8 lg:px-10 lg:pb-20 lg:pt-28">
                     <div className="max-w-2xl">
+                        <div className="mb-4"><PageBreadcrumb dark items={[{ label: 'Industries', href: '/#industries' }, { label: industry.name }]} /></div>
                         <p className="inline-flex max-w-full items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-emerald-100 sm:text-sm sm:tracking-[0.2em]">{detail.eyebrow}</p>
                         <h1 className="mt-5 text-3xl font-black leading-tight sm:text-5xl lg:mt-6 lg:text-6xl">{detail.title}</h1>
                         <p className="mt-3 text-base font-semibold text-emerald-100 sm:mt-4 sm:text-xl">{detail.subtitle}</p>
                         <p className="mt-4 max-w-xl text-sm leading-7 text-emerald-50/90 sm:mt-5 sm:text-lg sm:leading-8">{detail.description}</p>
-                        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                             <Link href="/#contact" className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-emerald-800 transition hover:bg-emerald-50">Download Brochure <ArrowRight className="ml-2 h-4 w-4" /></Link>
                             <Link href="/#contact" className="inline-flex items-center justify-center rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20">Request Technical Consultation</Link>
                         </div>
-                        <div className="mt-8 flex flex-wrap gap-3">
+                        <div className="mt-5 flex flex-wrap gap-2">
                             {detail.badges.map((badge) => (
-                                <span key={badge} className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-2 text-sm font-medium text-emerald-50">{badge}</span>
+                                <span key={badge} className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-medium text-emerald-50 sm:text-sm">{badge}</span>
                             ))}
                         </div>
                     </div>
 
-                    <div className="rounded-[1.5rem] border border-white/20 bg-white/10 p-3 shadow-2xl backdrop-blur sm:rounded-[2rem] sm:p-4">
-                        <div className="overflow-hidden rounded-[1.5rem] bg-slate-950/20">
-                            <Image src={detail.heroImage} alt={detail.title} width={700} height={520} priority className="h-[220px] w-full object-contain bg-white/5 p-4 sm:h-[400px] sm:p-6" />
+                    <div className="flex h-full items-center justify-center rounded-[1.5rem] border border-white/20 bg-white/10 p-3 shadow-2xl backdrop-blur sm:rounded-[2rem] sm:p-4">
+                        <div className="flex h-full min-h-[220px] w-full items-center justify-center overflow-hidden rounded-[1.25rem] bg-slate-950/20 sm:min-h-[340px] sm:rounded-[1.5rem]">
+                            <Image src={detail.heroImage} alt={detail.title} width={700} height={520} priority className="max-h-[440px] w-full object-contain p-4 sm:p-6" />
                         </div>
                     </div>
                 </div>
@@ -99,13 +101,13 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
 
             <PerformanceTable eyebrow="Performance Table" title="Typical Treatment Improvements" description="Representative performance outcomes observed in industrial wastewater treatment systems." rows={detail.performanceTable} />
 
-            <section className="mx-auto max-w-7xl px-4 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-14">
-                <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm sm:rounded-[2rem] sm:p-8 lg:p-10">
+            <section className="mx-auto max-w-7xl px-4 py-5 sm:px-8 lg:px-10 lg:py-8">
+                <div className="rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm sm:rounded-[2rem] sm:p-7 lg:p-8">
                     <div className="max-w-3xl">
                         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">Applications</p>
                         <h2 className="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">Where the Solution Is Applied</h2>
                     </div>
-                    <div className="mt-7 flex flex-wrap gap-3">
+                    <div className="mt-5 flex flex-wrap gap-2 sm:mt-6">
                         {detail.applications.map((application) => (
                             <span key={application} className="inline-flex h-11 items-center rounded-full border border-slate-200 bg-slate-50 px-4 text-sm font-semibold text-slate-700 transition duration-300 hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700">{application}</span>
                         ))}

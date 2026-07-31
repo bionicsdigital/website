@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import BlogHero from "@/components/blog/BlogHero";
-import FeaturedPost from "@/components/blog/FeaturedPost";
 import BlogExplorer from "@/components/blog/BlogExplorer";
-import { getAllBlogs, getBlogCategories, getFeaturedBlog } from "@/lib/blog";
+import { getAllBlogs, getBlogCategories } from "@/lib/blog";
 import ScrollToTop from '@/components/home/ScrollToTop'
 
 export const metadata: Metadata = {
@@ -29,16 +28,15 @@ export default function BlogsPage() {
   return (<>
     <main className="min-h-screen bg-slate-50">
       <BlogHero />
-      <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:px-10">
-        <FeaturedPost article={getFeaturedBlog()} />
-        <section id="articles" className="mt-16 scroll-mt-24">
+      <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-10 lg:py-10">
+        <section id="articles" className="scroll-mt-24">
           <p className="text-xs font-bold uppercase tracking-[.15em] text-emerald-700">
             Latest insight
           </p>
           <h2 className="mt-2 text-3xl font-black text-slate-900 sm:text-4xl">
             Technical articles for plant teams
           </h2>
-          <div className="mt-8">
+          <div className="mt-5 sm:mt-6">
             <BlogExplorer
               articles={articles}
               categories={getBlogCategories()}

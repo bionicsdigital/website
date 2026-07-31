@@ -6,8 +6,8 @@ type ProductOverviewProps = {
 
 export default function ProductOverview({ title, description, image }: ProductOverviewProps) {
     return (
-        <section className="mx-auto max-w-7xl px-4 py-10 sm:px-8 lg:px-10 lg:py-20">
-            <div className="grid gap-6 rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm sm:rounded-[2rem] sm:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10 lg:p-12">
+        <section className="mx-auto max-w-7xl px-4 py-5 sm:px-8 lg:px-10 lg:py-8">
+            <div className="grid gap-5 rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm sm:rounded-[2rem] sm:p-7 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8 lg:p-8">
                 <div className="overflow-hidden rounded-[1.5rem] bg-slate-100">
                     <img src={image} alt={title} className="h-full min-h-[220px] w-full object-contain bg-white p-4 sm:min-h-[320px] sm:p-6" />
                 </div>

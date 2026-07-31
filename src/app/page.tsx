@@ -12,7 +12,7 @@ import Products from '@/components/home/Products'
 import ScrollToTop from '@/components/home/ScrollToTop'
 import Stats from '@/components/home/Stats'
 import Testimonials from '@/components/home/Testimonials'
-import PanIndiaPresence from '@/components/footer/PanIndiaPresence'
+import Offices from '@/components/footer/Offices'
 
 export const metadata: Metadata = {
   title: 'Bioculture Manufacturer in India | Bionics Enviro Tech',
@@ -38,7 +38,7 @@ export default function Home() {
       <Testimonials />
       <FAQ />
       <CTA />
-      <PanIndiaPresence />
+      <Offices />
     </main>
     <ScrollToTop />
   </>

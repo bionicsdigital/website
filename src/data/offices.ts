@@ -3,9 +3,6 @@ export type Office = {
   type: 'Head Office' | 'Corporate Office'
   city: string
   address: string[]
-  x: number
-  y: number
-  pinColor: string
 }
 
 export const offices: Office[] = [
@@ -20,9 +17,6 @@ export const offices: Office[] = [
       'Erode - 638052',
       'Tamil Nadu',
     ],
-    x: 40.2,
-    y: 79.3,
-    pinColor: '#10B981',
   },
 
   {
@@ -36,27 +30,5 @@ export const offices: Office[] = [
       'Chennai - 603203',
       'Tamil Nadu',
     ],
-    x: 44.8,
-    y: 75.4,
-    pinColor: '#0EA5E9',
-  },
-]
-
-export const presenceStats = [
-  {
-    value: '2',
-    label: 'Offices',
-  },
-  {
-    value: 'Pan India',
-    label: 'Support',
-  },
-  {
-    value: '1000+',
-    label: 'Industries Served',
-  },
-  {
-    value: '15000+',
-    label: 'Customers',
   },
 ]

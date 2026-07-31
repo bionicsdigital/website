@@ -5,6 +5,10 @@ import type { BlogArticle } from '@/types/blog'
 
 export default function BlogCard({ article }: { article: BlogArticle }) {
   return (
+    <Link
+      href={`/blogs/${article.slug}`}
+      className="block h-full min-w-0"
+    >
     <article className="group flex h-full min-w-0 flex-col overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
       <Image
         src={article.coverImage}
@@ -38,13 +42,11 @@ export default function BlogCard({ article }: { article: BlogArticle }) {
             {article.readingTime}
           </span>
         </div>
-        <Link
-          href={`/blogs/${article.slug}`}
-          className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-emerald-700"
-        >
+        <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-emerald-700">
           Read article <ArrowRight className="h-4 w-4" />
-        </Link>
+        </span>
       </div>
     </article>
+    </Link>
   )
 }

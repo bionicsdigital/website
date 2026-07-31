@@ -10,8 +10,27 @@ export default function HeroVideoCard() {
   const reduceMotion = useReducedMotion()
 
   const videoRef = useRef<HTMLVideoElement>(null)
+  const autoplayAttempted = useRef(false)
 
-  const [isMuted, setIsMuted] = useState(true)
+  const [isMuted, setIsMuted] = useState(false)
+
+  const playWithAudio = async () => {
+    const video = videoRef.current
+    if (!video || autoplayAttempted.current) return
+
+    autoplayAttempted.current = true
+    video.muted = false
+
+    try {
+      await video.play()
+      setIsMuted(false)
+    } catch {
+      // Browsers often block autoplay with sound until the user interacts.
+      video.muted = true
+      setIsMuted(true)
+      await video.play().catch(() => undefined)
+    }
+  }
 
   const toggleMute = () => {
     if (!videoRef.current) return
@@ -68,10 +87,11 @@ export default function HeroVideoCard() {
         <video
           ref={videoRef}
           autoPlay
-          muted
+          muted={isMuted}
           loop
           playsInline
           preload="auto"
+          onCanPlay={playWithAudio}
           className="
             w-full
             object-cover

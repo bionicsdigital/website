@@ -135,7 +135,7 @@ export default async function BlogDetail({
           }),
         }}
       />
-      <div className="mx-auto max-w-7xl px-4 pb-12 pt-24 sm:px-8 sm:pb-16 sm:pt-28 lg:px-10">
+      <div className="mx-auto max-w-7xl px-4 pb-8 pt-24 sm:px-8 sm:pb-10 sm:pt-28 lg:px-10">
         <BlogBreadcrumb title={article.title} />
         <Image
           src={article.coverImage}
@@ -143,14 +143,14 @@ export default async function BlogDetail({
           width={1440}
           height={720}
           priority
-          className="mt-6 h-44 w-full rounded-2xl object-cover sm:mt-7 sm:h-96 sm:rounded-3xl"
+          className="mt-4 h-44 w-full rounded-2xl object-cover sm:mt-5 sm:h-80 sm:rounded-3xl lg:h-96"
         />
-        <div className="mt-8 grid min-w-0 gap-10 lg:mt-10 lg:gap-12 lg:grid-cols-[minmax(0,1fr)_18rem]">
+        <div className="mt-6 grid min-w-0 gap-8 lg:mt-7 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-10">
           <ArticleBody article={article} />
           <BlogSidebar article={article} />
         </div>
         <RelatedPosts articles={related} />
-        <nav className="mt-10 grid gap-4 border-t border-slate-200 pt-6 sm:mt-12 sm:grid-cols-2 sm:pt-8">
+        <nav className="mt-7 grid gap-3 border-t border-slate-200 pt-5 sm:mt-8 sm:grid-cols-2 sm:pt-6">
           {adjacent.previous ? (
             <Link
               href={`/blogs/${adjacent.previous.slug}`}

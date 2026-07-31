@@ -17,19 +17,19 @@ type FAQSectionProps = {
 
 export default function FAQSection({ eyebrow, title, description, items }: FAQSectionProps) {
     return (
-        <section className="mx-auto max-w-7xl px-4 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-14">
+        <section className="mx-auto max-w-7xl px-4 py-5 sm:px-8 lg:px-10 lg:py-8">
             <div className="max-w-3xl">
                 <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-600">{eyebrow}</p>
                 <h2 className="mt-3 text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl">{title}</h2>
                 {description ? <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">{description}</p> : null}
             </div>
 
-            <div className="mt-7 space-y-3">
+            <div className="mt-5 space-y-2 sm:mt-6 sm:space-y-3">
                 {items.map((item) => (
                     <Disclosure key={item.question} as="div" className="rounded-2xl border border-slate-200 bg-white shadow-sm">
                         {({ open }) => (
                             <>
-                                <DisclosureButton className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left">
+                                <DisclosureButton className="flex w-full items-center justify-between gap-4 px-4 py-3.5 text-left sm:px-5 sm:py-4">
                                     <span className="text-base font-semibold text-slate-900">{item.question}</span>
                                     <ChevronDown className={`h-5 w-5 shrink-0 text-emerald-600 transition ${open ? 'rotate-180' : ''}`} />
                                 </DisclosureButton>

@@ -3,7 +3,7 @@ import type { BlogArticle } from '@/types/blog'
 
 export default function RelatedPosts({ articles }: { articles: BlogArticle[] }) {
   return (
-    <section className="mt-10 border-t border-slate-200 pt-8 sm:mt-14 sm:pt-12">
+    <section className="mt-7 border-t border-slate-200 pt-6 sm:mt-8 sm:pt-7">
       <p className="text-xs font-bold uppercase tracking-wider text-emerald-700">
         Continue learning
       </p>

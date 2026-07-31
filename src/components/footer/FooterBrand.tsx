@@ -26,7 +26,7 @@ export default function FooterBrand() {
     <section>
       <a href="/" className="inline-flex items-center gap-3">
         <Image
-          src="/logo.png"
+          src="/icon.png"
           alt="Bionics Enviro Tech"
           width={54}
           height={54}
@@ -38,11 +38,11 @@ export default function FooterBrand() {
           </span>
         </span>
       </a>
-      <p className="mt-6 max-w-xs text-sm leading-7 text-slate-300">
+      <p className="mt-4 max-w-xs text-sm leading-6 text-slate-300">
         Scientific manufacturer of Nanozyme Bioculture for wastewater treatment
         and industrial biological solutions.
       </p>
-      <div className="mt-6 space-y-3 text-sm text-slate-300">
+      <div className="mt-4 space-y-2.5 text-sm text-slate-300">
         <a
           href="tel:+919095000090"
           className="flex items-center gap-2 hover:text-emerald-300"
@@ -59,7 +59,7 @@ export default function FooterBrand() {
         </a>
         <span className="flex items-center gap-2"></span>
       </div>
-      <div className="mt-6 flex flex-wrap gap-2">
+      <div className="mt-4 flex flex-wrap gap-2">
         {socials.map(({ label, href, icon: Icon }) => (
           <a
             key={label}
