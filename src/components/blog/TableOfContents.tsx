@@ -1,1 +1,28 @@
-export default function TableOfContents({ content }: { content: string }) { const items=[...content.matchAll(/^## (.+)$/gm)].map((match)=>match[1]); return <nav className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm" aria-label="Table of contents"><p className="text-xs font-bold uppercase tracking-wider text-emerald-700">On this page</p><ol className="mt-4 space-y-3 text-sm text-slate-600">{items.map((item)=><li key={item}><a className="hover:text-emerald-700" href={`#${item.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')}`}>{item}</a></li>)}</ol></nav> }
+export default function TableOfContents({ content }: { content: string }) {
+  const items = [...content.matchAll(/^## (.+)$/gm)].map((match) => match[1]);
+  return (
+    <nav
+      className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+      aria-label="Table of contents"
+    >
+      <p className="text-xs font-bold uppercase tracking-wider text-emerald-700">
+        On this page
+      </p>
+      <ol className="mt-4 space-y-3 text-sm text-slate-600">
+        {items.map((item) => (
+          <li key={item}>
+            <a
+              className="hover:text-emerald-700"
+              href={`#${item
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/(^-|-$)/g, "")}`}
+            >
+              {item}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+}

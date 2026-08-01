@@ -1,2 +1,33 @@
-import Image from 'next/image'; import Link from 'next/link'; import { ArrowRight } from 'lucide-react'; import type { BlogArticle } from '@/types/blog'
-export default function FeaturedPost({ article }: { article: BlogArticle }) { return <article className="overflow-hidden rounded-[2rem] border border-emerald-100 bg-white shadow-xl shadow-emerald-950/5 md:grid md:grid-cols-2"><Image src={article.coverImage} alt="" width={900} height={600} className="h-64 w-full object-cover md:h-full" priority /><div className="p-7 sm:p-10"><p className="text-xs font-bold uppercase tracking-[.18em] text-emerald-700">Featured · {article.category}</p><h2 className="mt-4 text-2xl font-black text-slate-900 sm:text-3xl">{article.title}</h2><p className="mt-4 leading-7 text-slate-600">{article.excerpt}</p><Link href={`/blogs/${article.slug}`} className="mt-7 inline-flex items-center gap-2 font-bold text-emerald-700">Read the guide <ArrowRight className="h-4 w-4" /></Link></div></article> }
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import type { BlogArticle } from "@/types/blog";
+export default function FeaturedPost({ article }: { article: BlogArticle }) {
+  return (
+    <article className="overflow-hidden rounded-[2rem] border border-emerald-100 bg-white shadow-xl shadow-emerald-950/5 md:grid md:grid-cols-2">
+      <Image
+        src={article.coverImage}
+        alt=""
+        width={900}
+        height={600}
+        className="h-64 w-full object-cover md:h-full"
+        priority
+      />
+      <div className="p-7 sm:p-10">
+        <p className="text-xs font-bold uppercase tracking-[.18em] text-emerald-700">
+          Featured · {article.category}
+        </p>
+        <h2 className="mt-4 text-2xl font-black text-slate-900 sm:text-3xl">
+          {article.title}
+        </h2>
+        <p className="mt-4 leading-7 text-slate-600">{article.excerpt}</p>
+        <Link
+          href={`/blogs/${article.slug}`}
+          className="mt-7 inline-flex items-center gap-2 font-bold text-emerald-700"
+        >
+          Read the guide <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+    </article>
+  );
+}

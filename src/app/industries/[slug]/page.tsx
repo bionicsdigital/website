@@ -73,9 +73,17 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
                         </div>
                     </div>
 
-                    <div className="flex h-full items-center justify-center rounded-[1.5rem] border border-white/20 bg-white/10 p-3 shadow-2xl backdrop-blur sm:rounded-[2rem] sm:p-4">
-                        <div className="flex h-full min-h-[220px] w-full items-center justify-center overflow-hidden rounded-[1.25rem] bg-slate-950/20 sm:min-h-[340px] sm:rounded-[1.5rem]">
-                            <Image src={detail.heroImage} alt={detail.title} width={700} height={520} priority className="max-h-[440px] w-full object-contain p-4 sm:p-6" />
+                    <div className="flex h-full rounded-[1.5rem] border border-white/25 bg-white/10 p-2.5 shadow-2xl backdrop-blur sm:rounded-[2rem] sm:p-3">
+                        <div className="relative min-h-[280px] w-full overflow-hidden rounded-[1.15rem] border border-white/10 bg-emerald-950 sm:min-h-[420px] sm:rounded-[1.5rem]">
+                            <Image
+                                src={detail.heroImage}
+                                alt={detail.title}
+                                fill
+                                priority
+                                sizes="(max-width: 1024px) 100vw, 42vw"
+                                className="object-cover object-center transition-transform duration-700 hover:scale-[1.025]"
+                            />
+                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-emerald-950/25 via-transparent to-white/5" />
                         </div>
                     </div>
                 </div>

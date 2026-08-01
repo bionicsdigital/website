@@ -244,6 +244,7 @@ const industryDetails: Record<string, IndustryDetail> = {
     'textile-processing-industry': textileDetail,
     'chemical-industry': {
         ...textileDetail,
+        heroImage: '/industries/Chemical Industry.png',
         eyebrow: 'Chemical Wastewater',
         title: 'Nanozyme Bioculture for Chemical Industry Effluent',
         subtitle: 'Support for phenol, solvent and complex organic load treatment',
@@ -263,6 +264,7 @@ const industryDetails: Record<string, IndustryDetail> = {
     },
     'pharma-industry': {
         ...textileDetail,
+        heroImage: '/industries/Pharma.png',
         eyebrow: 'Pharma Wastewater',
         title: 'Nanozyme Bioculture for Pharma Effluent Treatment',
         subtitle: 'Reliable biological support for high COD and API-bearing wastewater',
@@ -271,6 +273,7 @@ const industryDetails: Record<string, IndustryDetail> = {
     },
     'food-processing-industry': {
         ...textileDetail,
+        heroImage: '/industries/Food Processing Industry.png',
         eyebrow: 'Food & Dairy Wastewater',
         title: 'Nanozyme Bioculture for Food and Dairy Effluent',
         subtitle: 'Designed for protein, fat and lactose-rich wastewater',
@@ -279,6 +282,7 @@ const industryDetails: Record<string, IndustryDetail> = {
     },
     'sugar-industry': {
         ...textileDetail,
+        heroImage: '/industries/Sugar Industry.png',
         eyebrow: 'Sugar & Distillery Wastewater',
         title: 'Nanozyme Bioculture for Sugar and Distillery Effluent',
         subtitle: 'Purpose-built biological support for spent wash and high-strength streams',
@@ -287,6 +291,7 @@ const industryDetails: Record<string, IndustryDetail> = {
     },
     'paper-and-pulp-mill': {
         ...textileDetail,
+        heroImage: '/industries/Paper & Pulp Mill.png',
         eyebrow: 'Paper & Pulp Wastewater',
         title: 'Nanozyme Bioculture for Paper and Pulp Effluent',
         subtitle: 'Biological support for lignin, cellulose and black liquor operations',
@@ -295,6 +300,7 @@ const industryDetails: Record<string, IndustryDetail> = {
     },
     'municipal': {
         ...textileDetail,
+        heroImage: '/industries/Municipal Solid Waste Compost.png',
         eyebrow: 'Municipal Wastewater',
         title: 'Nanozyme Bioculture for STP and Sewage Treatment',
         subtitle: 'Supporting activated sludge and sewage treatment reliability',
@@ -303,6 +309,7 @@ const industryDetails: Record<string, IndustryDetail> = {
     },
     'domestic-and-commercial-stp': {
         ...textileDetail,
+        heroImage: '/industries/Domestic and Commercial STP.png',
         eyebrow: 'Domestic & Commercial STP',
         title: 'Nanozyme Bioculture for Compact Sewage Treatment',
         subtitle: 'Reliable biological support for compact and decentralised STP units',
@@ -311,6 +318,7 @@ const industryDetails: Record<string, IndustryDetail> = {
     },
     cetp: {
         ...textileDetail,
+        heroImage: '/industries/Common Effluent Treatment Plant.png',
         eyebrow: 'Common Effluent Treatment Plant',
         title: 'Nanozyme Bioculture for CETP Operations',
         subtitle: 'Shared treatment support for mixed industrial wastewater',
@@ -319,6 +327,7 @@ const industryDetails: Record<string, IndustryDetail> = {
     },
     'industrial-etp': {
         ...textileDetail,
+        heroImage: '/industries/Industrial ETP.png',
         eyebrow: 'Industrial ETP',
         title: 'Nanozyme Bioculture for Industrial ETP Systems',
         subtitle: 'Engineered for robust operation in demanding industrial treatment facilities',
@@ -327,6 +336,7 @@ const industryDetails: Record<string, IndustryDetail> = {
     },
     'distillery-industry': {
         ...textileDetail,
+        heroImage: '/industries/Distillery Industry.png',
         eyebrow: 'Distillery Wastewater',
         title: 'Nanozyme Bioculture for Distillery Effluent',
         subtitle: 'High-strength treatment support for distillery and fermentation plants',
@@ -335,6 +345,7 @@ const industryDetails: Record<string, IndustryDetail> = {
     },
     'dairy-industry': {
         ...textileDetail,
+        heroImage: '/industries/Dairy Industry.png',
         eyebrow: 'Dairy Wastewater',
         title: 'Nanozyme Bioculture for Dairy Effluent',
         subtitle: 'Effective biological support for whey, milk and dairy processing wastewater',
@@ -343,6 +354,7 @@ const industryDetails: Record<string, IndustryDetail> = {
     },
     'food-processing-industry-2': {
         ...textileDetail,
+        heroImage: '/industries/Food Processing Industry.png',
         eyebrow: 'Food Processing',
         title: 'Nanozyme Bioculture for Food Processing Effluent',
         subtitle: 'A dependable microbial solution for food and beverage treatment plants',

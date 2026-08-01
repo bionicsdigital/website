@@ -140,10 +140,10 @@ export default async function BlogDetail({
         <Image
           src={article.coverImage}
           alt={article.title}
-          width={1440}
-          height={720}
+          width={600}
+          height={200}
           priority
-          className="mt-4 h-44 w-full rounded-2xl object-cover sm:mt-5 sm:h-80 sm:rounded-3xl lg:h-96"
+          className="mt-4 aspect-[3/1] h-auto w-full rounded-2xl object-cover sm:mt-5 sm:rounded-3xl"
         />
         <div className="mt-6 grid min-w-0 gap-8 lg:mt-7 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-10">
           <ArticleBody article={article} />

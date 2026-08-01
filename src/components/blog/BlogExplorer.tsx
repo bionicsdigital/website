@@ -1,3 +1,86 @@
-'use client'
-import { useMemo, useState } from 'react'; import BlogCard from './BlogCard';   import type { BlogArticle, BlogCategory } from '@/types/blog'
-export default function BlogExplorer({ articles, categories }: { articles: BlogArticle[]; categories: BlogCategory[] }) { const [query,setQuery]=useState(''); const [category,setCategory]=useState(''); const [page,setPage]=useState(1); const perPage=6; const matches=useMemo(()=>articles.filter((a)=>{const haystack=[a.title,a.description,a.category,...a.keywords,...a.tags].join(' ').toLowerCase();return (!query||haystack.includes(query.toLowerCase()))&&(!category||a.category===category)}),[articles,query,category]); const total=Math.max(1,Math.ceil(matches.length/perPage)); const visible=matches.slice((page-1)*perPage,page*perPage); function filter(value:string){setCategory(value);setPage(1)} return <><div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto]"></div><p className="mt-6 text-sm text-slate-500">{matches.length} article{matches.length===1?'':'s'} found</p>{visible.length?<div className="mt-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">{visible.map((article)=><BlogCard key={article.slug} article={article}/>)}</div>:<div className="mt-6 rounded-3xl border border-dashed border-slate-300 bg-white p-10 text-center"><h2 className="text-xl font-bold">No matching articles</h2><button onClick={()=>{setQuery('');filter('')}} className="mt-4 text-sm font-bold text-emerald-700">Clear filters</button></div>}{total>1&&<nav className="mt-10 flex justify-center gap-2" aria-label="Blog pagination">{Array.from({length:total},(_,i)=><button key={i} onClick={()=>setPage(i+1)} aria-current={page===i+1?'page':undefined} className={`h-10 w-10 rounded-full text-sm font-bold ${page===i+1?'bg-emerald-700 text-white':'border border-slate-200 bg-white text-slate-700'}`}>{i+1}</button>)}</nav>}</> }
+"use client";
+import { useMemo, useState } from "react";
+import BlogCard from "./BlogCard";
+import type { BlogArticle, BlogCategory } from "@/types/blog";
+export default function BlogExplorer({
+  articles,
+  categories,
+}: {
+  articles: BlogArticle[];
+  categories: BlogCategory[];
+}) {
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("");
+  const [page, setPage] = useState(1);
+  const perPage = 6;
+  const matches = useMemo(
+    () =>
+      articles.filter((a) => {
+        const haystack = [
+          a.title,
+          a.description,
+          a.category,
+          ...a.keywords,
+          ...a.tags,
+        ]
+          .join(" ")
+          .toLowerCase();
+        return (
+          (!query || haystack.includes(query.toLowerCase())) &&
+          (!category || a.category === category)
+        );
+      }),
+    [articles, query, category],
+  );
+  const total = Math.max(1, Math.ceil(matches.length / perPage));
+  const visible = matches.slice((page - 1) * perPage, page * perPage);
+  function filter(value: string) {
+    setCategory(value);
+    setPage(1);
+  }
+  return (
+    <>
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto]"></div>
+      <p className="mt-6 text-sm text-slate-500">
+        {matches.length} article{matches.length === 1 ? "" : "s"} found
+      </p>
+      {visible.length ? (
+        <div className="mt-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+          {visible.map((article) => (
+            <BlogCard key={article.slug} article={article} />
+          ))}
+        </div>
+      ) : (
+        <div className="mt-6 rounded-3xl border border-dashed border-slate-300 bg-white p-10 text-center">
+          <h2 className="text-xl font-bold">No matching articles</h2>
+          <button
+            onClick={() => {
+              setQuery("");
+              filter("");
+            }}
+            className="mt-4 text-sm font-bold text-emerald-700"
+          >
+            Clear filters
+          </button>
+        </div>
+      )}
+      {total > 1 && (
+        <nav
+          className="mt-10 flex justify-center gap-2"
+          aria-label="Blog pagination"
+        >
+          {Array.from({ length: total }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => setPage(i + 1)}
+              aria-current={page === i + 1 ? "page" : undefined}
+              className={`h-10 w-10 rounded-full text-sm font-bold ${page === i + 1 ? "bg-emerald-700 text-white" : "border border-slate-200 bg-white text-slate-700"}`}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </nav>
+      )}
+    </>
+  );
+}
