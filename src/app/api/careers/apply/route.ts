@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { careerApplicationSchema, maxResumeSize, resumeTypes } from '@/lib/careers'
 
+export const runtime = 'nodejs'
+
 const requests = new Map<string, { count: number; resetAt: number }>()
 const htmlEscape = (value: string) => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;')
 
@@ -16,8 +18,8 @@ function row(label: string, value: string, index: number) {
   return `<tr><td style="width:38%;padding:12px 14px;border-bottom:1px solid #E5E7EB;background:${index % 2 ? '#FFFFFF' : '#F8FAFC'};font:700 12px Arial;color:#334155;vertical-align:top">${htmlEscape(label)}</td><td style="padding:12px 14px;border-bottom:1px solid #E5E7EB;background:${index % 2 ? '#FFFFFF' : '#F8FAFC'};font:400 13px/1.6 Arial;color:#0F172A;vertical-align:top;word-break:break-word">${htmlEscape(value || '-')}</td></tr>`
 }
 
-function hrEmail(data: Record<string, string>) {
-  const fields = [['Name',data.fullName],['Phone',data.mobile],['Email',data.email],['Experience',data.totalExperience],['Relevant Experience',data.relevantExperience],['Qualification',data.qualification],['College',data.college],['Current Company',data.currentCompany],['Current Designation',data.currentDesignation],['Current CTC',data.currentCtc],['Expected CTC',data.expectedCtc],['Notice Period',data.noticePeriod],['City / State / Country',`${data.city}, ${data.state}, ${data.country}`],['LinkedIn',data.linkedinUrl],['Portfolio',data.portfolioUrl]]
+function hrEmail(data: Record<string, string>, resumeFilename: string) {
+  const fields = [['Name',data.fullName],['Phone',data.mobile],['Email',data.email],['Experience',data.totalExperience],['Relevant Experience',data.relevantExperience],['Qualification',data.qualification],['College',data.college],['Current Company',data.currentCompany],['Current Designation',data.currentDesignation],['Current CTC',data.currentCtc],['Expected CTC',data.expectedCtc],['Notice Period',data.noticePeriod],['City / State / Country',`${data.city}, ${data.state}, ${data.country}`],['LinkedIn',data.linkedinUrl],['Portfolio',data.portfolioUrl],['Resume attachment',resumeFilename]]
   return `<!doctype html><html><body style="margin:0;background:#EFF6FF;padding:20px;font-family:Arial,sans-serif"><table role="presentation" width="100%" style="max-width:650px;margin:auto;border-collapse:separate;border-spacing:0;overflow:hidden;border:1px solid #DBEAFE;border-radius:18px;background:#fff"><tr><td style="padding:24px;background:#0754B8;background:linear-gradient(135deg,#0F3F8C,#0284C7);color:#fff"><img src="https://www.bionicsenvirotech.com/logo.png" width="170" alt="Bionics Enviro Tech" style="display:block;max-width:100%;height:auto;background:#fff;border-radius:10px;padding:8px"><h1 style="margin:20px 0 6px;font-size:25px">New Job Application Received</h1><p style="margin:0;color:#DBEAFE;font-size:14px">Bionics Careers Portal</p></td></tr><tr><td style="padding:24px"><span style="display:inline-block;padding:8px 12px;border-radius:999px;background:#DBEAFE;color:#1D4ED8;font:bold 12px Arial">${htmlEscape(data.position)}</span><table role="presentation" width="100%" style="margin-top:18px;border:1px solid #E5E7EB;border-radius:14px;border-collapse:separate;border-spacing:0;overflow:hidden">${fields.map((item,index)=>row(item[0],item[1],index)).join('')}</table><div style="margin-top:20px;padding:16px;border-left:4px solid #0284C7;background:#F0F9FF"><h2 style="margin:0 0 8px;font-size:15px;color:#0F172A">Cover Letter</h2><p style="margin:0;white-space:pre-wrap;font:13px/1.7 Arial;color:#334155">${htmlEscape(data.coverLetter || '-')}</p></div></td></tr><tr><td style="padding:18px 24px;border-top:1px solid #E5E7EB;background:#F8FAFC;text-align:center;font:12px/1.6 Arial;color:#64748B">Bionics Enviro Tech Pvt. Ltd.<br>Generated automatically from Bionics Careers Portal</td></tr></table></body></html>`
 }
 
@@ -35,11 +37,14 @@ export async function POST(request: NextRequest) {
     const parsed = careerApplicationSchema.safeParse(raw)
     if (!parsed.success) return NextResponse.json({ message: 'Please check the application fields.' }, { status: 400 })
     if (parsed.data.website) return NextResponse.json({ ok: true })
-    if (!(resume instanceof File) || !resumeTypes.includes(resume.type) || resume.size > maxResumeSize) return NextResponse.json({ message: 'A PDF, DOC or DOCX resume up to 10 MB is required.' }, { status: 400 })
+    if (!(resume instanceof File) || resume.size === 0 || !resumeTypes.includes(resume.type) || resume.size > maxResumeSize) return NextResponse.json({ message: 'A non-empty PDF, DOC or DOCX resume up to 10 MB is required.' }, { status: 400 })
     const apiKey = process.env.RESEND_API_KEY; const from = process.env.FROM_EMAIL
     if (!apiKey || !from) return NextResponse.json({ message: 'Email service is not configured.' }, { status: 500 })
-    const resend = new Resend(apiKey); const data = parsed.data as Record<string, string>; const attachment = Buffer.from(await resume.arrayBuffer())
-    const hrResult = await resend.emails.send({ from, to: process.env.CAREERS_EMAIL || 'bionicsenvirotech@gmail.com', replyTo: data.email, subject: `New Career Application - ${data.position} - ${data.fullName}`, html: hrEmail(data), attachments: [{ filename: resume.name.replace(/[^a-zA-Z0-9._-]/g, '_'), content: attachment }] })
+    const resend = new Resend(apiKey); const data = parsed.data as Record<string, string>
+    const attachment = Buffer.from(await resume.arrayBuffer())
+    const sanitizedFilename = resume.name.replace(/[^a-zA-Z0-9._-]/g, '_') || `resume-${Date.now()}.pdf`
+    const careersInbox = 'bionicsenvirotech@gmail.com'
+    const hrResult = await resend.emails.send({ from, to: careersInbox, replyTo: data.email, subject: `New Career Application - ${data.position} - ${data.fullName}`, html: hrEmail(data, sanitizedFilename), attachments: [{ filename: sanitizedFilename, content: attachment }] })
     if (hrResult.error) throw new Error(hrResult.error.message)
     const replyResult = await resend.emails.send({ from, to: data.email, subject: 'Application Received | Bionics Enviro Tech', html: replyEmail(data.fullName, data.position) })
     if (replyResult.error) console.error('Career auto-reply failed:', replyResult.error.message)
