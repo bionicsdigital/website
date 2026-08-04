@@ -61,6 +61,7 @@ export default function CareersPage() {
     useState<CareerApplication | null>(null);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
   const [isSending, setIsSending] = useState(false);
+  const [formResetKey, setFormResetKey] = useState(0);
   const formRef = useRef<HTMLDivElement>(null);
   const {
     register,
@@ -113,6 +114,7 @@ export default function CareersPage() {
       reset(careerInitialValues);
       setResume(null);
       setResumeError("");
+      setFormResetKey((current) => current + 1);
     } catch {
       toast.error("Could not submit your application. Please try again.");
     } finally {
@@ -433,6 +435,7 @@ export default function CareersPage() {
             </p>
           </div>
           <form
+            key={formResetKey}
             onSubmit={handleSubmit(onSubmit)}
             className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm sm:rounded-3xl sm:p-6"
             noValidate

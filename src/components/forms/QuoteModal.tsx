@@ -40,12 +40,14 @@ export default function QuoteModal({ open, onClose }: { open: boolean; onClose: 
     const [formData, setFormData] = useState(initialValues)
     const [showSuccess, setShowSuccess] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [formResetKey, setFormResetKey] = useState(0)
 
     useEffect(() => {
         if (!open) {
             setFormData(initialValues)
             setShowSuccess(false)
             setIsSubmitting(false)
+            setFormResetKey((current) => current + 1)
         }
     }, [open])
 
@@ -80,7 +82,8 @@ export default function QuoteModal({ open, onClose }: { open: boolean; onClose: 
             }
 
             setShowSuccess(true)
-            setFormData(initialValues)
+            setFormData({ ...initialValues })
+            setFormResetKey((current) => current + 1)
             toast.success('Thank you! Our technical team will contact you shortly.')
         } catch {
             toast.error('Something went wrong. Please try again.')
@@ -116,6 +119,7 @@ export default function QuoteModal({ open, onClose }: { open: boolean; onClose: 
 
                     <div className="max-h-[80vh] overflow-y-auto px-5 py-5 sm:px-7 sm:py-7">
                         <QuoteForm
+                            key={formResetKey}
                             formData={formData}
                             setFormData={setFormData}
                             onSubmit={handleQuoteSubmit}

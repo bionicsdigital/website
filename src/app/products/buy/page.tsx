@@ -33,6 +33,7 @@ export default function BuyProductPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
+  const [formResetKey, setFormResetKey] = useState(0);
 
   const subtotal = formData.quantity * formData.unitPrice;
   const isTamilNadu =
@@ -98,6 +99,7 @@ export default function BuyProductPage() {
       setIsReviewOpen(false);
       setFormData({ ...initialValues });
       setErrors({});
+      setFormResetKey((current) => current + 1);
       toast.success("Order confirmed. A copy has been sent to your email.");
     } catch {
       toast.error("Could not place the order. Please try again.");
@@ -166,7 +168,7 @@ export default function BuyProductPage() {
             </p>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <div key={formResetKey} className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
             <div className="space-y-6">
               <CompanyForm
                 formData={formData}
