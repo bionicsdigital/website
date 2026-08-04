@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import PhoneInput from 'react-phone-number-input'
 import type { Country } from 'react-phone-number-input'
 import { isValidPhoneNumber } from 'libphonenumber-js'
@@ -90,6 +90,13 @@ export default function QuoteForm({
     const [errors, setErrors] = useState<FormErrors>({})
     const [submitted, setSubmitted] = useState(false)
     const [phoneCountry, setPhoneCountry] = useState<Country>('IN')
+
+    useEffect(() => {
+        if (showSuccess) {
+            setErrors({})
+            setSubmitted(false)
+        }
+    }, [showSuccess])
 
     const isIndia = formData.country === 'India'
     const liveErrors = useMemo(() => validateQuoteForm(formData), [formData])

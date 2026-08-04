@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     const apiKey = process.env.RESEND_API_KEY; const from = process.env.FROM_EMAIL
     if (!apiKey || !from) return NextResponse.json({ message: 'Email service is not configured.' }, { status: 500 })
     const resend = new Resend(apiKey); const data = parsed.data as Record<string, string>; const attachment = Buffer.from(await resume.arrayBuffer())
-    const hrResult = await resend.emails.send({ from, to: process.env.CAREERS_EMAIL || 'care@bionicstech.com', replyTo: data.email, subject: `New Career Application - ${data.position} - ${data.fullName}`, html: hrEmail(data), attachments: [{ filename: resume.name.replace(/[^a-zA-Z0-9._-]/g, '_'), content: attachment }] })
+    const hrResult = await resend.emails.send({ from, to: process.env.CAREERS_EMAIL || 'bionicsenvirotech@gmail.com', replyTo: data.email, subject: `New Career Application - ${data.position} - ${data.fullName}`, html: hrEmail(data), attachments: [{ filename: resume.name.replace(/[^a-zA-Z0-9._-]/g, '_'), content: attachment }] })
     if (hrResult.error) throw new Error(hrResult.error.message)
     const replyResult = await resend.emails.send({ from, to: data.email, subject: 'Application Received | Bionics Enviro Tech', html: replyEmail(data.fullName, data.position) })
     if (replyResult.error) console.error('Career auto-reply failed:', replyResult.error.message)

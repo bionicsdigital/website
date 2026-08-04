@@ -96,6 +96,8 @@ export default function BuyProductPage() {
         return;
       }
       setIsReviewOpen(false);
+      setFormData({ ...initialValues });
+      setErrors({});
       toast.success("Order confirmed. A copy has been sent to your email.");
     } catch {
       toast.error("Could not place the order. Please try again.");

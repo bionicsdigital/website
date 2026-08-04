@@ -46,6 +46,12 @@ const MotionArticle = motion.article as unknown as ComponentType<
 const MotionDiv = motion.div as unknown as ComponentType<
   HTMLAttributes<HTMLDivElement> & MotionProps
 >;
+const careerInitialValues: CareerApplication = {
+  fullName: "", mobile: "", email: "", city: "", state: "", country: "India",
+  qualification: "", college: "", currentCompany: "", currentDesignation: "",
+  totalExperience: "", relevantExperience: "", currentCtc: "", expectedCtc: "",
+  noticePeriod: "", linkedinUrl: "", portfolioUrl: "", position: "", coverLetter: "", website: "",
+};
 
 export default function CareersPage() {
   const [openJob, setOpenJob] = useState<string | null>(null);
@@ -64,7 +70,7 @@ export default function CareersPage() {
     reset,
   } = useForm<CareerApplication>({
     resolver: zodResolver(careerApplicationSchema),
-    defaultValues: { country: "India", position: "", website: "" },
+    defaultValues: careerInitialValues,
   });
 
   const applyFor = (position: string) => {
@@ -104,8 +110,9 @@ export default function CareersPage() {
       );
       setIsReviewOpen(false);
       setPendingApplication(null);
-      reset({ country: "India", position: "", website: "" });
+      reset(careerInitialValues);
       setResume(null);
+      setResumeError("");
     } catch {
       toast.error("Could not submit your application. Please try again.");
     } finally {

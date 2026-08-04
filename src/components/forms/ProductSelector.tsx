@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { OrderFormValues } from '@/components/forms/OrderSummary'
 import { products } from '@/components/forms/products-data'
 
@@ -16,6 +16,10 @@ export default function ProductSelector({
     setErrors?: React.Dispatch<React.SetStateAction<Record<string, string>>>
 }) {
     const [quantityInput, setQuantityInput] = useState(formData.quantity > 0 ? String(formData.quantity) : '')
+
+    useEffect(() => {
+        if (formData.quantity === 0) setQuantityInput('')
+    }, [formData.quantity])
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const selected = products.find((product) => product.name === event.target.value)

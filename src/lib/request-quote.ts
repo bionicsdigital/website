@@ -16,15 +16,12 @@ export type RequestQuotePayload = {
 }
 
 export const quoteProducts = [
-  'Nanozyme Bioculture',
   'Aerobic Bioculture',
   'Anaerobic Bioculture',
   'ETP Bioculture',
   'STP Bioculture',
-  'CETP Bioculture',
+  'Sugar & Distillery Bioculture',
   'Organic Compost Bioculture',
-  'Bio Augmentation Culture',
-  'Custom Industrial Bioculture',
 ]
 
 export const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
