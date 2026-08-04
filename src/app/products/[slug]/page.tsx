@@ -11,16 +11,27 @@ import ProductRecommendation from '@/components/product/ProductRecommendation'
 import ProductSpecification from '@/components/product/ProductSpecification'
 import products from '@/data/products'
 import ScrollToTop from '@/components/home/ScrollToTop'
+import { createMetadata } from '@/lib/site'
+
+const productSeo: Record<string, { title: string; description: string; keywords: string[] }> = {
+    'aerobic-bioculture': { title: 'Aerobic Bioculture Manufacturer | Bionics Enviro Tech', description: 'Aerobic bioculture for activated sludge, ETP and STP systems. Improve COD and BOD removal with scientific microbial treatment. Request guidance.', keywords: ['Aerobic Bioculture Manufacturer','Aerobic Wastewater Treatment','Activated Sludge Culture','ETP Aerobic Culture'] },
+    'anaerobic-bioculture': { title: 'Anaerobic Digester Culture | Bionics Enviro Tech', description: 'Anaerobic digester culture for high-strength wastewater, methane activity and biogas enhancement. Get plant-specific application guidance today.', keywords: ['Anaerobic Bioculture','Anaerobic Digester Culture','Biogas Enhancing Culture','Methanogenic Culture','Anaerobic Wastewater Treatment'] },
+    'stp-bioculture': { title: 'STP Bioculture | Bionics Enviro Tech', description: 'STP bioculture for domestic, commercial and municipal sewage treatment. Strengthen microbial activity, odour control and plant stability today.', keywords: ['STP Bioculture','Sewage Treatment Bioculture','Domestic STP Culture','Commercial STP Culture'] },
+    'etp-bioculture': { title: 'ETP Bioculture | Bionics Enviro Tech', description: 'ETP bioculture for industrial effluent treatment, COD and BOD reduction and stable biological operation. Request technical application support.', keywords: ['ETP Bioculture','Industrial Effluent Treatment','Industrial ETP Culture','Wastewater Treatment Bioculture'] },
+    'sugar-distillery-bioculture': { title: 'Sugar Industry ETP Culture | Bionics Enviro Tech', description: 'Bioculture for sugar industry ETP and distillery wastewater, molasses treatment, fermentation support and biogas production. Talk to our team.', keywords: ['Sugar Industry ETP','Distillery Wastewater Treatment','Molasses Wastewater','Fermentation Booster','Biogas Production'] },
+    'organic-compost-culture': { title: 'Organic Composting Culture | Bionics Enviro Tech', description: 'Composting culture for accelerated organic waste and municipal solid waste decomposition. Improve composting performance with technical support.', keywords: ['Composting Culture','Organic Compost Accelerator','Municipal Solid Waste Compost'] },
+}
 
 export function generateStaticParams() {
     return products.map((product) => ({ slug: product.slug }))
 }
 
-export function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Metadata {
-    return {
-        title: 'Product Details | Bionics Enviro Tech',
-        description: 'Scientific microbial products for industrial wastewater treatment.',
-    }
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params
+    const product = products.find(item => item.slug === slug)
+    const seo = productSeo[slug]
+    if (!product || !seo) return { title: 'Product Not Found', robots: { index: false, follow: false } }
+    return createMetadata({ ...seo, path: `/products/${slug}`, image: product.heroImage })
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {

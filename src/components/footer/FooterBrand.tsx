@@ -6,8 +6,9 @@ import {
   FaLinkedinIn,
   FaYoutube,
 } from "react-icons/fa";
+import { siteConfig } from "@/lib/site";
 const socials = [
-  { label: "Website", href: "https://bionicsenviro.com", icon: Globe2 },
+  { label: "Website", href: siteConfig.url, icon: Globe2 },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/bionics-enviro-tech/",
@@ -51,11 +52,11 @@ export default function FooterBrand() {
           +91 90950 00090
         </a>
         <a
-          href="mailto:info@bionicsenviro.com"
+          href="mailto:info@bionicsenvirotech.com"
           className="flex items-center gap-2 hover:text-emerald-300"
         >
           <Mail className="h-4 w-4 text-emerald-400" />
-          info@bionicsenviro.com
+          info@bionicsenvirotech.com
         </a>
         <span className="flex items-center gap-2">
           <ReceiptText className="h-4 w-4 text-emerald-400" />

@@ -15,22 +15,36 @@ import RecommendationCard from '@/components/industry/RecommendationCard'
 import industries, { getIndustryDetail } from '@/data/industries'
 import ScrollToTop from '@/components/home/ScrollToTop'
 import PageBreadcrumb from '@/components/ui/PageBreadcrumb'
+import { createMetadata } from '@/lib/site'
+
+const industryKeywords: Record<string, string[]> = {
+    'textile-processing-industry': ['Textile Wastewater Treatment','Textile ETP','Dye Effluent Treatment'],
+    'sugar-industry': ['Sugar Industry ETP','Sugar Mill Wastewater','COD Reduction'],
+    'distillery-industry': ['Distillery ETP','Distillery Wastewater Treatment','Spent Wash Treatment'],
+    'chemical-industry': ['Chemical Industry Wastewater Treatment','Chemical ETP','Industrial Effluent Treatment'],
+    'pharma-industry': ['Pharmaceutical Wastewater Treatment','API Wastewater','Pharma ETP'],
+    'paper-and-pulp-mill': ['Paper Mill Wastewater Treatment','Pulp and Paper ETP','COD Reduction'],
+    'food-processing-industry': ['Food Processing Wastewater Treatment','Food Industry ETP','BOD Reduction'],
+    'dairy-industry': ['Dairy Wastewater Treatment','Milk Processing ETP','Food Processing Wastewater'],
+    municipal: ['Municipal Solid Waste Composting','Organic Waste Composting','Compost Culture'],
+    'industrial-etp': ['Industrial ETP','Industrial Wastewater Treatment','ETP Bioculture'],
+    'domestic-and-commercial-stp': ['Domestic STP','Commercial STP','Sewage Treatment Bioculture'],
+    cetp: ['CETP','Common Effluent Treatment Plant','CETP Bioculture'],
+}
 
 export function generateStaticParams() {
     return industries.map((industry) => ({ slug: industry.slug }))
 }
 
-export function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Metadata {
-    return {
-        title: 'Industry Solution | Bionics Enviro Tech',
-        description: 'Professional Nanozyme bioculture solutions for industrial wastewater treatment and effluent optimization.',
-        keywords: ['Nanozyme', 'Industrial wastewater', 'ETP', 'CETP', 'bioculture', 'wastewater treatment'],
-        openGraph: {
-            title: 'Industry Solution | Bionics Enviro Tech',
-            description: 'Advanced microbial solutions for industrial wastewater treatment and plant optimization.',
-            type: 'website',
-        },
-    }
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params
+    const industry = industries.find(item => item.slug === slug)
+    if (!industry) return { title: 'Industry Not Found', robots: { index: false, follow: false } }
+    const detail = getIndustryDetail(slug)
+    const primary = industryKeywords[slug]?.[0] ?? industry.name
+    const title = `${primary} | Bionics Enviro Tech`
+    const description = `${detail.description} Explore Nanozyme bioculture support and request a technical consultation for your treatment plant.`.slice(0, 160)
+    return createMetadata({ title, description, path: `/industries/${slug}`, keywords: industryKeywords[slug] ?? [industry.name, 'Wastewater Treatment'], image: detail.heroImage })
 }
 
 export default async function IndustryPage({ params }: { params: Promise<{ slug: string }> }) {

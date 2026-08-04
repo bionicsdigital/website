@@ -13,32 +13,17 @@ import ScrollToTop from "@/components/home/ScrollToTop";
 import Stats from "@/components/home/Stats";
 import Testimonials from "@/components/home/Testimonials";
 import Offices from "@/components/footer/Offices";
+import { createMetadata, siteConfig } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Bioculture Manufacturer in India | Bionics Enviro Tech",
-  description:
-    "Bionics Enviro Tech is an Indian scientific Nanozyme Bioculture manufacturer for ETP, STP and industrial wastewater treatment.",
-  openGraph: {
-    title: "Bionics Enviro Tech | Scientific Nanozyme Bioculture",
-    description: "Advanced bioculture for industrial wastewater treatment.",
-    url: "https://www.bionicsenviro.com",
-    siteName: "Bionics Enviro Tech",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Bionics Enviro Tech",
-    description: "Scientific Nanozyme Bioculture for wastewater treatment.",
-  },
-};
+export const metadata: Metadata = createMetadata({ title: "Nanozyme Bioculture Manufacturer | Bionics Enviro Tech", description: "Scientific Nanozyme bioculture manufacturer in India for industrial wastewater, ETP, STP and CETP treatment. Request a technical consultation today.", path: "/", keywords: ["Nanozyme Bioculture Manufacturer","Nanozyme Manufacturer India","Bioculture Manufacturer India","Wastewater Treatment Company","Industrial Wastewater Treatment","Wastewater Treatment Chemicals Alternative","Microbial Culture Manufacturer","Biological Wastewater Treatment","Wastewater Treatment Solutions","ETP Microbial Culture","STP Microbial Culture","CETP Bioculture","COD Reduction","BOD Reduction","Zero Sludge Technology","Industrial ETP Solutions"] });
 
 const schema = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Organization",
-      name: "Bionics Enviro Tech Pvt Ltd",
-      url: "https://www.bionicsenviro.com",
+      name: siteConfig.name,
+      url: siteConfig.url,
       description:
         "Scientific Nanozyme Bioculture Manufacturer for Industrial Wastewater Treatment.",
     },

@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next'
-
-const baseUrl = 'https://www.bionicsenviro.com'
+import { siteConfig } from '@/lib/site'
 
 export default function robots(): MetadataRoute.Robots {
-  return { rules: { userAgent: '*', allow: '/', disallow: ['/api/', '/admin/', '/maintenance'] }, sitemap: `${baseUrl}/sitemap.xml`, host: baseUrl }
+  return { rules: { userAgent: '*', allow: '/', disallow: '/api/' }, sitemap: `${siteConfig.url}/sitemap.xml`, host: siteConfig.url }
 }

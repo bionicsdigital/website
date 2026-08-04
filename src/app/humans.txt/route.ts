@@ -1,7 +1,9 @@
+import { siteConfig } from '@/lib/site'
+
 export function GET() {
   const content = `/* COMPANY */
 Company: Bionics Enviro Tech Pvt Ltd
-Website: https://www.bionicsenviro.com
+Website: ${siteConfig.url}
 
 /* TECHNOLOGY */
 Next.js

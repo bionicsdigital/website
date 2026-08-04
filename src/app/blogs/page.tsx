@@ -3,26 +3,9 @@ import BlogHero from "@/components/blog/BlogHero";
 import BlogExplorer from "@/components/blog/BlogExplorer";
 import { getAllBlogs, getBlogCategories } from "@/lib/blog";
 import ScrollToTop from '@/components/home/ScrollToTop'
+import { createMetadata } from '@/lib/site'
 
-export const metadata: Metadata = {
-  title: "Wastewater Treatment Blog | Bionics Enviro Tech",
-  description:
-    "Technical insights on bioculture, ETP and STP operation, sustainable wastewater treatment and industrial compliance.",
-  alternates: { canonical: "https://www.bionicsenviro.com/blogs" },
-  openGraph: {
-    type: "website",
-    url: "https://www.bionicsenviro.com/blogs",
-    title: "Wastewater Treatment Knowledge Centre | Bionics Enviro Tech",
-    description:
-      "Practical guidance for ETP, STP and industrial wastewater teams.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Wastewater Treatment Knowledge Centre | Bionics Enviro Tech",
-    description:
-      "Practical guidance for ETP, STP and industrial wastewater teams.",
-  },
-};
+export const metadata: Metadata = createMetadata({ title: "Wastewater Treatment Blog | Bionics Enviro Tech", description: "Read practical articles on bioculture, ETP, STP, COD, BOD, activated sludge and industrial wastewater treatment. Explore technical guidance today.", path: "/blogs", keywords: ["Wastewater Treatment","Bioculture","ETP","STP","COD","BOD","Microbial Culture","Activated Sludge","Industrial Wastewater"] });
 export default function BlogsPage() {
   const articles = getAllBlogs();
   return (<>

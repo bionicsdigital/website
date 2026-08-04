@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Poppins } from 'next/font/google'
 
 import Navbar from '@/components/home/Navbar'
@@ -8,6 +8,7 @@ import Assistant from '@/components/assistant/Assistant'
 import ToastProvider from '@/components/forms/ToastProvider'
 import CookieConsent from '@/components/cookies/CookieConsent'
 import GlobalSearch from '@/components/search/GlobalSearch'
+import { siteConfig } from '@/lib/site'
 
 import './globals.css'
 
@@ -28,13 +29,19 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Bionics Enviro Tech',
-  description: 'Scientific innovation for wastewater treatment.',
+  metadataBase: new URL(siteConfig.url),
+  title: { default: siteConfig.shortName, template: `%s | ${siteConfig.shortName}` },
+  authors: [...siteConfig.authors],
+  creator: siteConfig.shortName,
+  publisher: siteConfig.name,
+  robots: { index: true, follow: true },
   icons: {
     icon: '/favicon.ico',
   },
   alternates: { types: { 'application/rss+xml': '/feed.xml' } },
 }
+
+export const viewport: Viewport = { themeColor: '#064e3b', colorScheme: 'light' }
 
 export default function RootLayout({
   children,

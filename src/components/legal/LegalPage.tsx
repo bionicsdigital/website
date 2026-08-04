@@ -3,8 +3,9 @@ import { Clock3, Mail, Phone, Sparkles } from 'lucide-react'
 import PageBreadcrumb from '@/components/ui/PageBreadcrumb'
 import type { LegalPageData } from '@/data/legal-pages'
 import LegalToc from './LegalToc'
+import { siteConfig } from '@/lib/site'
 
-const siteUrl = 'https://www.bionicsenviro.com'
+const siteUrl = siteConfig.url
 
 export default function LegalPage({ page }: { page: LegalPageData }) {
   const Icon = page.icon

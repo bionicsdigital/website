@@ -14,7 +14,8 @@ import {
   getRelatedBlogs,
 } from "@/lib/blog";
 import ScrollToTop from "@/components/home/ScrollToTop";
-const base = "https://www.bionicsenviro.com";
+import { createMetadata, siteConfig } from "@/lib/site";
+const base = siteConfig.url;
 export function generateStaticParams() {
   return getAllBlogs().map(({ slug }) => ({ slug }));
 }
@@ -26,34 +27,7 @@ export async function generateMetadata({
   const article = getBlogBySlug((await params).slug);
   if (!article) return { title: "Article not found" };
   const url = `${base}/blogs/${article.slug}`;
-  return {
-    title: article.title,
-    description: article.description,
-    keywords: article.keywords,
-    alternates: { canonical: url },
-    openGraph: {
-      type: "article",
-      url,
-      title: article.title,
-      description: article.description,
-      publishedTime: article.publishedDate,
-      modifiedTime: article.updatedDate,
-      images: [
-        {
-          url: `${base}${article.coverImage}`,
-          width: 1200,
-          height: 630,
-          alt: article.title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: article.title,
-      description: article.description,
-      images: [`${base}${article.coverImage}`],
-    },
-  };
+  return createMetadata({ title: article.title.slice(0, 60), description: article.description, keywords: [...article.keywords, "Wastewater Treatment", "Bioculture", "ETP", "STP", "COD", "BOD", "Microbial Culture", "Activated Sludge", "Industrial Wastewater"], path: `/blogs/${article.slug}`, image: article.coverImage, type: "article", publishedTime: article.publishedDate, modifiedTime: article.updatedDate });
 }
 export default async function BlogDetail({
   params,
@@ -76,7 +50,7 @@ export default async function BlogDetail({
     publisher: {
       "@type": "Organization",
       name: "Bionics Enviro Tech",
-      logo: { "@type": "ImageObject", url: `${base}/logo.png` },
+      logo: { "@type": "ImageObject", url: `${base}${siteConfig.logo}` },
       url: base,
     },
     mainEntityOfPage: urlFor(article.slug),

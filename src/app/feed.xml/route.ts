@@ -1,6 +1,7 @@
 import { getAllBlogs } from '@/lib/blog'
+import { siteConfig } from '@/lib/site'
 
-const siteUrl = 'https://www.bionicsenviro.com'
+const siteUrl = siteConfig.url
 const escapeXml = (value: string) => value.replace(/[<>&'\"]/g, (character) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', "'": '&apos;', '"': '&quot;' })[character]!)
 export async function GET() {
   const items = getAllBlogs().map((blog) => `<item><title>${escapeXml(blog.title)}</title><link>${siteUrl}/blogs/${blog.slug}</link><guid isPermaLink="true">${siteUrl}/blogs/${blog.slug}</guid><description>${escapeXml(blog.description)}</description><pubDate>${new Date(blog.publishedDate).toUTCString()}</pubDate><author>${escapeXml(blog.author.name)}</author><category>${escapeXml(blog.category)}</category></item>`).join('')
