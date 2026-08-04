@@ -45,9 +45,9 @@ function FeatureCards({ items, offset = 0 }: { items: Feature[]; offset?: number
     const Icon = feature.icon;
     const alternate = (index + offset) % 2 === 1;
     return (
-      <article key={feature.title} className={`group flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#00C853] hover:shadow-lg sm:block sm:rounded-3xl sm:p-5 sm:text-left ${alternate ? "flex-row-reverse text-right" : "text-left"}`}>
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-green-50 transition-all duration-300 group-hover:bg-[#00C853] sm:h-12 sm:w-12 sm:rounded-2xl">
-          <Icon size={23} className="text-[#00C853] transition-colors duration-300 group-hover:text-white" />
+      <article key={feature.title} className={`group flex items-start gap-4 rounded-2xl border border-sky-100 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-sky-300 hover:shadow-lg sm:block sm:rounded-3xl sm:p-5 sm:text-left ${alternate ? "flex-row-reverse text-right" : "text-left"}`}>
+        <div className="science-icon flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-105 group-hover:bg-blue-600 sm:h-12 sm:w-12 sm:rounded-2xl">
+          <Icon size={23} className="text-blue-600 transition-colors duration-300 group-hover:text-white" />
         </div>
         <div className="min-w-0">
           <h3 className="text-base font-bold leading-6 text-slate-900 sm:mt-4 sm:text-lg">{feature.title}</h3>
@@ -69,7 +69,7 @@ export default function Features() {
         </div>
 
         <div className="mt-10 sm:mt-12">
-          <p className="text-xs font-bold uppercase tracking-[.18em] text-emerald-600">Industry Advantages</p>
+          <p className="text-xs font-bold uppercase tracking-[.18em] text-blue-600">Industry Advantages</p>
           <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">Benefits to Industries by Using Nanozyme</h2>
         </div>
         <div className="mt-6 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
@@ -77,7 +77,7 @@ export default function Features() {
         </div>
 
         <div className="mt-9 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md sm:mt-12 sm:rounded-3xl">
-          <div className="border-b bg-gradient-to-r from-[#00C853] to-[#00E676] px-4 py-4 sm:px-6">
+          <div className="border-b bg-gradient-to-r from-[#00C853] to-[#00B4D8] px-4 py-4 sm:px-6">
             <h3 className="text-lg font-bold leading-6 text-white sm:text-2xl">Role of Microbial Nanozyme in Wastewater Treatment Plants</h3>
           </div>
           <div className="overflow-x-auto">
@@ -87,7 +87,7 @@ export default function Features() {
                 <th className="px-4 py-3 text-xs font-bold uppercase tracking-wide text-slate-900 sm:px-6 sm:text-sm sm:normal-case sm:tracking-normal">Performance</th>
               </tr></thead>
               <tbody className="divide-y divide-slate-100">
-                {performance.map(([parameter, value]) => <tr key={parameter} className="transition-colors hover:bg-green-50">
+                {performance.map(([parameter, value]) => <tr key={parameter} className="transition-colors hover:bg-sky-50">
                   <td className="w-[62%] px-4 py-3 text-sm font-medium leading-5 text-slate-700 sm:px-6">{parameter}</td>
                   <td className="px-4 py-3 text-sm font-bold leading-5 text-[#00A63E] sm:px-6">{value}</td>
                 </tr>)}

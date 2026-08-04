@@ -39,7 +39,7 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="bg-slate-50 py-12 lg:py-24"
+      className="bg-gradient-to-b from-slate-50 to-sky-50/30 py-10 lg:py-16"
     >
       <div className="mx-auto max-w-4xl px-5 sm:px-8">
         <SectionHeading
@@ -47,7 +47,7 @@ export default function FAQ() {
           title="Everything You Need to Know About Nanozyme Bioculture"
         />
 
-        <div className="mt-10 space-y-4 lg:mt-14 lg:space-y-5">
+        <div className="mt-8 space-y-3 lg:mt-10">
           {questions.map((item, index) => (
             <div
               key={item.question}
@@ -60,7 +60,7 @@ export default function FAQ() {
                 shadow-sm
                 transition-all
                 duration-300
-                hover:border-green-500
+                hover:border-sky-300
                 hover:shadow-lg
               "
             >
@@ -76,7 +76,7 @@ export default function FAQ() {
                   gap-4
                   px-6
                   py-4
-                  lg:py-6
+                  lg:py-5
                   text-left
                 "
                 aria-expanded={open === index}
@@ -87,7 +87,7 @@ export default function FAQ() {
 
                 <ChevronDown
                   size={22}
-                  className={`shrink-0 text-green-600 transition-transform duration-300 ${
+                  className={`shrink-0 text-blue-600 transition-transform duration-300 ${
                     open === index ? 'rotate-180' : ''
                   }`}
                 />

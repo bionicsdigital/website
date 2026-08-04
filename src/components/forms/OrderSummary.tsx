@@ -81,7 +81,6 @@ export default function OrderSummary({
                 <Package size={16} />
                 {isSubmitting ? 'Processing...' : 'Place Order'}
             </button>
-            <p className="text-sm text-slate-300">Secure checkout and payment gateway integration will be added in the next phase.</p>
         </div>
     )
 }

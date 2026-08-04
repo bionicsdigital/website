@@ -43,7 +43,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden bg-white py-12 lg:py-24"
+      className="relative overflow-hidden bg-white py-10 lg:py-16"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,#E9FFF1_0%,transparent_35%),radial-gradient(circle_at_bottom_right,#F3FFF8_0%,transparent_35%)]" />
 
@@ -55,7 +55,7 @@ export default function About() {
           title="Engineering Better Biology for Industrial Wastewater Treatment"
         />
 
-        <div className="mt-10 grid gap-8 lg:mt-14 lg:gap-14 lg:grid-cols-[1.35fr_0.85fr]">
+        <div className="mt-8 grid gap-7 lg:mt-10 lg:gap-10 lg:grid-cols-[1.35fr_0.85fr]">
 
           {/* Left */}
 
@@ -140,12 +140,12 @@ export default function About() {
 
         {/* Statistics */}
 
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 lg:mt-20 lg:grid-cols-3 xl:grid-cols-6">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:mt-10 lg:grid-cols-3 xl:grid-cols-6">
 
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm transition hover:-translate-y-1 hover:border-green-500 hover:shadow-lg lg:p-6"
+              className="rounded-2xl border border-sky-100 bg-white p-4 text-center shadow-sm transition hover:-translate-y-1 hover:border-sky-300 hover:shadow-lg lg:p-5"
             >
               <h3 className="text-2xl font-extrabold text-green-600 lg:text-3xl">
                 {stat.value}
@@ -161,7 +161,7 @@ export default function About() {
 
         {/* Features */}
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:mt-20 lg:gap-6 xl:grid-cols-4">
+        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:mt-10 lg:gap-5 xl:grid-cols-4">
 
           {features.map((feature) => {
             const Icon = feature.icon
@@ -169,12 +169,12 @@ export default function About() {
             return (
               <div
                 key={feature.title}
-                className="group flex items-start gap-4 rounded-3xl border border-slate-200 bg-white p-5 transition duration-300 odd:flex-row even:flex-row-reverse hover:-translate-y-1 hover:border-green-500 hover:shadow-xl lg:block lg:p-7 lg:hover:-translate-y-2"
+                className="group flex items-start gap-4 rounded-3xl border border-sky-100 bg-white p-5 transition duration-300 odd:flex-row even:flex-row-reverse hover:-translate-y-1 hover:border-sky-300 hover:shadow-xl lg:block lg:p-6"
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-green-100 lg:h-14 lg:w-14">
+                <div className="science-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl lg:h-14 lg:w-14">
                   <Icon
                     size={24}
-                    className="text-green-600"
+                    className="text-blue-600"
                   />
                 </div>
 

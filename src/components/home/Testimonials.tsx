@@ -30,14 +30,14 @@ const MotionFigure =
 
 export default function Testimonials() {
   return (
-    <section className="bg-slate-50 py-12 lg:py-24">
+    <section className="bg-gradient-to-b from-slate-50 to-white py-10 lg:py-16">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHeading
           eyebrow="Client Experience"
           title="Trusted by industries for reliable biological wastewater treatment."
         />
 
-        <div className="mt-10 grid gap-4 lg:mt-14 lg:grid-cols-3 lg:gap-6">
+        <div className="mt-8 grid gap-4 lg:mt-10 lg:grid-cols-3 lg:gap-5">
           {testimonials.map((item, index) => (
             <MotionFigure
               key={item.role}
@@ -69,7 +69,7 @@ export default function Testimonials() {
             >
               <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-green-100 opacity-60 blur-3xl" />
 
-              <div className="relative mb-4 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-[#00C853] to-[#00E676] text-white shadow-lg lg:mb-5 lg:h-12 lg:w-12">
+              <div className="relative mb-4 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-[#00C853] to-[#00B4D8] text-white shadow-lg lg:mb-5 lg:h-12 lg:w-12">
                 <MessageSquareQuote size={20} />
               </div>
 

@@ -5,18 +5,18 @@ import QuoteModal from "@/components/forms/QuoteModal";
 export default function ArticleCta() {
   const [open, setOpen] = useState(false);
   return (
-    <section className="mt-8 rounded-3xl bg-gradient-to-br from-emerald-950 to-emerald-800 p-5 text-white sm:p-7">
+    <section className="mt-8 rounded-3xl bg-gradient-to-br from-blue-950 via-cyan-900 to-emerald-900 p-5 text-white sm:p-7">
       <h2 className="text-2xl font-black">
         Need help improving your ETP or STP?
       </h2>
-      <p className="mt-2 max-w-2xl leading-7 text-emerald-50/85">
+      <p className="mt-2 max-w-2xl leading-7 text-cyan-50/85">
         Talk to our technical team about a bioculture plan tailored to your
         influent and operating conditions.
       </p>
       <div className="mt-4 flex flex-wrap gap-2">
         <button
           onClick={() => setOpen(true)}
-          className="rounded-full bg-white px-5 py-2.5 text-sm font-bold text-emerald-900"
+          className="rounded-full bg-white px-5 py-2.5 text-sm font-bold text-blue-900"
         >
           Request Quote
         </button>

@@ -4,6 +4,20 @@
 @theme {
   --color-bionics-green: #00C853;
   --color-bionics-mint: #00E676;
+  --color-bionics-blue: #2563eb;
+  --color-bionics-sky: #0ea5e9;
+  --color-bionics-teal: #14b8a6;
+}
+
+:root {
+  --science-blue: #00b4d8;
+  --science-sky: #00b4d8;
+  --science-teal: #14b8a6;
+  --science-green: #22c55e;
+  --science-gradient: linear-gradient(135deg, #00c853 0%, #00b4d8 100%);
+  --science-border: rgb(0 180 216 / 0.18);
+  --science-shadow: 0 10px 35px rgb(15 23 42 / 0.08), 0 2px 8px rgb(0 180 216 / 0.05);
+  --science-shadow-hover: 0 20px 60px rgb(0 180 216 / 0.15);
 }
 
 .quote-phone-input {
@@ -22,8 +36,8 @@
 }
 
 .quote-phone-input:focus-within {
-  border-color: #10b981;
-  box-shadow: 0 0 0 2px rgb(16 185 129 / 0.12);
+  border-color: var(--science-sky);
+  box-shadow: 0 0 0 3px rgb(0 180 216 / 0.12), 0 0 0 1px rgb(0 200 83 / 0.08);
 }
 
 .quote-phone-input .PhoneInputCountry {
@@ -49,8 +63,107 @@
   }
 
   ::selection {
-    @apply bg-[#00C853] text-white;
+    @apply bg-blue-600 text-white;
   }
+
+  :focus-visible {
+    outline: 2px solid var(--science-sky);
+    outline-offset: 3px;
+  }
+}
+
+/* Premium scientific system shared by existing components. */
+main :where(article, div, section)[class*="rounded-2xl"][class*="border"],
+main :where(article, div, section)[class*="rounded-3xl"][class*="border"] {
+  border-color: var(--science-border);
+  box-shadow: var(--science-shadow);
+}
+
+main :where(article, a, div)[class*="rounded-2xl"][class*="border"],
+main :where(article, a, div)[class*="rounded-3xl"][class*="border"] {
+  transition-property: transform, box-shadow, border-color, background-color;
+  transition-duration: 280ms;
+  transition-timing-function: cubic-bezier(.22, 1, .36, 1);
+}
+
+main :where(article, a)[class*="rounded-2xl"][class*="border"]:hover,
+main :where(article, a)[class*="rounded-3xl"][class*="border"]:hover {
+  border-color: rgb(0 180 216 / 0.38);
+  box-shadow: var(--science-shadow-hover);
+}
+
+main :where(button, a)[class*="bg-emerald-600"],
+main :where(button, a)[class*="bg-green-600"],
+main :where(button, a)[class*="bg-[#00C853]"] {
+  background-color: var(--science-blue);
+  background-image: var(--science-gradient);
+  box-shadow: 0 8px 22px rgb(0 180 216 / 0.18);
+}
+
+main :where(button, a)[class*="bg-emerald-600"]:hover,
+main :where(button, a)[class*="bg-green-600"]:hover,
+main :where(button, a)[class*="bg-[#00C853]"]:hover {
+  filter: saturate(1.08) brightness(1.02);
+  box-shadow: 0 12px 30px rgb(0 180 216 / 0.24);
+}
+
+main :where(input, select, textarea) {
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+main :where(input, select, textarea):focus {
+  border-color: var(--science-sky) !important;
+  box-shadow: 0 0 0 3px rgb(0 180 216 / 0.11) !important;
+}
+
+.science-gradient-text {
+  background: var(--science-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.science-gradient-bg {
+  background-color: var(--science-blue);
+  background-image: var(--science-gradient);
+}
+
+.science-icon {
+  border: 1px solid rgb(0 180 216 / 0.16);
+  background: linear-gradient(145deg, #effff4, #f4faff);
+  color: var(--science-blue);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .9), 0 8px 22px rgb(0 180 216 / .08);
+  transition: color 280ms ease, background 280ms ease, border-color 280ms ease, box-shadow 280ms ease, transform 280ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.science-icon svg {
+  color: inherit;
+  transition: color 280ms ease, transform 280ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.group:hover .science-icon {
+  border-color: transparent;
+  background: linear-gradient(135deg, #00c853 0%, #00b4d8 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgb(0 180 216 / .18);
+  transform: scale(1.05);
+}
+
+.group:hover .science-icon svg {
+  color: #ffffff;
+  transform: scale(1.04);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .science-gradient-bg {
+    background-size: 180% 180%;
+    animation: science-gradient-shift 8s ease infinite;
+  }
+}
+
+@keyframes science-gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 /* ===========================

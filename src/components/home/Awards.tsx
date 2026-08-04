@@ -43,7 +43,7 @@ export default function Awards() {
   return (
     <section
       id="recognition"
-      className="bg-white py-12 lg:py-24"
+      className="bg-white py-10 lg:py-16"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
@@ -53,12 +53,12 @@ export default function Awards() {
           description="Government awards, research recognitions and internationally certified quality standards that demonstrate our commitment to scientific innovation."
         />
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-16 lg:gap-8 lg:grid-cols-3 xl:grid-cols-5">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:mt-10 lg:gap-5 lg:grid-cols-3 xl:grid-cols-5">
 
           {recognitions.map((item) => (
             <div
               key={item.title}
-              className="group grid grid-cols-[72px_minmax(0,1fr)] items-center gap-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#00C853] hover:shadow-2xl sm:block lg:p-6 lg:hover:-translate-y-2"
+              className="group grid grid-cols-[72px_minmax(0,1fr)] items-center gap-4 rounded-3xl border border-sky-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-sky-300 hover:shadow-2xl sm:block lg:p-6"
             >
               <div className="relative h-[72px] w-[72px] sm:mx-auto sm:h-32 sm:w-full">
                 <Image
@@ -70,7 +70,7 @@ export default function Awards() {
               </div>
 
               <div className="min-w-0 self-center sm:text-center">
-                <div className="mb-2 inline-flex rounded-full bg-green-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-[#00C853] lg:mb-5 lg:text-xs">
+                <div className="mb-2 inline-flex rounded-full bg-gradient-to-r from-blue-50 to-emerald-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-blue-600 lg:mb-5 lg:text-xs">
                   {item.subtitle}
                 </div>
 

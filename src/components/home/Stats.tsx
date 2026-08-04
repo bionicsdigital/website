@@ -98,7 +98,7 @@ export default function Stats() {
     HTMLAttributes<HTMLDivElement> & MotionProps
   >
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-[#006D3A] via-[#00C853] to-[#00E676] py-12 lg:py-20">
+    <section className="relative overflow-hidden bg-gradient-to-r from-[#00C853] to-[#00B4D8] py-9 lg:py-12">
       {/* Background */}
 
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,.15),transparent_60%)]" />
@@ -143,7 +143,7 @@ export default function Stats() {
                 duration-300
                 hover:bg-white/15
                 hover:shadow-2xl
-                lg:p-6
+                lg:p-5
               "
             >
               <h3 className="text-2xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl">
@@ -153,7 +153,7 @@ export default function Stats() {
                 />
               </h3>
 
-              <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.13em] text-green-100 sm:text-xs lg:mt-3 lg:text-sm lg:tracking-[0.16em]">
+              <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.13em] text-cyan-50 sm:text-xs lg:text-sm lg:tracking-[0.16em]">
                 {item.label}
               </p>
             </MotionDiv>

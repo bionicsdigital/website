@@ -52,7 +52,7 @@ export default function Products() {
   return (
     <section
       id="products"
-      className="bg-gradient-to-b from-slate-50 via-white to-slate-50 py-12 lg:py-24"
+      className="bg-gradient-to-b from-slate-50 via-white to-sky-50/30 py-10 lg:py-16"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
 
@@ -62,18 +62,18 @@ export default function Products() {
           description="Scientifically engineered microbial cultures developed for superior biological performance, reduced operating costs and sustainable wastewater treatment."
         />
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:mt-16 lg:gap-8 xl:grid-cols-3">
+        <div className="mt-8 grid gap-5 md:grid-cols-2 lg:mt-10 lg:gap-6 xl:grid-cols-3">
 
           {products.map((product) => (
 
             <article
               key={product.name}
-              className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-md transition-all duration-500 hover:-translate-y-1 hover:border-[#00C853] hover:shadow-2xl lg:hover:-translate-y-2"
+              className="group overflow-hidden rounded-3xl border border-sky-100 bg-white shadow-md transition-all duration-500 hover:-translate-y-1 hover:border-sky-300 hover:shadow-2xl"
             >
 
               {/* Product Image */}
 
-              <div className="relative aspect-[16/10] overflow-hidden rounded-t-3xl bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 lg:aspect-square">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-t-3xl bg-gradient-to-br from-blue-950 via-slate-950 to-emerald-950 lg:aspect-square">
                 <Link
                   href={`/products/${product.slug}`}
                   className="absolute inset-0 block"
@@ -91,7 +91,7 @@ export default function Products() {
 
               {/* Content */}
 
-              <div className="p-5 lg:p-7">
+              <div className="p-5 lg:p-6">
 
                 <h3 className="text-xl font-bold text-slate-900 lg:text-2xl">
                   {product.name}
@@ -103,7 +103,7 @@ export default function Products() {
 
                 <Link
                   href={`/products/${product.slug}`}
-                  className="mt-5 inline-flex items-center gap-2 font-semibold text-[#00C853] transition-all duration-300 hover:gap-3 hover:text-green-700 lg:mt-7"
+                  className="mt-5 inline-flex items-center gap-2 font-semibold text-blue-600 transition-all duration-300 hover:gap-3 hover:text-emerald-600 lg:mt-6"
                 >
                   Learn More
                   <ArrowUpRight size={18} />

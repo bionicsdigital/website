@@ -7,7 +7,7 @@ export default function Industries() {
   return (
     <section
       id="industries"
-      className="bg-gradient-to-b from-white to-slate-50 py-12 lg:py-24"
+      className="bg-gradient-to-b from-white to-slate-50 py-10 lg:py-16"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHeading
@@ -15,7 +15,7 @@ export default function Industries() {
           title="Built for the Wastewater Demands of Every Industry"
         />
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-14 lg:gap-6 lg:grid-cols-4">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:mt-10 lg:gap-5 lg:grid-cols-4">
           {industries.map((industry) => {
             const Icon = industry.icon
 
@@ -39,21 +39,20 @@ export default function Industries() {
                   odd:flex-row
                   even:flex-row-reverse
                   hover:-translate-y-1
-                  hover:border-green-500
+                  hover:border-sky-400
                   hover:shadow-2xl
                   focus:outline-none
                   focus:ring-2
-                  focus:ring-green-500
+                  focus:ring-sky-500
                   focus:ring-offset-2
                   lg:block
-                  lg:p-6
-                  lg:hover:-translate-y-2
+                  lg:p-5
                 "
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-green-50 transition-colors duration-300 group-hover:bg-green-600 lg:mb-5 lg:h-14 lg:w-14">
+                <div className="science-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition duration-300 group-hover:scale-105 group-hover:bg-blue-600 group-hover:text-white lg:mb-4">
                   <Icon
                     size={24}
-                    className="text-green-600 transition-colors duration-300 group-hover:text-white"
+                    className="text-blue-600 transition-colors duration-300 group-hover:text-white"
                   />
                 </div>
 
@@ -66,7 +65,7 @@ export default function Industries() {
                     {industry.desc}
                   </p>
 
-                  <div className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-green-600 transition-all duration-300 group-hover:gap-3 lg:mt-6 lg:text-base">
+                  <div className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition-all duration-300 group-hover:gap-3 group-hover:text-emerald-600 lg:mt-5">
                     Learn More
                     <ArrowUpRight size={18} />
                   </div>

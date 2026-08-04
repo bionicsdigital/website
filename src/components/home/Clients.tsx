@@ -41,7 +41,7 @@ export default function Clients() {
   return (
     <section
       id="clients"
-      className="relative overflow-hidden bg-slate-50 py-12 lg:py-24"
+      className="relative overflow-hidden bg-slate-50 py-10 lg:py-16"
     >
       <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-green-100 blur-3xl opacity-40" />
       <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-blue-100 blur-3xl opacity-30" />
@@ -54,7 +54,7 @@ export default function Clients() {
         />
 
         {/* Row 1 */}
-        <div className="mt-10 overflow-hidden lg:mt-16">
+        <div className="mt-8 overflow-hidden lg:mt-10">
           <div className="marquee-left flex w-max gap-4 lg:gap-8">
             {[...row1, ...row1].map((logo, index) => (
               <div
@@ -95,7 +95,7 @@ export default function Clients() {
           </div>
         </div>
 
-        <div className="mt-8 text-center lg:mt-14">
+        <div className="mt-7 text-center lg:mt-9">
           <p className="mx-auto max-w-3xl text-sm leading-7 text-slate-600 lg:text-lg lg:leading-8">
             Serving industries including
             <span className="font-semibold text-slate-900">

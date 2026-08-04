@@ -6,6 +6,8 @@ import Footer from '@/components/footer/Footer'
 import BackgroundParticles from '@/components/background/BackgroundParticles'
 import Assistant from '@/components/assistant/Assistant'
 import ToastProvider from '@/components/forms/ToastProvider'
+import CookieConsent from '@/components/cookies/CookieConsent'
+import GlobalSearch from '@/components/search/GlobalSearch'
 
 import './globals.css'
 
@@ -31,6 +33,7 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
+  alternates: { types: { 'application/rss+xml': '/feed.xml' } },
 }
 
 export default function RootLayout({
@@ -43,6 +46,8 @@ export default function RootLayout({
       <body className="overflow-x-hidden bg-white text-slate-600 antialiased">
         <BackgroundParticles />
         <ToastProvider />
+        <GlobalSearch />
+        <CookieConsent />
         <Navbar />
         {children}
         <Assistant />

@@ -22,7 +22,7 @@ export default function CTA() {
   return (
     <section id="contact" className="bg-white py-8 lg:py-14">
       <div className="mx-auto max-w-6xl px-4 sm:px-8 lg:px-10">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#006D3A] via-[#00A94F] to-[#00E676] px-5 py-8 shadow-[0_20px_60px_rgba(0,0,0,0.16)] sm:px-10 lg:px-14 lg:py-10">
+        <div className="science-gradient-bg relative overflow-hidden rounded-3xl px-5 py-8 shadow-[0_20px_60px_rgba(14,165,233,0.18)] sm:px-10 lg:px-14 lg:py-10">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,.22),transparent_60%)]" />
           <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
           <div className="absolute -left-20 bottom-0 h-60 w-60 rounded-full bg-black/10 blur-3xl" />

@@ -53,7 +53,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
 
     return (<>
         <main className="min-h-screen bg-slate-50">
-            <section className="relative overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-900 to-green-800 text-white">
+            <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-emerald-900 text-white">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.16),_transparent_35%)]" />
                 <div className="relative mx-auto grid max-w-7xl gap-6 px-4 pb-9 pt-24 sm:px-8 sm:pb-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-stretch lg:gap-8 lg:px-10 lg:pb-20 lg:pt-28">
                     <div className="max-w-2xl">

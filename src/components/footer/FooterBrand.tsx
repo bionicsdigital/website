@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Globe2, Mail, MapPin, Phone } from "lucide-react";
+import { Globe2, Mail, Phone, ReceiptText } from "lucide-react";
 import {
   FaFacebookF,
   FaInstagram,
@@ -57,7 +57,10 @@ export default function FooterBrand() {
           <Mail className="h-4 w-4 text-emerald-400" />
           info@bionicsenviro.com
         </a>
-        <span className="flex items-center gap-2"></span>
+        <span className="flex items-center gap-2">
+          <ReceiptText className="h-4 w-4 text-emerald-400" />
+          GST No. 33BKEPS2994G1ZV
+        </span>
       </div>
       <div className="mt-4 flex flex-wrap gap-2">
         {socials.map(({ label, href, icon: Icon }) => (

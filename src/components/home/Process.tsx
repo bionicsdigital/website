@@ -44,7 +44,7 @@ export default function Process() {
   return (
     <section
       id="process"
-      className="bg-slate-50 py-12 lg:py-24"
+      className="bg-gradient-to-b from-slate-50 to-sky-50/30 py-10 lg:py-16"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <SectionHeading
@@ -52,7 +52,7 @@ export default function Process() {
           title="From Wastewater Analysis to Sustainable Performance"
         />
 
-        <ol className="relative mt-10 grid gap-4 lg:mt-16 lg:gap-8 lg:grid-cols-5">
+        <ol className="relative mt-8 grid gap-4 lg:mt-10 lg:gap-5 lg:grid-cols-5">
           {steps.map((step, index) => {
             const Icon = step.icon
 
@@ -73,7 +73,7 @@ export default function Process() {
                   transition-all
                   duration-300
                   hover:-translate-y-1
-                  hover:border-green-500
+                  hover:border-sky-400
                   hover:shadow-xl
                   lg:block
                   lg:p-6
@@ -84,32 +84,32 @@ export default function Process() {
                   lg:after:top-10
                   lg:after:h-[2px]
                   lg:after:w-8
-                  lg:after:bg-green-500
+                  lg:after:bg-gradient-to-r lg:after:from-blue-500 lg:after:to-emerald-500
                   last:after:hidden
                 "
               >
                 {/* Step Number */}
 
                 <div className="flex shrink-0 items-center justify-between lg:block">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-green-600 text-sm font-bold text-white">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#00C853] to-[#00B4D8] text-sm font-bold text-white">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                 </div>
 
                 {/* Icon */}
 
-                <div className="mt-6 hidden h-16 w-16 items-center justify-center rounded-2xl bg-green-50 transition group-hover:bg-green-600 lg:flex">
+                <div className="science-icon mt-6 hidden h-16 w-16 items-center justify-center rounded-2xl transition group-hover:bg-blue-600 lg:flex">
                   <Icon
                     size={30}
-                    className="text-green-600 transition"
+                    className="text-blue-600 transition group-hover:text-white"
                   />
                 </div>
 
                 {/* Title */}
 
                 <div className="min-w-0">
-                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-xl bg-green-50 lg:hidden">
-                    <Icon size={20} className="text-green-600" />
+                  <div className="science-icon mb-2 flex h-10 w-10 items-center justify-center rounded-xl lg:hidden">
+                    <Icon size={20} className="text-blue-600" />
                   </div>
 
                   <h3 className="text-lg font-bold text-slate-900 lg:mt-6 lg:text-xl">

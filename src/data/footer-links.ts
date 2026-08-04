@@ -22,9 +22,9 @@ export const footerLinkGroups: FooterLinkGroup[] = [
       },
       { label: "Chemical", href: "/industries/chemical-industry" },
       { label: "Pharma", href: "/industries/pharmaceutical-industry" },
-      { label: "Food & Beverage", href: "/industries/food-beverage-industry" },
+      { label: "Food", href: "/industries/food-processing-industry" },
       { label: "Dairy", href: "/industries/dairy-industry" },
-      { label: "Municipal", href: "/industries/municipal-wastewater" },
+      { label: "Municipal Solid Waste Compost", href: "/industries/municipal" },
     ],
   },
   {
@@ -34,7 +34,18 @@ export const footerLinkGroups: FooterLinkGroup[] = [
       { label: "Blogs", href: "/blogs" },
       { label: "FAQ", href: "/#faq" },
       { label: "Contact", href: "/#contact" },
-      { label: "Careers", href: "/#contact" },
+      { label: "Careers", href: "/careers" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms & Conditions", href: "/terms-and-conditions" },
+      { label: "Cookie Policy", href: "/cookie-policy" },
+      { label: "Refund Policy", href: "/refund-policy" },
+      { label: "Shipping Policy", href: "/shipping-policy" },
+      { label: "Sitemap", href: "/sitemap" },
     ],
   },
 ];

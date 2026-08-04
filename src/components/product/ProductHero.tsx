@@ -12,7 +12,7 @@ type ProductHeroProps = {
 
 export default function ProductHero({ title, subtitle, heroImage, overview }: ProductHeroProps) {
     return (
-        <section className="relative overflow-hidden bg-gradient-to-br from-emerald-950 via-green-900 to-emerald-800 text-white">
+        <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-emerald-900 text-white">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.16),_transparent_35%)]" />
             <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-12 pt-28 sm:px-8 sm:pb-16 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-28">
                 <div className="flex flex-col justify-center">

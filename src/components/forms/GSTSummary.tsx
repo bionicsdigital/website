@@ -29,11 +29,11 @@ export default function GSTSummary({
                 <div className="flex items-center justify-between"><span>Subtotal</span><span className="font-semibold text-slate-900">{formatCurrency(subtotal)}</span></div>
                 {isTamilNadu ? (
                     <>
-                        <div className="flex items-center justify-between"><span>CGST 9%</span><span className="font-semibold text-slate-900">{formatCurrency(cgst)}</span></div>
-                        <div className="flex items-center justify-between"><span>SGST 9%</span><span className="font-semibold text-slate-900">{formatCurrency(sgst)}</span></div>
+                        <div className="flex items-center justify-between"><span>CGST 2.5%</span><span className="font-semibold text-slate-900">{formatCurrency(cgst)}</span></div>
+                        <div className="flex items-center justify-between"><span>SGST 2.5%</span><span className="font-semibold text-slate-900">{formatCurrency(sgst)}</span></div>
                     </>
                 ) : (
-                    <div className="flex items-center justify-between"><span>IGST 18%</span><span className="font-semibold text-slate-900">{formatCurrency(igst)}</span></div>
+                    <div className="flex items-center justify-between"><span>IGST 5%</span><span className="font-semibold text-slate-900">{formatCurrency(igst)}</span></div>
                 )}
                 <div className="flex items-center justify-between border-t border-slate-200 pt-3 text-base font-semibold text-slate-900"><span>Grand Total</span><span>{formatCurrency(grandTotal)}</span></div>
             </div>

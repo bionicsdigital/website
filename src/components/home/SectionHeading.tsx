@@ -26,7 +26,7 @@ export default function SectionHeading({
       initial={{ opacity: 0, y: 25 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       className={`
         max-w-3xl
         ${align === 'center'
@@ -42,15 +42,17 @@ export default function SectionHeading({
           items-center
           rounded-full
           border
-          border-green-200
-          bg-green-50
-          px-4
-          py-1.5
+          border-sky-200
+          bg-gradient-to-r
+          from-blue-50
+          to-emerald-50
+          px-3.5
+          py-1
           text-xs
           font-bold
           uppercase
           tracking-[0.2em]
-          text-green-700
+          text-blue-700
         "
       >
         {eyebrow}
@@ -60,14 +62,14 @@ export default function SectionHeading({
 
       <h2
         className="
-          mt-5
+          mt-4
           text-2xl
           font-black
           leading-tight
           tracking-[-0.03em]
           text-slate-900
           sm:text-4xl
-          lg:text-5xl
+          lg:text-[2.75rem]
         "
       >
         {title}
@@ -77,13 +79,13 @@ export default function SectionHeading({
 
       <div
         className={`
-          mt-6
+          mt-4
           h-1
           w-20
           rounded-full
           bg-gradient-to-r
           from-[#00C853]
-          to-[#00E676]
+          to-[#00B4D8]
           ${
             align === 'center'
               ? 'mx-auto'
@@ -97,9 +99,9 @@ export default function SectionHeading({
       {description && (
         <p
           className="
-            mt-6
+            mt-4
             text-[15px]
-            leading-8
+            leading-7
             text-slate-600
             sm:text-lg
           "

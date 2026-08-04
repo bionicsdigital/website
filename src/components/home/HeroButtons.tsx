@@ -30,21 +30,21 @@ export default function HeroButtons() {
           whileTap={{ scale: 0.97 }}
           className="
             inline-flex
-            min-h-[56px]
+            min-h-[50px]
             items-center
             justify-center
             gap-2
             rounded-2xl
             bg-gradient-to-r
             from-[#00C853]
-            to-[#00E676]
-            px-8
+            to-[#00B4D8]
+            px-7
             font-bold
             text-white
             shadow-lg
-            shadow-green-500/30
+            shadow-blue-500/25
             transition-all
-            hover:shadow-green-500/50
+            hover:shadow-cyan-500/35
           "
         >
           Get Quote
