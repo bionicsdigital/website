@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import BlogBreadcrumb from "@/components/blog/BlogBreadcrumb";
 import BlogSidebar from "@/components/blog/BlogSidebar";
 import ArticleBody from "@/components/blog/ArticleBody";
-import ReadingProgress from "@/components/blog/ReadingProgress";
 import RelatedPosts from "@/components/blog/RelatedPosts";
 import {
   getAdjacentBlogs,
@@ -41,6 +40,7 @@ export default async function BlogDetail({
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `${urlFor(article.slug)}#article`,
     headline: article.title,
     description: article.description,
     image: `${base}${article.coverImage}`,
@@ -55,15 +55,7 @@ export default async function BlogDetail({
     },
     mainEntityOfPage: urlFor(article.slug),
   };
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: article.faq.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: { "@type": "Answer", text: item.answer },
-    })),
-  };
+  const webpageSchema = { "@context": "https://schema.org", "@type": "WebPage", "@id": `${urlFor(article.slug)}#webpage`, url: urlFor(article.slug), name: article.title, description: article.description, isPartOf: { "@type": "WebSite", name: siteConfig.shortName, url: base }, mainEntity: { "@type": "Article", "@id": `${urlFor(article.slug)}#article` } };
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -85,29 +77,17 @@ export default async function BlogDetail({
   };
   return (<>
     <main className="min-h-screen bg-white">
-      <ReadingProgress />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webpageSchema) }}
       />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "Bionics Enviro Tech",
-            url: base,
-          }),
-        }}
       />
       <div className="mx-auto max-w-7xl px-4 pb-8 pt-24 sm:px-8 sm:pb-10 sm:pt-28 lg:px-10">
         <BlogBreadcrumb title={article.title} />

@@ -60,12 +60,19 @@ function FeatureCards({ items, offset = 0 }: { items: Feature[]; offset?: number
 
 export default function Features() {
   return (
-    <section id="applications" className="bg-gradient-to-b from-white to-slate-50 py-9 lg:py-14">
+    <section id="why-nanozyme" className="bg-gradient-to-b from-white to-slate-50 py-9 lg:py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-10">
         <SectionHeading eyebrow="Nanozyme Advantages" title="Merits of Nanozyme Bioculture" description="Scientifically developed Nanozyme Bioculture improves biological wastewater treatment by reducing COD, BOD, colour, odour, sludge generation and operating costs while increasing treatment efficiency and dissolved oxygen." />
 
         <div className="mt-7 grid gap-3 sm:mt-9 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
           <FeatureCards items={merits} />
+        </div>
+
+        <div className="mt-9 overflow-hidden rounded-3xl border border-emerald-200 bg-gradient-to-br from-emerald-950 to-cyan-950 text-white shadow-xl sm:mt-12">
+          <div className="grid gap-6 p-5 sm:p-7 lg:grid-cols-[.8fr_1.2fr] lg:p-8">
+            <div><p className="text-xs font-bold uppercase tracking-[.18em] text-emerald-300">Nanozyme description</p><h3 className="mt-3 text-2xl font-black sm:text-3xl">Living multi-strain biological formulation</h3><p className="mt-3 text-sm leading-6 text-slate-300">Manufacturer product specification for the organic semi-solid Nanozyme formulation. Final selection and dosage depend on wastewater characteristics and plant conditions.</p></div>
+            <dl className="grid gap-px overflow-hidden rounded-2xl bg-white/10 sm:grid-cols-2">{[["Available form","Organic semi-solid"],["Bacterial strains","63 different strains"],["Bacteria stage","Living bacteria"],["Bacterial colonies","63 × 10⁹ CFU/mL"],["Minimum shelf life","One year"]].map(([term,value])=><div key={term} className="bg-white/[.06] p-4"><dt className="text-xs font-bold uppercase tracking-wider text-emerald-300">{term}</dt><dd className="mt-1.5 font-bold text-white">{value}</dd></div>)}</dl>
+          </div>
         </div>
 
         <div className="mt-10 sm:mt-12">

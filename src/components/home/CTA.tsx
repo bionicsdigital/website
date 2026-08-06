@@ -1,98 +1,88 @@
-'use client'
+"use client";
 
-import { ArrowRight, Check, Mail, MessageCircle, Phone } from 'lucide-react'
-import { useState } from 'react'
-import QuoteModal from '@/components/forms/QuoteModal'
-
-const phoneNumbers = [
-  { label: '90950 0090', value: '+91909500090' },
-  { label: '95663 76690', value: '+919566376690' },
-  { label: '94848 44000', value: '+919484844000' },
-]
-
-const highlights = [
-  'Scientific Manufacturer',
-  'PAN India Service',
-  'Expert Consultation',
-]
+import {
+  ArrowRight,
+  Download,
+  MessageCircle,
+  Phone,
+  ShoppingBag,
+} from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+import QuoteModal from "@/components/forms/QuoteModal";
+import { siteConfig } from "@/lib/site";
 
 export default function CTA() {
-  const [open, setOpen] = useState(false)
-
+  const [open, setOpen] = useState(false);
+  const whatsappNumber = siteConfig.phoneHref.replace(/\D/g, "");
   return (
-    <section id="contact" className="bg-white py-8 lg:py-14">
-      <div className="mx-auto max-w-6xl px-4 sm:px-8 lg:px-10">
-        <div className="science-gradient-bg relative overflow-hidden rounded-3xl px-5 py-8 shadow-[0_20px_60px_rgba(14,165,233,0.18)] sm:px-10 lg:px-14 lg:py-10">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,.22),transparent_60%)]" />
-          <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
-          <div className="absolute -left-20 bottom-0 h-60 w-60 rounded-full bg-black/10 blur-3xl" />
-
-          <div className="relative text-center text-white">
-            <h2 className="mx-auto max-w-4xl text-3xl font-black leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-              Ready to Improve Your
-              <br />
-              Wastewater Treatment?
-            </h2>
-
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-green-50 sm:text-base sm:leading-7">
-              Speak with our technical experts and discover how Nanozyme
-              Bioculture can reduce COD, BOD, sludge generation and operating
-              costs for your treatment plant.
-            </p>
-
-            <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row lg:gap-4">
+    <section id="contact" className="bg-white py-10 lg:py-16">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-slate-950 via-[#07333a] to-emerald-900 px-6 py-8 text-white shadow-[0_28px_80px_rgba(6,78,59,.25)] sm:px-9 lg:px-12 lg:py-12">
+          <div
+            aria-hidden="true"
+            className="absolute -right-24 -top-24 h-80 w-80 rounded-full border-[55px] border-cyan-400/10"
+          />
+          <div className="relative grid items-center gap-8 lg:grid-cols-[1fr_.9fr]">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[.2em] text-emerald-300">
+                Technical consultation
+              </p>
+              <h2 className="mt-4 max-w-2xl text-3xl font-black leading-tight sm:text-4xl lg:text-5xl">
+                Improve treatment performance with the right Nanozyme
+              </h2>
+              <p className="mt-4 max-w-xl leading-7 text-slate-300">
+                Share your plant conditions with our technical team for an
+                application-specific product recommendation.
+              </p>
+              <a
+                href={`tel:${siteConfig.phoneHref}`}
+                className="mt-5 inline-flex items-center gap-2 font-bold text-white hover:text-emerald-300"
+              >
+                <Phone className="h-5 w-5" />
+                {siteConfig.phone}
+              </a>
+            </div>
+            <div className="rounded-2xl border border-white/15 bg-white/[.07] p-4 backdrop-blur sm:p-5">
               <button
                 type="button"
                 onClick={() => setOpen(true)}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 font-bold text-green-700 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl sm:min-w-48"
+                className="flex min-h-14 w-full items-center justify-center gap-2 rounded-xl bg-white px-5 font-black text-emerald-800 shadow-xl transition hover:-translate-y-0.5"
               >
-                <Mail size={19} />
-                Request Quote
-                <ArrowRight size={17} />
+                Request Technical Consultation{" "}
+                <ArrowRight className="h-5 w-5" />
               </button>
-
-              <a
-                href="https://wa.me/919095000090"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/40 bg-white/10 px-6 py-3 font-bold text-white backdrop-blur transition-all duration-300 hover:bg-white hover:text-green-700 sm:min-w-48"
-              >
-                <MessageCircle size={19} />
-                WhatsApp Us
-              </a>
-            </div>
-
-            <div className="mx-auto mt-6 max-w-3xl rounded-2xl border border-white/20 bg-black/10 p-3 backdrop-blur-sm sm:p-4">
-              <div className="mb-3 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[.14em] text-green-50 sm:text-sm">
-                <Phone size={16} />
-                Call for inquiry &amp; support
+              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                <Link
+                  href="/products/buy"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 px-4 text-sm font-bold text-slate-950"
+                >
+                  <ShoppingBag className="h-4 w-4" />
+                  Buy Product
+                </Link>
+                <a
+                  href={`https://wa.me/${whatsappNumber}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/20 px-4 text-sm font-bold hover:bg-white/10"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  WhatsApp
+                </a>
+                <a
+                  href={siteConfig.brochure}
+                  download
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/20 px-4 text-sm font-bold hover:bg-white/10 sm:col-span-2"
+                >
+                  <Download className="h-4 w-4" />
+                  Download Company Profile
+                </a>
               </div>
-              <div className="grid gap-2 sm:grid-cols-3">
-                {phoneNumbers.map((phone) => (
-                  <a
-                    key={phone.value}
-                    href={`tel:${phone.value}`}
-                    className="rounded-xl bg-white/10 px-3 py-2 text-sm font-bold text-white transition hover:bg-white hover:text-green-700 sm:text-base"
-                  >
-                    +91 {phone.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-5 flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-green-100">
-              {highlights.map((item) => (
-                <div key={item} className="flex items-center gap-1.5">
-                  <Check size={14} />
-                  {item}
-                </div>
-              ))}
             </div>
           </div>
         </div>
       </div>
-
       <QuoteModal open={open} onClose={() => setOpen(false)} />
     </section>
-  )
+  );
 }

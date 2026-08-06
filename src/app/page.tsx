@@ -6,33 +6,54 @@ import CTA from "@/components/home/CTA";
 import FAQ from "@/components/home/FAQ";
 import Features from "@/components/home/Features";
 import Hero from "@/components/home/Hero";
-import Industries from "@/components/home/Industries";
 import Process from "@/components/home/Process";
-import Products from "@/components/home/Products";
 import ScrollToTop from "@/components/home/ScrollToTop";
 import Stats from "@/components/home/Stats";
 import Testimonials from "@/components/home/Testimonials";
 import Offices from "@/components/footer/Offices";
 import { createMetadata, siteConfig } from "@/lib/site";
 
-export const metadata: Metadata = createMetadata({ title: "Nanozyme Bioculture Manufacturer | Bionics Enviro Tech", description: "Scientific Nanozyme bioculture manufacturer in India for industrial wastewater, ETP, STP and CETP treatment. Request a technical consultation today.", path: "/", keywords: ["Nanozyme Bioculture Manufacturer","Nanozyme Manufacturer India","Bioculture Manufacturer India","Wastewater Treatment Company","Industrial Wastewater Treatment","Wastewater Treatment Chemicals Alternative","Microbial Culture Manufacturer","Biological Wastewater Treatment","Wastewater Treatment Solutions","ETP Microbial Culture","STP Microbial Culture","CETP Bioculture","COD Reduction","BOD Reduction","Zero Sludge Technology","Industrial ETP Solutions"] });
+export const metadata: Metadata = createMetadata({ title: "Nanozyme Bioculture Manufacturer | Bionics Enviro Tech", description: "Scientific Nanozyme bioculture manufacturer in India for industrial wastewater, ETP, STP and CETP treatment. Request a technical consultation today.", path: "/", keywords: ["Scientific Bioculture Manufacturer","Nanozyme Bioculture Manufacturer","Wastewater Treatment Bioculture","Industrial Wastewater Treatment","ETP Bioculture","STP Bioculture","Wastewater Treatment Manufacturer India"] });
 
 const schema = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Organization",
+      "@id": `${siteConfig.url}/#organization`,
       name: siteConfig.name,
       url: siteConfig.url,
+      logo: `${siteConfig.url}${siteConfig.logo}`,
       description:
         "Scientific Nanozyme Bioculture Manufacturer for Industrial Wastewater Treatment.",
     },
     {
-      "@type": "Product",
-      name: "Nanozyme Bioculture",
-      brand: { "@type": "Brand", name: "Bionics Enviro Tech" },
-      description:
-        "Scientific microbial culture for ETP, STP and industrial wastewater treatment.",
+      "@type": "LocalBusiness",
+      "@id": `${siteConfig.url}/#localbusiness`,
+      name: siteConfig.name,
+      url: siteConfig.url,
+      image: `${siteConfig.url}${siteConfig.ogImage}`,
+      telephone: siteConfig.phone,
+      email: siteConfig.email,
+      address: { "@type": "PostalAddress", addressLocality: "Erode", addressRegion: "Tamil Nadu", addressCountry: "IN" },
+      areaServed: { "@type": "Country", name: "India" },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteConfig.url}/#website`,
+      url: siteConfig.url,
+      name: siteConfig.shortName,
+      publisher: { "@id": `${siteConfig.url}/#organization` },
+      potentialAction: { "@type": "SearchAction", target: `${siteConfig.url}/search?q={search_term_string}`, "query-input": "required name=search_term_string" },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${siteConfig.url}/#webpage`,
+      url: siteConfig.url,
+      name: "Nanozyme Bioculture Manufacturer",
+      description: siteConfig.description,
+      isPartOf: { "@id": `${siteConfig.url}/#website` },
+      about: { "@id": `${siteConfig.url}/#organization` },
     },
     {
       "@type": "FAQPage",
@@ -69,10 +90,8 @@ export default function Home() {
         <Hero />
         <Awards />
         <About />
-        <Products />
         <Features />
         <Stats />
-        <Industries />
         <Process />
         <Clients />
         <Testimonials />

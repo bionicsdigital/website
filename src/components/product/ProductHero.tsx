@@ -16,7 +16,7 @@ export default function ProductHero({ title, subtitle, heroImage, overview }: Pr
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.16),_transparent_35%)]" />
             <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-12 pt-28 sm:px-8 sm:pb-16 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-28">
                 <div className="flex flex-col justify-center">
-                    <div className="mb-4"><PageBreadcrumb dark items={[{ label: 'Products', href: '/#products' }, { label: title }]} /></div>
+                    <div className="mb-4"><PageBreadcrumb dark items={[{ label: 'Products', href: '/products' }, { label: title }]} /></div>
                     <p className="inline-flex w-fit items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.16em] text-emerald-100 sm:text-sm sm:tracking-[0.2em]">
                         Advanced Bioculture Solution
                     </p>
@@ -34,15 +34,15 @@ export default function ProductHero({ title, subtitle, heroImage, overview }: Pr
                     </div>
                 </div>
 
-                <div className="rounded-[1.5rem] border border-white/20 bg-white/10 p-3 shadow-2xl backdrop-blur sm:rounded-[2rem] sm:p-4">
-                    <div className="overflow-hidden rounded-[1.5rem] bg-slate-950/20">
+                <div className="overflow-hidden rounded-[1.5rem] border border-white/20 bg-white/10 shadow-2xl backdrop-blur sm:rounded-[2rem]">
+                    <div className="h-full min-h-[280px] overflow-hidden sm:min-h-[430px]">
                         <Image
                             src={heroImage}
                             alt={title}
                             width={700}
                             height={560}
                             priority
-                            className="h-[220px] w-full object-contain bg-white/5 p-4 sm:h-[400px] sm:p-6"
+                            className="h-full min-h-[280px] w-full object-cover sm:min-h-[430px]"
                         />
                     </div>
                 </div>

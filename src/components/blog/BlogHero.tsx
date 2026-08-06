@@ -5,7 +5,7 @@ export default function BlogHero() {
     <section className="bg-gradient-to-br from-slate-950 via-blue-950 to-emerald-900 text-white">
       <div className="mx-auto max-w-7xl px-5 pb-12 pt-28 sm:px-8 lg:px-10 lg:pb-14 lg:pt-32">
         <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-bold uppercase tracking-[.18em] text-cyan-100">
-          <Sparkles className="h-4 w-4" /> Bionics knowledge centre
+          <Sparkles className="h-4 w-4" /> Bionics technical journal
         </p>
         <h1 className="mt-4 max-w-4xl text-3xl font-black leading-tight sm:text-5xl lg:text-6xl">
           Better decisions for every wastewater treatment plant.

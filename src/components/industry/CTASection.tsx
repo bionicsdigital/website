@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { Download, MessageCircle, PhoneCall } from 'lucide-react'
+import { siteConfig } from '@/lib/site'
 
 type CTASectionProps = {
     title: string
@@ -20,6 +22,9 @@ export default function CTASection({ title, description, primaryLabel, secondary
                     <Link href="/#contact" className="inline-flex w-full items-center justify-center rounded-full border border-white/30 bg-white/10 px-8 py-3 text-sm font-semibold text-white transition hover:bg-white/20 sm:w-auto">
                         {secondaryLabel}
                     </Link>
+                    <a href={siteConfig.brochure} download className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/30 px-5 text-sm font-bold"><Download className="h-4 w-4"/>Company Profile</a>
+                    <a href={`tel:${siteConfig.phoneHref}`} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/30 px-5 text-sm font-bold"><PhoneCall className="h-4 w-4"/>Call Now</a>
+                    <a href="https://wa.me/919095000090" target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/30 px-5 text-sm font-bold"><MessageCircle className="h-4 w-4"/>WhatsApp</a>
                 </div>
             </div>
         </section>

@@ -1,199 +1,42 @@
-import {
-  Microscope,
-  FlaskConical,
-  Leaf,
-  Globe2,
-  CheckCircle2,
-} from 'lucide-react'
-import SectionHeading from './SectionHeading'
+import { Award, CheckCircle2, Download, FlaskConical, Globe2, Leaf, Microscope } from 'lucide-react'
+import Link from 'next/link'
+import { siteConfig } from '@/lib/site'
 
-const stats = [
-  { value: '2016', label: 'Established' },
-  { value: '62+', label: 'Scientific Cultures' },
-  { value: '50+', label: 'Employees' },
-  { value: '100K+', label: 'Installations' },
-  { value: '40+', label: 'Patents' },
-  { value: 'Global', label: 'Exports' },
-]
-
-const features = [
-  {
-    icon: Microscope,
-    title: 'Research Driven',
-    text: 'Every Nanozyme formulation is developed through scientific research, laboratory validation and field performance.',
-  },
-  {
-    icon: FlaskConical,
-    title: 'Nanozyme Technology',
-    text: 'Advanced microbial cultures engineered to improve biological treatment efficiency while reducing operating costs.',
-  },
-  {
-    icon: Leaf,
-    title: 'Sustainable Treatment',
-    text: 'Reduce COD, BOD, sludge generation, odour and pollutant load with environmentally responsible biological solutions.',
-  },
-  {
-    icon: Globe2,
-    title: 'Global Supply',
-    text: 'Trusted by industries worldwide for ETP, STP, CETP, CSTP, anaerobic digesters and composting applications.',
-  },
+const stats = [{ value: '2014', label: 'Established' }, { value: '62+', label: 'Scientific cultures' }, { value: '50+', label: 'Team members' }, { value: 'Global', label: 'Supply capability' }]
+const pillars = [
+  { icon: Microscope, title: 'Research driven', text: 'Formulations developed through laboratory validation and practical field performance.' },
+  { icon: FlaskConical, title: 'Nanozyme technology', text: 'Advanced microbial cultures engineered for dependable biological treatment.' },
+  { icon: Leaf, title: 'Sustainable results', text: 'Support for COD, BOD, sludge and odour reduction with lower process intervention.' },
 ]
 
 export default function About() {
-  return (
-    <section
-      id="about"
-      className="relative overflow-hidden bg-white py-10 lg:py-16"
-    >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,#E9FFF1_0%,transparent_35%),radial-gradient(circle_at_bottom_right,#F3FFF8_0%,transparent_35%)]" />
-
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-
-        <SectionHeading
-          align="left"
-          eyebrow="About Bionics"
-          title="Engineering Better Biology for Industrial Wastewater Treatment"
-        />
-
-        <div className="mt-8 grid gap-7 lg:mt-10 lg:gap-10 lg:grid-cols-[1.35fr_0.85fr]">
-
-          {/* Left */}
-
-          <div>
-
-            <p className="text-base leading-7 text-slate-700 lg:text-lg lg:leading-8">
-              <strong className="text-slate-900">
-                Bionics Enviro Tech Pvt. Ltd.
-              </strong>{' '}
-              is a scientific manufacturer and global supplier of
-              <strong className="text-green-600">
-                {' '}Nanozyme Bioculture
-              </strong>{' '}
-              developed for industrial wastewater treatment. Our advanced
-              microbial formulations improve biological treatment efficiency,
-              reduce sludge generation and help industries achieve reliable
-              compliance with environmental regulations.
-            </p>
-
-            <p className="mt-4 leading-7 text-slate-600 lg:mt-6 lg:leading-8">
-              Backed by continuous research and innovation, our solutions are
-              designed for ETP, STP, CETP, CSTP, anaerobic digesters and organic
-              waste composting. We help industries reduce COD, BOD, colour,
-              odour and pollutant load while improving treatment performance and
-              lowering operational costs.
-            </p>
-
-            <p className="mt-4 leading-7 text-slate-600 lg:mt-6 lg:leading-8">
-              Today, Bionics Enviro Tech serves clients across India and global
-              markets with scientifically proven microbial cultures trusted by
-              textile, pharmaceutical, chemical, food processing, sugar,
-              distillery, paper, leather and municipal wastewater treatment
-              facilities.
-            </p>
-
+  return <section id="about" className="relative overflow-hidden bg-white py-12 lg:py-20">
+    <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(circle_at_8%_12%,rgba(16,185,129,.1),transparent_28%),radial-gradient(circle_at_92%_88%,rgba(14,165,233,.08),transparent_28%)]"/>
+    <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+      <div className="grid overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_24px_70px_rgba(15,23,42,.1)] lg:grid-cols-[1.15fr_.85fr]">
+        <div className="p-6 sm:p-9 lg:p-12">
+          <p className="text-xs font-black uppercase tracking-[.2em] text-emerald-700">About Bionics</p>
+          <h2 className="mt-4 max-w-3xl text-3xl font-black leading-tight tracking-tight text-slate-950 sm:text-4xl lg:text-5xl">Engineering better biology for wastewater treatment</h2>
+          <p className="mt-6 max-w-2xl text-base leading-7 text-slate-600 lg:text-lg lg:leading-8"><strong className="text-slate-950">{siteConfig.name}</strong> is a scientific manufacturer of Nanozyme Bioculture for industrial and municipal wastewater treatment.</p>
+          <p className="mt-4 max-w-2xl leading-7 text-slate-600">Our research-based microbial formulations support ETP, STP, CETP, anaerobic digestion and organic-waste composting applications while helping treatment teams improve biological stability.</p>
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <a href={siteConfig.brochure} download className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-5 text-sm font-bold text-white shadow-lg shadow-emerald-600/20 hover:bg-emerald-700"><Download className="h-4 w-4"/>Company Profile</a>
+            <Link href="/awards" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-300 px-5 text-sm font-bold text-slate-800 hover:border-emerald-500"><Award className="h-4 w-4"/>Awards & Certifications</Link>
           </div>
-
-          {/* Right Card */}
-
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl lg:p-8">
-
-            <span className="inline-flex rounded-full bg-green-100 px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-green-700">
-              Company Overview
-            </span>
-
-            <h3 className="mt-5 text-2xl font-bold text-slate-900">
-              Scientific Innovation.
-              <br />
-              Sustainable Results.
-            </h3>
-
-            <div className="mt-6 space-y-3 lg:mt-8 lg:space-y-4">
-
-              {[
-                'Government Awarded Technology',
-                'ISO 9001:2015 Certified',
-                'Research-Based Nanozyme Technology',
-                'Trusted Across Multiple Industries',
-                'Global Export Capability',
-                'Environment Friendly Solutions',
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-3"
-                >
-                  <CheckCircle2
-                    className="text-green-600"
-                    size={20}
-                  />
-
-                  <span className="text-slate-700">
-                    {item}
-                  </span>
-                </div>
-              ))}
-
-            </div>
-
-          </div>
-
         </div>
 
-        {/* Statistics */}
-
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:mt-10 lg:grid-cols-3 xl:grid-cols-6">
-
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="rounded-2xl border border-sky-100 bg-white p-4 text-center shadow-sm transition hover:-translate-y-1 hover:border-sky-300 hover:shadow-lg lg:p-5"
-            >
-              <h3 className="text-2xl font-extrabold text-green-600 lg:text-3xl">
-                {stat.value}
-              </h3>
-
-              <p className="mt-2 text-sm font-medium text-slate-600">
-                {stat.label}
-              </p>
-            </div>
-          ))}
-
-        </div>
-
-        {/* Features */}
-
-        <div className="mt-8 grid gap-4 md:grid-cols-2 lg:mt-10 lg:gap-5 xl:grid-cols-4">
-
-          {features.map((feature) => {
-            const Icon = feature.icon
-
-            return (
-              <div
-                key={feature.title}
-                className="group flex items-start gap-4 rounded-3xl border border-sky-100 bg-white p-5 transition duration-300 odd:flex-row even:flex-row-reverse hover:-translate-y-1 hover:border-sky-300 hover:shadow-xl lg:block lg:p-6"
-              >
-                <div className="science-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl lg:h-14 lg:w-14">
-                  <Icon
-                    size={24}
-                    className="text-blue-600"
-                  />
-                </div>
-
-                <div className="min-w-0">
-                  <h3 className="text-lg font-bold text-slate-900 lg:mt-6 lg:text-xl">
-                    {feature.title}
-                  </h3>
-
-                  <p className="mt-2 text-sm leading-6 text-slate-600 lg:mt-3 lg:text-base lg:leading-7">
-                    {feature.text}
-                  </p>
-                </div>
-              </div>
-            )
-          })}
-
-        </div>
-
+        <aside className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-[#082a31] to-emerald-950 p-6 text-white sm:p-9 lg:p-12">
+          <Globe2 aria-hidden="true" className="absolute -right-12 -top-12 h-56 w-56 text-white/[.04]"/>
+          <p className="text-xs font-bold uppercase tracking-[.18em] text-emerald-300">Why teams choose Bionics</p>
+          <h3 className="mt-4 text-2xl font-black sm:text-3xl">Scientific innovation. Practical treatment support.</h3>
+          <ul className="mt-7 grid gap-4 text-sm text-slate-200 sm:grid-cols-2 lg:grid-cols-1">
+            {['Government-awarded technology', 'ISO 9001:2015 certified', 'Application-specific technical guidance', 'PAN India and export support'].map((item) => <li key={item} className="flex items-start gap-3"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400"/>{item}</li>)}
+          </ul>
+          <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-white/10">{stats.map((stat) => <div key={stat.label} className="bg-white/[.05] p-4"><strong className="block text-2xl font-black text-emerald-300">{stat.value}</strong><span className="mt-1 block text-xs text-slate-300">{stat.label}</span></div>)}</div>
+        </aside>
       </div>
-    </section>
-  )
+
+      <div className="mt-5 grid gap-4 md:grid-cols-3">{pillars.map(({ icon: Icon, title, text }) => <article key={title} className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"><div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-cyan-50 text-cyan-700"><Icon className="h-5 w-5"/></div><div><h3 className="font-black text-slate-950">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-600">{text}</p></div></article>)}</div>
+    </div>
+  </section>
 }

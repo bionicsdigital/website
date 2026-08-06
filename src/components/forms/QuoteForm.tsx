@@ -9,7 +9,7 @@ import type { QuoteFormValues } from '@/components/forms/QuoteModal'
 import { emailRegex, quoteProducts } from '@/lib/request-quote'
 
 const plantTypes = ['ETP', 'STP', 'CETP', 'Anaerobic Digester', 'Composting Plant', 'Other']
-const industries = ['Sugar', 'Distillery', 'Textile & Dye', 'Food & Beverage', 'Dairy', 'Pharmaceutical', 'Chemical', 'Pulp & Paper', 'Municipal', 'Hospitality', 'Other']
+const industries = ['Sugar', 'Distillery', 'Textile', 'Dye Processing', 'Food & Beverage', 'Dairy', 'Pharmaceutical', 'Chemical', 'Pulp & Paper', 'Municipal', 'Hospitality', 'Other']
 const indianStates = ['Tamil Nadu', 'Kerala', 'Karnataka', 'Andhra Pradesh', 'Telangana', 'Maharashtra', 'Gujarat', 'Uttar Pradesh', 'Rajasthan', 'West Bengal', 'Delhi', 'Haryana', 'Punjab', 'Odisha', 'Bihar', 'Madhya Pradesh', 'Chhattisgarh', 'Jharkhand', 'Assam', 'Uttarakhand', 'Himachal Pradesh', 'Goa', 'Pondicherry', 'Sikkim', 'Arunachal Pradesh', 'Meghalaya', 'Nagaland', 'Tripura', 'Manipur', 'Mizoram']
 
 type FormErrors = Partial<Record<keyof QuoteFormValues, string>>

@@ -1,6 +1,10 @@
 {
   "name": "Bionics Enviro Tech",
   "short_name": "Bionics",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "description": "Scientific Nanozyme bioculture manufacturer for industrial and municipal wastewater treatment.",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

@@ -7,6 +7,12 @@ export const siteConfig = {
   description: 'Scientific Nanozyme bioculture manufacturer for industrial and municipal wastewater treatment, ETP, STP and CETP applications in India.',
   logo: '/logo.png',
   ogImage: '/industries/Industrial ETP.png',
+  email: 'info@bionicsenviro.com',
+  phone: '+91 90950 00090',
+  phoneHref: '+919095000090',
+  brochure: '/brochure/Bionics_Company_Profile.pdf',
+  address: 'Erode, Tamil Nadu, India',
+  businessHours: 'Monday–Saturday, 9:00 AM–6:00 PM IST',
   authors: [{ name: 'Bionics Enviro Tech Technical Team', url: 'https://www.bionicsenvirotech.com' }],
 } as const
 

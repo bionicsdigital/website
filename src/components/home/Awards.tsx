@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import SectionHeading from './SectionHeading'
+import Link from 'next/link'
 
 const recognitions = [
   {
@@ -86,6 +87,7 @@ export default function Awards() {
           ))}
 
         </div>
+        <div className="mt-6 text-center"><Link href="/awards" className="inline-flex min-h-11 items-center rounded-full border border-emerald-600 px-5 text-sm font-bold text-emerald-700 hover:bg-emerald-50">Explore awards and certificates</Link></div>
       </div>
     </section>
   )

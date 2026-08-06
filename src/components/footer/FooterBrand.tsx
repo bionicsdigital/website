@@ -28,7 +28,7 @@ export default function FooterBrand() {
       <a href="/" className="inline-flex items-center gap-3">
         <Image
           src="/icon.png"
-          alt="Bionics Enviro Tech"
+          alt={`${siteConfig.shortName} scientific manufacturer logo`}
           width={54}
           height={54}
         />
@@ -39,24 +39,23 @@ export default function FooterBrand() {
           </span>
         </span>
       </a>
-      <p className="mt-4 max-w-xs text-sm leading-6 text-slate-300">
-        Scientific manufacturer of Nanozyme Bioculture for wastewater treatment
-        and industrial biological solutions.
+      <p className="mt-3 max-w-xs text-sm leading-6 text-slate-300">
+        Nanozyme Bioculture for industrial and municipal wastewater treatment.
       </p>
-      <div className="mt-4 space-y-2.5 text-sm text-slate-300">
+      <div className="mt-3 space-y-2 text-sm text-slate-300">
         <a
-          href="tel:+919095000090"
+          href={`tel:${siteConfig.phoneHref}`}
           className="flex items-center gap-2 hover:text-emerald-300"
         >
           <Phone className="h-4 w-4 text-emerald-400" />
-          +91 90950 00090
+          {siteConfig.phone}
         </a>
         <a
-          href="mailto:info@bionicsenvirotech.com"
+          href={`mailto:${siteConfig.email}`}
           className="flex items-center gap-2 hover:text-emerald-300"
         >
           <Mail className="h-4 w-4 text-emerald-400" />
-          info@bionicsenvirotech.com
+          {siteConfig.email}
         </a>
         <span className="flex items-center gap-2">
           <ReceiptText className="h-4 w-4 text-emerald-400" />

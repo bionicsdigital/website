@@ -50,6 +50,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={poppins.className}>
+      <head><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" /><link rel="dns-prefetch" href="https://fonts.googleapis.com" /></head>
       <body className="overflow-x-hidden bg-white text-slate-600 antialiased">
         <BackgroundParticles />
         <ToastProvider />

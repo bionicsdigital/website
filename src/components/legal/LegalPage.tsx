@@ -10,7 +10,6 @@ const siteUrl = siteConfig.url
 export default function LegalPage({ page }: { page: LegalPageData }) {
   const Icon = page.icon
   const jsonLd = [
-    { '@context': 'https://schema.org', '@type': 'Organization', name: 'Bionics Enviro Tech Pvt. Ltd.', url: siteUrl, logo: `${siteUrl}/logo.png`, email: 'bionicsenvirotech@gmail.com', telephone: '+91 90950 00090' },
     { '@context': 'https://schema.org', '@type': 'WebPage', name: page.title, description: page.description, url: `${siteUrl}/${page.slug}`, dateModified: '2026-08-01', isPartOf: { '@type': 'WebSite', name: 'Bionics Enviro Tech', url: siteUrl } },
     { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl }, { '@type': 'ListItem', position: 2, name: page.title, item: `${siteUrl}/${page.slug}` }] },
   ]

@@ -17,6 +17,8 @@ export default function BottomFooter() {
             Terms
           </Link>
           <CookieSettingsButton />
+          <Link href="/disclaimer" className="hover:text-emerald-300">Disclaimer</Link>
+          <Link href="/sitemap" className="hover:text-emerald-300">Sitemap</Link>
         </nav>
       </div>
     </div>
