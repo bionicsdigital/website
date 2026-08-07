@@ -22,7 +22,7 @@ export default function AssistantBubble() {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 4, scale: 0.98 }}
         transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute bottom-[calc(100%-4px)] right-2 max-w-[210px] rounded-2xl border border-emerald-100 bg-white px-4 py-3 text-sm font-semibold leading-5 text-slate-800 shadow-xl shadow-emerald-950/10"
+        className="absolute bottom-[calc(100%-4px)] right-2 hidden max-w-[210px] rounded-2xl border border-emerald-100 bg-white px-4 py-3 text-sm font-semibold leading-5 text-slate-800 shadow-xl shadow-emerald-950/10 sm:block"
         role="status"
         aria-live="polite"
       >

@@ -1,4 +1,5 @@
 import { isValidPhoneNumber } from 'libphonenumber-js'
+import { z } from 'zod'
 
 export type RequestQuotePayload = {
   plantType: string
@@ -23,6 +24,25 @@ export const quoteProducts = [
   'Sugar & Distillery Bioculture',
   'Organic Compost Bioculture',
 ]
+
+export const quotePlantTypes = ['ETP', 'STP', 'CETP', 'Anaerobic Digester', 'Composting Plant', 'Other'] as const
+export const quoteIndustries = ['Sugar', 'Distillery', 'Textile', 'Dye Processing', 'Food & Beverage', 'Dairy', 'Pharmaceutical', 'Chemical', 'Pulp & Paper', 'Municipal', 'Hospitality', 'Other'] as const
+
+export const quoteRequestSchema = z.object({
+  plantType: z.enum(quotePlantTypes),
+  industry: z.enum(quoteIndustries),
+  product: z.string().refine(value => quoteProducts.includes(value), 'Invalid product'),
+  plantCapacity: z.string().trim().min(1).max(120),
+  companyName: z.string().trim().min(2).max(160),
+  contactPerson: z.string().trim().min(2).max(120),
+  email: z.string().trim().email().max(160).transform(value => value.toLowerCase()),
+  phone: z.string().trim().min(8).max(40).refine(value => isValidPhoneNumber(value), 'Invalid phone'),
+  country: z.string().trim().min(2).max(100),
+  state: z.string().trim().min(1).max(100),
+  city: z.string().trim().max(100),
+  additionalRequirements: z.string().trim().max(2000),
+  website: z.string().max(0).optional(),
+}).strict()
 
 export const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 

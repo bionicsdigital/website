@@ -2,7 +2,7 @@
 
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import { X } from 'lucide-react'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import QuoteForm from '@/components/forms/QuoteForm'
 import { toast } from 'react-hot-toast'
 
@@ -19,6 +19,7 @@ export type QuoteFormValues = {
     state: string
     city: string
     additionalRequirements: string
+    website: string
 }
 
 const initialValues: QuoteFormValues = {
@@ -34,6 +35,7 @@ const initialValues: QuoteFormValues = {
     state: 'Tamil Nadu',
     city: '',
     additionalRequirements: '',
+    website: '',
 }
 
 export default function QuoteModal({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -41,6 +43,7 @@ export default function QuoteModal({ open, onClose }: { open: boolean; onClose: 
     const [showSuccess, setShowSuccess] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [formResetKey, setFormResetKey] = useState(0)
+    const idempotencyKey = useRef<string | null>(null)
 
     useEffect(() => {
         if (!open) {
@@ -68,10 +71,12 @@ export default function QuoteModal({ open, onClose }: { open: boolean; onClose: 
         setIsSubmitting(true)
 
         try {
+            idempotencyKey.current ??= crypto.randomUUID().replace(/-/g, '')
             const response = await fetch('/api/request-quote', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Idempotency-Key': idempotencyKey.current,
                 },
                 body: JSON.stringify(formData),
             })
@@ -82,6 +87,7 @@ export default function QuoteModal({ open, onClose }: { open: boolean; onClose: 
             }
 
             setShowSuccess(true)
+            idempotencyKey.current = null
             setFormData({ ...initialValues })
             setFormResetKey((current) => current + 1)
             toast.success('Thank you! Our technical team will contact you shortly.')

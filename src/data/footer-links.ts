@@ -18,18 +18,10 @@ export const footerLinkGroups: FooterLinkGroup[] = [
     title: "Industries",
     links: [
       { label: "View All Industries", href: "/industries" },
-      { label: "Sugar", href: "/industries/sugar-industry" },
-      { label: "Distillery", href: "/industries/distillery-industry" },
-      {
-        label: "Textile",
-        href: "/industries/textile-processing-industry",
-      },
-      { label: "Dye Processing", href: "/industries/dye-processing-industry" },
-      { label: "Chemical", href: "/industries/chemical-industry" },
-      { label: "Pharma", href: "/industries/pharma-industry" },
-      { label: "Food Processing", href: "/industries/food-processing-industry" },
-      { label: "Dairy", href: "/industries/dairy-industry" },
-      { label: "Municipal Solid Waste Composting", href: "/industries/municipal" },
+      { label: "Industrial ETP", href: "/industries/effluent-treatment-plant-etp" },
+      { label: "Sewage Treatment Plant", href: "/industries/sewage-treatment-plant-stp" },
+      { label: "Common Effluent Treatment Plant", href: "/industries/cetp" },
+      { label: "Organic Waste Composting", href: "/industries/municipal-solid-waste-composting" },
     ],
   },
   {
@@ -49,7 +41,7 @@ export const footerLinkGroups: FooterLinkGroup[] = [
       { label: "Downloads", href: "/downloads" },
       { label: "Testimonials", href: "/testimonials" },
       { label: "Certificates", href: "/downloads#certificates" },
-      { label: "FAQs", href: "/#faq" },
+      { label: "FAQs", href: "/faqs" },
     ],
   },
 ];

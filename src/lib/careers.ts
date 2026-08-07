@@ -1,11 +1,12 @@
 import { z } from 'zod'
+import { isValidPhoneNumber } from 'libphonenumber-js'
 import { jobTitles } from '@/data/careers'
 
 const optionalUrl = z.union([z.literal(''), z.string().url('Enter a valid URL')])
 
 export const careerApplicationSchema = z.object({
   fullName: z.string().trim().min(2, 'Full name is required').max(120),
-  mobile: z.string().trim().min(8, 'Enter a valid mobile number').max(25),
+  mobile: z.string().trim().min(8, 'Enter a valid mobile number').max(25).refine(value => isValidPhoneNumber(value), 'Enter a valid mobile number'),
   email: z.string().trim().email('Enter a valid email address').max(160),
   city: z.string().trim().min(2, 'City is required').max(100),
   state: z.string().trim().min(2, 'State is required').max(100),
@@ -24,7 +25,7 @@ export const careerApplicationSchema = z.object({
   position: z.string().refine((value) => jobTitles.includes(value), 'Select a valid position'),
   coverLetter: z.string().trim().max(3000),
   website: z.string().max(0).optional(),
-})
+}).strict()
 
 export type CareerApplication = z.infer<typeof careerApplicationSchema>
 export const resumeTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']

@@ -1,18 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { careerApplicationSchema, maxResumeSize, resumeTypes } from '@/lib/careers'
+import { rateLimit } from '@/lib/security/rate-limit'
+import { releaseIdempotency, requestHash, reserveIdempotency, validIdempotencyKey } from '@/lib/security/idempotency'
+import { exceedsContentLength, getTrustedClientIp, isAllowedOrigin, logSecurity, logServerError, requestId } from '@/lib/security/request'
+import { validateResumeFile } from '@/lib/security/upload'
 
 export const runtime = 'nodejs'
 
-const requests = new Map<string, { count: number; resetAt: number }>()
 const htmlEscape = (value: string) => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;')
-
-function limited(ip: string) {
-  const now = Date.now(); const current = requests.get(ip)
-  if (!current || current.resetAt < now) { requests.set(ip, { count: 1, resetAt: now + 15 * 60_000 }); return false }
-  if (current.count >= 3) return true
-  current.count += 1; return false
-}
 
 function row(label: string, value: string, index: number) {
   return `<tr><td style="width:38%;padding:12px 14px;border-bottom:1px solid #E5E7EB;background:${index % 2 ? '#FFFFFF' : '#F8FAFC'};font:700 12px Arial;color:#334155;vertical-align:top">${htmlEscape(label)}</td><td style="padding:12px 14px;border-bottom:1px solid #E5E7EB;background:${index % 2 ? '#FFFFFF' : '#F8FAFC'};font:400 13px/1.6 Arial;color:#0F172A;vertical-align:top;word-break:break-word">${htmlEscape(value || '-')}</td></tr>`
@@ -28,29 +24,41 @@ function replyEmail(name: string, position: string) {
 }
 
 export async function POST(request: NextRequest) {
-  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || request.headers.get('x-real-ip') || 'unknown'
-  if (limited(ip)) return NextResponse.json({ message: 'Too many applications. Please try again later.' }, { status: 429 })
+  const started = Date.now(); const id = requestId(request); const endpoint = '/api/careers/apply'; const headers = { 'x-request-id': id }
+  if (!isAllowedOrigin(request)) return NextResponse.json({ message: 'Request not allowed.' }, { status: 403, headers })
+  if (exceedsContentLength(request, maxResumeSize + 512 * 1024)) return NextResponse.json({ message: 'Request is too large.' }, { status: 413, headers })
+  const key = request.headers.get('idempotency-key')
+  if (!validIdempotencyKey(key)) return NextResponse.json({ message: 'Invalid request.' }, { status: 400, headers })
   try {
+    const limit = await rateLimit('careers', getTrustedClientIp(request), 3, 15 * 60)
+    if (!limit.allowed) { logSecurity('rate_limit', { endpoint, requestId: id, status: 429 }); return NextResponse.json({ message: 'Too many applications. Please try again later.' }, { status: 429, headers: { ...headers, 'Retry-After': String(limit.retryAfter) } }) }
     const form = await request.formData()
     const resume = form.get('resume')
     const raw = Object.fromEntries([...form.entries()].filter(([, value]) => typeof value === 'string')) as Record<string, string>
     const parsed = careerApplicationSchema.safeParse(raw)
-    if (!parsed.success) return NextResponse.json({ message: 'Please check the application fields.' }, { status: 400 })
-    if (parsed.data.website) return NextResponse.json({ ok: true })
-    if (!(resume instanceof File) || resume.size === 0 || !resumeTypes.includes(resume.type) || resume.size > maxResumeSize) return NextResponse.json({ message: 'A non-empty PDF, DOC or DOCX resume up to 10 MB is required.' }, { status: 400 })
+    if (!parsed.success) { logSecurity('validation_failure', { endpoint, requestId: id, status: 400, issueCount: parsed.error.issues.length }); return NextResponse.json({ message: 'Please check the application fields.' }, { status: 400, headers }) }
+    if (parsed.data.website) return NextResponse.json({ ok: true }, { headers })
+    if (!(resume instanceof File) || resume.size === 0 || resume.size > maxResumeSize || !resumeTypes.includes(resume.type)) return NextResponse.json({ message: 'A valid non-empty PDF, DOC or DOCX resume up to 10 MB is required.' }, { status: 400, headers })
+    const bytes = new Uint8Array(await resume.arrayBuffer())
+    const fileValidation = validateResumeFile(resume, bytes)
+    if (!fileValidation.valid) { logSecurity('upload_rejected', { endpoint, requestId: id, status: 400, reason: fileValidation.reason }); return NextResponse.json({ message: 'The resume file type or contents are invalid.' }, { status: 400, headers }) }
+    const reservation = await reserveIdempotency('careers', key!, requestHash({ data: parsed.data, size: resume.size, type: resume.type }))
+    if (!reservation.reserved) return reservation.duplicate ? NextResponse.json({ ok: true, duplicate: true }, { headers }) : NextResponse.json({ message: 'Idempotency key conflict.' }, { status: 409, headers })
     const apiKey = process.env.RESEND_API_KEY; const from = process.env.FROM_EMAIL
-    if (!apiKey || !from) return NextResponse.json({ message: 'Email service is not configured.' }, { status: 500 })
+    if (!apiKey || !from) { await releaseIdempotency('careers', key!).catch(() => undefined); return NextResponse.json({ message: 'Email service is not configured.' }, { status: 500, headers }) }
     const resend = new Resend(apiKey); const data = parsed.data as Record<string, string>
-    const attachment = Buffer.from(await resume.arrayBuffer())
-    const sanitizedFilename = resume.name.replace(/[^a-zA-Z0-9._-]/g, '_') || `resume-${Date.now()}.pdf`
-    const careersInbox = 'bionicsenvirotech@gmail.com'
-    const hrResult = await resend.emails.send({ from, to: careersInbox, replyTo: data.email, subject: `New Career Application - ${data.position} - ${data.fullName}`, html: hrEmail(data, sanitizedFilename), attachments: [{ filename: sanitizedFilename, content: attachment }] })
-    if (hrResult.error) throw new Error(hrResult.error.message)
+    const attachment = Buffer.from(bytes)
+    const sanitizedFilename = fileValidation.filename
+    const careersInbox = process.env.CAREERS_EMAIL || process.env.TO_EMAIL || 'bionicsenvirotech@gmail.com'
+    const hrResult = await resend.emails.send({ from, to: careersInbox, replyTo: data.email, subject: `New Career Application - ${data.position} - ${data.fullName}`.replace(/[\r\n]/g, ' ').slice(0, 180), html: hrEmail(data, sanitizedFilename), attachments: [{ filename: sanitizedFilename, content: attachment }] })
+    if (hrResult.error) throw new Error('EMAIL_PROVIDER_REJECTED')
     const replyResult = await resend.emails.send({ from, to: data.email, subject: 'Application Received | Bionics Enviro Tech', html: replyEmail(data.fullName, data.position) })
-    if (replyResult.error) console.error('Career auto-reply failed:', replyResult.error.message)
-    return NextResponse.json({ ok: true })
+    logSecurity('email_attempt', { endpoint, requestId: id, status: replyResult.error ? 'admin_accepted_reply_failed' : 'accepted', durationMs: Date.now() - started })
+    return NextResponse.json({ ok: true }, { headers })
   } catch (error) {
-    console.error('Career application failed:', error instanceof Error ? error.message : 'Unknown error')
-    return NextResponse.json({ message: 'Unable to submit the application right now.' }, { status: 500 })
+    if (key && validIdempotencyKey(key)) await releaseIdempotency('careers', key).catch(() => undefined)
+    logServerError(endpoint, id, error, Date.now() - started)
+    const unavailable = error instanceof Error && (error.message.includes('DISTRIBUTED_STORE'))
+    return NextResponse.json({ message: unavailable ? 'Service temporarily unavailable.' : 'Unable to submit the application right now.' }, { status: unavailable ? 503 : 500, headers })
   }
 }

@@ -63,6 +63,7 @@ export default function CareersPage() {
   const [isSending, setIsSending] = useState(false);
   const [formResetKey, setFormResetKey] = useState(0);
   const formRef = useRef<HTMLDivElement>(null);
+  const idempotencyKey = useRef<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -97,8 +98,10 @@ export default function CareersPage() {
     );
     formData.append("resume", resume);
     try {
+      idempotencyKey.current ??= crypto.randomUUID().replace(/-/g, "");
       const response = await fetch("/api/careers/apply", {
         method: "POST",
+        headers: { "Idempotency-Key": idempotencyKey.current },
         body: formData,
       });
       const result = await response.json().catch(() => null);
@@ -110,6 +113,7 @@ export default function CareersPage() {
         "Application confirmed. A copy has been sent to your email.",
       );
       setIsReviewOpen(false);
+      idempotencyKey.current = null;
       setPendingApplication(null);
       reset(careerInitialValues);
       setResume(null);

@@ -15,7 +15,7 @@ import type { ComponentType, HTMLAttributes } from "react";
 import { useEffect, useState } from "react";
 const leadingLinks = [
   { label: "About", href: "/#about" },
-  { label: "Why Nanozyme", href: "/bioculture-manufacturer-in-india" },
+  { label: "Why Nanozyme", href: "/#why-nanozyme" },
 ];
 const trailingLinks = [
   { label: "Career", href: "/careers" },
@@ -45,43 +45,50 @@ const megaMenus = [
     href: "/industries",
     items: [
       {
-        label: "Textile Industry",
-        href: "/industries/textile-processing-industry",
+        label: "Textile Processing Industry",
+        href: "/industries/textile-industry-wastewater-treatment",
       },
       {
         label: "Dye Processing Industry",
-        href: "/industries/dye-processing-industry",
+        href: "/industries/dye-processing-industry-wastewater-treatment",
       },
       {
         label: "Sugar Industry",
-        href: "/industries/sugar-industry",
+        href: "/industries/sugar-industry-wastewater-treatment",
       },
       {
         label: "Distillery Industry",
-        href: "/industries/distillery-industry",
+        href: "/industries/distillery-industry-wastewater-treatment",
       },
-      { label: "Chemical Industry", href: "/industries/chemical-industry" },
-      { label: "Pharmaceutical & API", href: "/industries/pharma-industry" },
-      { label: "Pulp & Paper", href: "/industries/paper-and-pulp-mill" },
+      {
+        label: "Chemical Industry",
+        href: "/industries/chemical-industry-wastewater-treatment",
+      },
+      { label: "Pharmaceutical Industry", href: "/industries/pharmaceutical-industry-wastewater-treatment" },
+
       {
         label: "Food Processing Industry",
-        href: "/industries/food-processing-industry",
+        href: "/industries/food-processing-industry-wastewater-treatment",
       },
       {
-        label: "Dairy Industry",
-        href: "/industries/dairy-industry",
+        label: "Dairy Processing Industry",
+        href: "/industries/dairy-processing-industry-wastewater-treatment",
+      },
+      {
+        label: "Pulp & Paper Industry",
+        href: "/industries/paper-and-pulp-industry-wastewater-treatment",
       },
       {
         label: "Municipal Solid Waste Composting",
-        href: "/industries/municipal",
+        href: "/industries/municipal-solid-waste-composting",
       },
       {
-        label: "Domestic & Commercial STP",
-        href: "/industries/domestic-and-commercial-stp",
+        label: "Sewage Treatment Plant (STP)",
+        href: "/industries/sewage-treatment-plant-stp",
       },
       {
-        label: "Common Effluent Treatment Plant (CETP)",
-        href: "/industries/cetp",
+        label: "Effluent Treatment Plant (ETP)",
+        href: "/industries/effluent-treatment-plant-etp",
       },
     ],
   },
@@ -92,6 +99,7 @@ const resourceMenu = [
   { label: "Downloads", href: "/downloads" },
   { label: "Awards", href: "/awards" },
   { label: "Testimonials", href: "/testimonials" },
+  { label: "FAQs", href: "/faqs" },
 ];
 const MotionDiv = motion.div as unknown as ComponentType<
   Omit<HTMLAttributes<HTMLDivElement>, "style"> & MotionProps
@@ -203,13 +211,22 @@ export default function Navbar() {
             aria-label="Primary navigation"
           >
             {leadingLinks.map((link) => (
-              <Link key={link.label} href={link.href} className="rounded-lg px-1 py-2 text-[13px] font-semibold tracking-wide text-slate-700 transition hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500">{link.label}</Link>
+              <Link
+                key={link.label}
+                href={link.href}
+                className="rounded-lg px-1 py-2 text-[13px] font-semibold tracking-wide text-slate-700 transition hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              >
+                {link.label}
+              </Link>
             ))}
             {megaMenus.map((menu) => (
               <div
                 key={menu.label}
                 className="relative py-5"
-                onMouseEnter={() => { setActiveMenu(menu.label); setDismissedMenu(null) }}
+                onMouseEnter={() => {
+                  setActiveMenu(menu.label);
+                  setDismissedMenu(null);
+                }}
                 onMouseLeave={() => setActiveMenu(null)}
               >
                 <Link
@@ -217,11 +234,16 @@ export default function Navbar() {
                   aria-haspopup="true"
                   aria-expanded={activeMenu === menu.label}
                   onFocus={() => setActiveMenu(menu.label)}
-                  onClick={() => { setActiveMenu(null); setDismissedMenu(menu.label) }}
+                  onClick={() => {
+                    setActiveMenu(null);
+                    setDismissedMenu(menu.label);
+                  }}
                   className={`flex items-center gap-1 rounded-lg px-1 py-2 text-[13px] font-semibold tracking-wide transition hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${pathname.startsWith(`/${menu.label.toLowerCase()}`) ? "text-emerald-700" : navTextClass}`}
                 >
                   {menu.label}
-                  <ChevronDown className={`h-3.5 w-3.5 transition ${activeMenu === menu.label ? "rotate-180" : ""}`} />
+                  <ChevronDown
+                    className={`h-3.5 w-3.5 transition ${activeMenu === menu.label ? "rotate-180" : ""}`}
+                  />
                 </Link>
                 {activeMenu === menu.label && dismissedMenu !== menu.label && (
                   <div className="absolute left-1/2 top-[calc(100%-4px)] w-[34rem] -translate-x-1/2 rounded-3xl border border-slate-200 bg-white/98 p-4 shadow-2xl backdrop-blur-xl">
@@ -233,7 +255,10 @@ export default function Navbar() {
                         <Link
                           key={item.href}
                           href={item.href}
-                          onClick={() => { setActiveMenu(null); setDismissedMenu(menu.label) }}
+                          onClick={() => {
+                            setActiveMenu(null);
+                            setDismissedMenu(menu.label);
+                          }}
                           className="rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-emerald-50 hover:text-emerald-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                         >
                           {item.label}
@@ -244,13 +269,38 @@ export default function Navbar() {
                 )}
               </div>
             ))}
-            <div className="relative py-5" onMouseEnter={() => setActiveMenu("Resources")} onMouseLeave={() => setActiveMenu(null)}>
-              <Link href="/blogs" onFocus={() => setActiveMenu("Resources")} onClick={() => setActiveMenu(null)} aria-haspopup="true" aria-expanded={activeMenu === "Resources"} className={`flex items-center gap-1 rounded-lg px-1 py-2 text-[13px] font-semibold tracking-wide transition hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${pathname.startsWith("/blogs") || pathname === "/case-studies" || pathname === "/downloads" || pathname === "/awards" || pathname === "/testimonials" ? "text-emerald-700" : navTextClass}`}>
-                Resources <ChevronDown className={`h-3.5 w-3.5 transition ${activeMenu === "Resources" ? "rotate-180" : ""}`}/>
+            <div
+              className="relative py-5"
+              onMouseEnter={() => setActiveMenu("Resources")}
+              onMouseLeave={() => setActiveMenu(null)}
+            >
+              <Link
+                href="/blogs"
+                onFocus={() => setActiveMenu("Resources")}
+                onClick={() => setActiveMenu(null)}
+                aria-haspopup="true"
+                aria-expanded={activeMenu === "Resources"}
+                className={`flex items-center gap-1 rounded-lg px-1 py-2 text-[13px] font-semibold tracking-wide transition hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${pathname.startsWith("/blogs") || pathname === "/case-studies" || pathname === "/downloads" || pathname === "/awards" || pathname === "/testimonials" ? "text-emerald-700" : navTextClass}`}
+              >
+                Resources{" "}
+                <ChevronDown
+                  className={`h-3.5 w-3.5 transition ${activeMenu === "Resources" ? "rotate-180" : ""}`}
+                />
               </Link>
-              {activeMenu === "Resources" && <div className="absolute left-1/2 top-[calc(100%-4px)] w-64 -translate-x-1/2 rounded-3xl border border-slate-200 bg-white p-3 shadow-2xl">
-                {resourceMenu.map((item) => <Link key={item.href} href={item.href} onClick={() => setActiveMenu(null)} className="block rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-emerald-50 hover:text-emerald-800">{item.label}</Link>)}
-              </div>}
+              {activeMenu === "Resources" && (
+                <div className="absolute left-1/2 top-[calc(100%-4px)] w-64 -translate-x-1/2 rounded-3xl border border-slate-200 bg-white p-3 shadow-2xl">
+                  {resourceMenu.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setActiveMenu(null)}
+                      className="block rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-emerald-50 hover:text-emerald-800"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
             {trailingLinks.map((link) => (
               <Link
@@ -330,12 +380,24 @@ export default function Navbar() {
           >
             <nav className="p-3" aria-label="Mobile navigation">
               <div className="flex flex-col gap-1">
-                {leadingLinks.map((link) => <Link key={link.label} href={link.href} onClick={() => setOpen(false)} className="rounded-2xl px-4 py-3 text-[15px] font-semibold text-slate-700 hover:bg-emerald-50">{link.label}</Link>)}
+                {leadingLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-2xl px-4 py-3 text-[15px] font-semibold text-slate-700 hover:bg-emerald-50"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
                 {megaMenus.map((menu) => (
                   <details key={menu.label} className="group rounded-2xl">
                     <summary className="flex cursor-pointer list-none items-center justify-between rounded-2xl px-4 py-3 text-[15px] font-semibold text-slate-700 hover:bg-emerald-50">
                       <span>{menu.label}</span>
-                      <ChevronDown className="h-4 w-4 text-slate-500 transition-transform duration-200 group-open:rotate-180" aria-hidden="true" />
+                      <ChevronDown
+                        className="h-4 w-4 text-slate-500 transition-transform duration-200 group-open:rotate-180"
+                        aria-hidden="true"
+                      />
                     </summary>
                     <div className="grid gap-1 px-3 pb-2">
                       <Link
@@ -359,9 +421,24 @@ export default function Navbar() {
                   </details>
                 ))}
                 <details className="group rounded-2xl">
-                  <summary className="flex cursor-pointer list-none items-center justify-between rounded-2xl px-4 py-3 text-[15px] font-semibold text-slate-700 hover:bg-emerald-50"><span>Resources</span><ChevronDown className="h-4 w-4 text-slate-500 transition-transform duration-200 group-open:rotate-180" aria-hidden="true" /></summary>
+                  <summary className="flex cursor-pointer list-none items-center justify-between rounded-2xl px-4 py-3 text-[15px] font-semibold text-slate-700 hover:bg-emerald-50">
+                    <span>Resources</span>
+                    <ChevronDown
+                      className="h-4 w-4 text-slate-500 transition-transform duration-200 group-open:rotate-180"
+                      aria-hidden="true"
+                    />
+                  </summary>
                   <div className="grid gap-1 px-3 pb-2">
-                    {resourceMenu.map((item) => <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-xl px-4 py-2.5 text-sm text-slate-600 hover:bg-emerald-50 hover:text-emerald-800">{item.label}</Link>)}
+                    {resourceMenu.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setOpen(false)}
+                        className="rounded-xl px-4 py-2.5 text-sm text-slate-600 hover:bg-emerald-50 hover:text-emerald-800"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
                   </div>
                 </details>
                 {trailingLinks.map((link) => (

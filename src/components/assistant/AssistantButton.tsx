@@ -37,8 +37,7 @@ export default function AssistantButton() {
       initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 28, scale: 0.7 }}
       animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
       transition={{ type: 'spring', stiffness: 280, damping: 22, mass: 0.75 }}
-      // Assistant mascot size: edit h-32/w-32 for mobile and sm:h-40/sm:w-40 for larger screens.
-      className="group relative flex h-32 w-32 cursor-pointer items-center justify-center rounded-full outline-none focus-visible:ring-4 focus-visible:ring-emerald-400/50 sm:h-40 sm:w-40"
+      className="group relative flex h-20 w-20 cursor-pointer items-center justify-center rounded-full outline-none focus-visible:ring-4 focus-visible:ring-emerald-400/50 sm:h-40 sm:w-40"
     >
       <MotionDiv
         aria-hidden="true"

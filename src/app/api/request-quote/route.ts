@@ -2,36 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import {
   escapeHtml,
-  sanitizeQuotePayload,
-  validateQuotePayload,
+  quoteRequestSchema,
   type RequestQuotePayload,
 } from '@/lib/request-quote'
-
-const rateLimitWindowMs = 60_000
-const maxRequestsPerWindow = 5
-const requestMap = new Map<string, { count: number; resetAt: number }>()
-
-function getClientIp(request: NextRequest) {
-  const forwardedFor = request.headers.get('x-forwarded-for')
-  if (forwardedFor) return forwardedFor.split(',')[0]?.trim() || 'unknown'
-  return request.headers.get('x-real-ip') || 'unknown'
-}
-
-function isRateLimited(key: string) {
-  const now = Date.now()
-  const current = requestMap.get(key)
-
-  if (!current || current.resetAt < now) {
-    requestMap.set(key, { count: 1, resetAt: now + rateLimitWindowMs })
-    return false
-  }
-
-  if (current.count >= maxRequestsPerWindow) return true
-
-  current.count += 1
-  requestMap.set(key, current)
-  return false
-}
+import { rateLimit } from '@/lib/security/rate-limit'
+import { releaseIdempotency, requestHash, reserveIdempotency, validIdempotencyKey } from '@/lib/security/idempotency'
+import { exceedsContentLength, getTrustedClientIp, isAllowedOrigin, logSecurity, logServerError, requestId } from '@/lib/security/request'
 
 function fieldRow(label: string, value: string, index: number) {
   return `
@@ -144,34 +120,41 @@ function buildEmailHtml(payload: RequestQuotePayload) {
 }
 
 export async function POST(request: NextRequest) {
-  const ipAddress = getClientIp(request)
-
-  if (isRateLimited(ipAddress)) {
-    return NextResponse.json(
-      { ok: false, message: 'Too many requests. Please try again later.' },
-      { status: 429 }
-    )
-  }
-
-  let body: Partial<RequestQuotePayload>
-
+  const started = Date.now()
+  const id = requestId(request)
+  const endpoint = '/api/request-quote'
+  const responseHeaders = { 'x-request-id': id }
+  if (!isAllowedOrigin(request)) return NextResponse.json({ ok: false, message: 'Request not allowed.' }, { status: 403, headers: responseHeaders })
+  if (exceedsContentLength(request, 32 * 1024)) return NextResponse.json({ ok: false, message: 'Request is too large.' }, { status: 413, headers: responseHeaders })
+  const idempotencyKey = request.headers.get('idempotency-key')
+  if (!validIdempotencyKey(idempotencyKey)) return NextResponse.json({ ok: false, message: 'Invalid request.' }, { status: 400, headers: responseHeaders })
   try {
-    body = (await request.json()) as Partial<RequestQuotePayload>
-  } catch {
-    return NextResponse.json(
-      { ok: false, message: 'Invalid request body.' },
-      { status: 400 }
-    )
+    const limit = await rateLimit('quote', getTrustedClientIp(request), 5, 60)
+    if (!limit.allowed) {
+      logSecurity('rate_limit', { endpoint, requestId: id, status: 429 })
+      return NextResponse.json({ ok: false, message: 'Too many requests. Please try again later.' }, { status: 429, headers: { ...responseHeaders, 'Retry-After': String(limit.retryAfter) } })
+    }
+  } catch (error) {
+    logServerError(endpoint, id, error, Date.now() - started)
+    return NextResponse.json({ ok: false, message: 'Service temporarily unavailable.' }, { status: 503, headers: responseHeaders })
   }
-
-  const payload = sanitizeQuotePayload(body)
-  const errors = validateQuotePayload(payload)
-
-  if (Object.keys(errors).length > 0) {
-    return NextResponse.json(
-      { ok: false, message: 'Please check the form fields.', errors },
-      { status: 400 }
-    )
+  let raw: unknown
+  try { raw = await request.json() } catch { return NextResponse.json({ ok: false, message: 'Invalid request body.' }, { status: 400, headers: responseHeaders }) }
+  const parsed = quoteRequestSchema.safeParse(raw)
+  if (!parsed.success) {
+    logSecurity('validation_failure', { endpoint, requestId: id, status: 400, issueCount: parsed.error.issues.length })
+    return NextResponse.json({ ok: false, message: 'Please check the form fields.' }, { status: 400, headers: responseHeaders })
+  }
+  if (parsed.data.website) return NextResponse.json({ ok: true }, { headers: responseHeaders })
+  const payload = parsed.data
+  try {
+    const reservation = await reserveIdempotency('quote', idempotencyKey!, requestHash(payload))
+    if (!reservation.reserved) return reservation.duplicate
+      ? NextResponse.json({ ok: true, duplicate: true }, { headers: responseHeaders })
+      : NextResponse.json({ ok: false, message: 'Idempotency key conflict.' }, { status: 409, headers: responseHeaders })
+  } catch (error) {
+    logServerError(endpoint, id, error, Date.now() - started)
+    return NextResponse.json({ ok: false, message: 'Service temporarily unavailable.' }, { status: 503, headers: responseHeaders })
   }
 
   const apiKey = process.env.RESEND_API_KEY
@@ -179,9 +162,10 @@ export async function POST(request: NextRequest) {
   const toEmail = process.env.TO_EMAIL
 
   if (!apiKey || !fromEmail || !toEmail) {
+    await releaseIdempotency('quote', idempotencyKey!).catch(() => undefined)
     return NextResponse.json(
       { ok: false, message: 'Email service is not configured.' },
-      { status: 500 }
+      { status: 500, headers: responseHeaders }
     )
   }
 
@@ -191,16 +175,19 @@ export async function POST(request: NextRequest) {
     await resend.emails.send({
       from: fromEmail,
       to: toEmail,
-      subject: `🚀 New Quote Request | ${payload.companyName || 'Website Enquiry'} | ${payload.industry || 'General'}`,
+      subject: `New Quote Request | ${payload.companyName.replace(/[\r\n]/g, ' ')} | ${payload.industry}`,
       replyTo: payload.email,
       html: buildEmailHtml(payload),
     })
 
-    return NextResponse.json({ ok: true })
-  } catch {
+    logSecurity('email_attempt', { endpoint, requestId: id, status: 'accepted', durationMs: Date.now() - started })
+    return NextResponse.json({ ok: true }, { headers: responseHeaders })
+  } catch (error) {
+    await releaseIdempotency('quote', idempotencyKey!).catch(() => undefined)
+    logServerError(endpoint, id, error, Date.now() - started)
     return NextResponse.json(
       { ok: false, message: 'Something went wrong. Please try again.' },
-      { status: 500 }
+      { status: 500, headers: responseHeaders }
     )
   }
 }

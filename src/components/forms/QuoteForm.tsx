@@ -196,6 +196,7 @@ export default function QuoteForm({
 
     return (
         <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+            <input type="text" name="website" value={formData.website} onChange={handleChange} tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
             {showSuccess ? (
                 <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800">
                     <div className="flex items-center gap-2 font-semibold">

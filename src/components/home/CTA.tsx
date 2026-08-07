@@ -1,13 +1,11 @@
 "use client";
 
 import {
-  ArrowRight,
   Download,
   MessageCircle,
   Phone,
-  ShoppingBag,
+  Send,
 } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
 import QuoteModal from "@/components/forms/QuoteModal";
 import { siteConfig } from "@/lib/site";
@@ -35,31 +33,29 @@ export default function CTA() {
                 Share your plant conditions with our technical team for an
                 application-specific product recommendation.
               </p>
-              <a
-                href={`tel:${siteConfig.phoneHref}`}
-                className="mt-5 inline-flex items-center gap-2 font-bold text-white hover:text-emerald-300"
-              >
-                <Phone className="h-5 w-5" />
-                {siteConfig.phone}
-              </a>
+              <div className="mt-5 flex flex-wrap gap-x-5 gap-y-3" aria-label="Bionics contact numbers">
+                {siteConfig.phones.map((phone) => (
+                  <a
+                    key={phone.href}
+                    href={`tel:${phone.href}`}
+                    className="inline-flex min-h-10 items-center gap-2 font-bold text-white transition hover:text-emerald-300"
+                  >
+                    <Phone className="h-4 w-4" />
+                    {phone.label}
+                  </a>
+                ))}
+              </div>
             </div>
             <div className="rounded-2xl border border-white/15 bg-white/[.07] p-4 backdrop-blur sm:p-5">
-              <button
-                type="button"
-                onClick={() => setOpen(true)}
-                className="flex min-h-14 w-full items-center justify-center gap-2 rounded-xl bg-white px-5 font-black text-emerald-800 shadow-xl transition hover:-translate-y-0.5"
-              >
-                Request Technical Consultation{" "}
-                <ArrowRight className="h-5 w-5" />
-              </button>
-              <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                <Link
-                  href="/products/buy"
+              <div className="grid gap-3 sm:grid-cols-2">
+                <button
+                  type="button"
+                  onClick={() => setOpen(true)}
                   className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 px-4 text-sm font-bold text-slate-950"
                 >
-                  <ShoppingBag className="h-4 w-4" />
-                  Buy Product
-                </Link>
+                  <Send className="h-4 w-4" />
+                  Request Quote
+                </button>
                 <a
                   href={`https://wa.me/${whatsappNumber}`}
                   target="_blank"

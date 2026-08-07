@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { toast } from "react-hot-toast";
 import CompanyForm from "@/components/forms/CompanyForm";
@@ -35,6 +35,8 @@ export default function BuyProductPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
   const [formResetKey, setFormResetKey] = useState(0);
+  const idempotencyKey = useRef<string | null>(null);
+  const [website, setWebsite] = useState("");
 
   const subtotal = formData.quantity * formData.unitPrice;
   const isTamilNadu =
@@ -87,10 +89,11 @@ export default function BuyProductPage() {
   const confirmOrder = async () => {
     setIsSubmitting(true);
     try {
+      idempotencyKey.current ??= crypto.randomUUID().replace(/-/g, "");
       const response = await fetch("/api/orders", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/json", "Idempotency-Key": idempotencyKey.current },
+        body: JSON.stringify({ ...formData, website }),
       });
       const result = await response.json().catch(() => null);
       if (!response.ok) {
@@ -98,7 +101,9 @@ export default function BuyProductPage() {
         return;
       }
       setIsReviewOpen(false);
+      idempotencyKey.current = null;
       setFormData({ ...initialValues });
+      setWebsite("");
       setErrors({});
       setFormResetKey((current) => current + 1);
       toast.success("Order confirmed. A copy has been sent to your email.");
@@ -168,6 +173,7 @@ export default function BuyProductPage() {
       <meta name="twitter:description" content="Submit a bulk order request for Bionics Nanozyme bioculture products used in industrial ETP, STP, anaerobic treatment and organic composting." />
       <meta name="twitter:image" content={`${siteConfig.url}${siteConfig.ogImage}`} />
       <main className="min-h-screen bg-slate-50 px-4 py-24 sm:px-6 lg:px-8">
+        <input type="text" name="website" value={website} onChange={(event) => setWebsite(event.target.value)} tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-600">
