@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import PhoneInput from 'react-phone-number-input'
+import flags from 'react-phone-number-input/flags'
 import type { Country } from 'react-phone-number-input'
 import { isValidPhoneNumber } from 'libphonenumber-js'
 import { AlertCircle, CheckCircle2, Loader2, Mail, PhoneCall, Sparkles } from 'lucide-react'
@@ -275,6 +276,7 @@ export default function QuoteForm({
                         <label className="mb-2 block text-sm font-medium text-slate-700" htmlFor="phone">Phone *</label>
                         <ErrorText message={visibleErrors.phone} />
                         <PhoneInput
+                            flags={flags}
                             id="phone"
                             name="phone"
                             defaultCountry="IN"

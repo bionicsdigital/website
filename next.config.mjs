@@ -9,6 +9,16 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/blog',
+        destination: '/blogs',
+        permanent: true,
+      },
+      {
+        source: '/blog/:slug',
+        destination: '/blogs/:slug',
+        permanent: true,
+      },
+      {
         source: '/industries/chemical-industry',
         destination: '/industries/chemical-industry-wastewater-treatment',
         permanent: true,
@@ -92,7 +102,7 @@ const nextConfig = {
       "object-src 'none'",
       "frame-ancestors 'none'",
       "form-action 'self'",
-      "script-src 'self' 'unsafe-inline'",
+      `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV !== 'production' ? " 'unsafe-eval'" : ''}`,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob:",
       "font-src 'self' data:",

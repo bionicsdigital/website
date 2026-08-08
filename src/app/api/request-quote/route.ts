@@ -172,13 +172,14 @@ export async function POST(request: NextRequest) {
   const resend = new Resend(apiKey)
 
   try {
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: fromEmail,
       to: toEmail,
       subject: `New Quote Request | ${payload.companyName.replace(/[\r\n]/g, ' ')} | ${payload.industry}`,
       replyTo: payload.email,
       html: buildEmailHtml(payload),
     })
+    if (result.error) throw new Error('EMAIL_PROVIDER_REJECTED')
 
     logSecurity('email_attempt', { endpoint, requestId: id, status: 'accepted', durationMs: Date.now() - started })
     return NextResponse.json({ ok: true }, { headers: responseHeaders })

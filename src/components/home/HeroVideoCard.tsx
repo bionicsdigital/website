@@ -44,6 +44,8 @@ export default function HeroVideoCard() {
     HTMLAttributes<HTMLDivElement> & MotionProps
   >
 
+  // VIDEO SIZE CONTROLS: edit the max-w values and lg:w percentage below.
+  // lg:w-[112%] lets the video grow beyond the hero's right grid column on large screens.
   return (
     <MotionDiv
       initial={reduceMotion ? false : { opacity: 0, y: 30 }}
@@ -52,11 +54,12 @@ export default function HeroVideoCard() {
       className="
         mx-auto
         w-full
-        max-w-[360px]
+        max-w-[400px]
 
-        sm:max-w-[540px]
+        sm:max-w-[600px]
 
-        lg:max-w-[650px]
+        lg:w-[112%]
+        lg:max-w-[720px]
       "
     >
       <div className="relative overflow-hidden rounded-[24px] shadow-2xl">
@@ -98,9 +101,9 @@ export default function HeroVideoCard() {
 
             aspect-video
 
-            max-h-[220px]
+            max-h-[245px]
 
-            sm:max-h-[320px]
+            sm:max-h-[380px]
 
             lg:max-h-none
           "

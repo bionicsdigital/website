@@ -1,1 +1,5 @@
-export default function Loading(){return <main className="min-h-screen bg-slate-50 pt-28"><div className="mx-auto max-w-7xl animate-pulse px-5 sm:px-8 lg:px-10"><div className="h-56 rounded-3xl bg-emerald-100"/><div className="mt-12 h-80 rounded-3xl bg-slate-200"/></div></main>}
+import BlogIndexSkeleton from '@/components/loading/BlogIndexSkeleton'
+
+export default function Loading() {
+  return <BlogIndexSkeleton />
+}

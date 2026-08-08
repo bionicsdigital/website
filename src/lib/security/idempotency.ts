@@ -12,7 +12,7 @@ export function requestHash(value: unknown) {
 }
 
 export async function reserveIdempotency(namespace: string, key: string, hash: string, ttlSeconds = 900) {
-  const storageKey = `security:idempotency:${namespace}:${key}`
+  const storageKey = `security:idempotency:v1:${namespace}:${key}`
   if (hasDistributedStore()) {
     const result = await redisCommand<'OK' | null>(['SET', storageKey, hash, 'NX', 'EX', ttlSeconds])
     if (result === 'OK') return { reserved: true, duplicate: false, distributed: true }
@@ -27,7 +27,7 @@ export async function reserveIdempotency(namespace: string, key: string, hash: s
 }
 
 export async function releaseIdempotency(namespace: string, key: string) {
-  const storageKey = `security:idempotency:${namespace}:${key}`
+  const storageKey = `security:idempotency:v1:${namespace}:${key}`
   if (hasDistributedStore()) await redisCommand<number>(['DEL', storageKey])
   else developmentKeys.delete(storageKey)
 }

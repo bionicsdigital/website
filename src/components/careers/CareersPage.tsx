@@ -15,7 +15,9 @@ import {
 import { useRef, useState } from "react";
 import type { ComponentType, HTMLAttributes } from "react";
 import type { MotionProps } from "framer-motion";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
+import PhoneInput from "react-phone-number-input";
+import flags from "react-phone-number-input/flags";
 import { toast } from "react-hot-toast";
 import { jobs, cultureBenefits } from "@/data/careers";
 import {
@@ -67,6 +69,7 @@ export default function CareersPage() {
   const {
     register,
     handleSubmit,
+    control,
     setValue,
     formState: { errors, isSubmitting },
     reset,
@@ -453,10 +456,39 @@ export default function CareersPage() {
             />
             <div className="grid gap-3.5 md:grid-cols-2 md:gap-4">
               {field("fullName", "Full Name", { required: true })}
-              {field("mobile", "Mobile Number", {
-                required: true,
-                type: "tel",
-              })}
+              <label className="block text-sm font-semibold text-slate-700">
+                Mobile Number <span className="text-blue-600">*</span>
+                <Controller
+                  name="mobile"
+                  control={control}
+                  render={({ field: mobileField }) => (
+                    <PhoneInput
+                      flags={flags}
+                      id="career-mobile"
+                      name={mobileField.name}
+                      defaultCountry="IN"
+                      international
+                      limitMaxLength
+                      countryCallingCodeEditable={false}
+                      value={mobileField.value || undefined}
+                      onChange={(value) => mobileField.onChange(value ?? "")}
+                      onBlur={mobileField.onBlur}
+                      numberInputProps={{
+                        inputMode: "tel",
+                        autoComplete: "tel",
+                        "aria-invalid": Boolean(errors.mobile),
+                        "aria-describedby": errors.mobile ? "career-mobile-error" : undefined,
+                      }}
+                      className={`quote-phone-input mt-1 ${errors.mobile ? "border-red-300 focus-within:border-red-500" : "border-slate-200"}`}
+                    />
+                  )}
+                />
+                {errors.mobile?.message && (
+                  <span id="career-mobile-error" className="mt-1 block text-xs font-medium text-red-600">
+                    {errors.mobile.message}
+                  </span>
+                )}
+              </label>
               {field("email", "Email Address", {
                 required: true,
                 type: "email",

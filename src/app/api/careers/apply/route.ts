@@ -5,6 +5,8 @@ import { rateLimit } from '@/lib/security/rate-limit'
 import { releaseIdempotency, requestHash, reserveIdempotency, validIdempotencyKey } from '@/lib/security/idempotency'
 import { exceedsContentLength, getTrustedClientIp, isAllowedOrigin, logSecurity, logServerError, requestId } from '@/lib/security/request'
 import { validateResumeFile } from '@/lib/security/upload'
+import { scanFile } from '@/lib/security/malware-scanner'
+import { createHash } from 'node:crypto'
 
 export const runtime = 'nodejs'
 
@@ -42,7 +44,11 @@ export async function POST(request: NextRequest) {
     const bytes = new Uint8Array(await resume.arrayBuffer())
     const fileValidation = validateResumeFile(resume, bytes)
     if (!fileValidation.valid) { logSecurity('upload_rejected', { endpoint, requestId: id, status: 400, reason: fileValidation.reason }); return NextResponse.json({ message: 'The resume file type or contents are invalid.' }, { status: 400, headers }) }
-    const reservation = await reserveIdempotency('careers', key!, requestHash({ data: parsed.data, size: resume.size, type: resume.type }))
+    const malwareScan = await scanFile({ bytes, filename: fileValidation.filename, mimeType: resume.type })
+    if (malwareScan.status === 'infected') { logSecurity('upload_rejected', { endpoint, requestId: id, status: 400, reason: 'malware' }); return NextResponse.json({ message: 'The resume could not be accepted.' }, { status: 400, headers }) }
+    if (malwareScan.status === 'unavailable') { logSecurity('scanner_unavailable', { endpoint, requestId: id, status: 503 }); return NextResponse.json({ message: 'Resume processing is temporarily unavailable.' }, { status: 503, headers }) }
+    const fileHash = createHash('sha256').update(bytes).digest('hex')
+    const reservation = await reserveIdempotency('careers', key!, requestHash({ data: parsed.data, size: resume.size, type: resume.type, fileHash }))
     if (!reservation.reserved) return reservation.duplicate ? NextResponse.json({ ok: true, duplicate: true }, { headers }) : NextResponse.json({ message: 'Idempotency key conflict.' }, { status: 409, headers })
     const apiKey = process.env.RESEND_API_KEY; const from = process.env.FROM_EMAIL
     if (!apiKey || !from) { await releaseIdempotency('careers', key!).catch(() => undefined); return NextResponse.json({ message: 'Email service is not configured.' }, { status: 500, headers }) }

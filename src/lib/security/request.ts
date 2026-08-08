@@ -3,6 +3,19 @@ import { siteConfig } from '@/lib/site'
 
 const localOrigins = new Set(['http://localhost:3000', 'http://127.0.0.1:3000'])
 
+function configuredOrigins() {
+  const candidates = [siteConfig.url, ...(process.env.ALLOWED_ORIGINS ?? '').split(',').map(value => value.trim()).filter(Boolean)]
+  return candidates.filter(value => {
+    if (value.includes('*')) return false
+    try {
+      const parsed = new URL(value)
+      return parsed.origin === value && (process.env.NODE_ENV !== 'production' || parsed.protocol === 'https:')
+    } catch {
+      return false
+    }
+  })
+}
+
 export function requestId(request: NextRequest) {
   const candidate = request.headers.get('x-request-id')
   return candidate && /^[a-zA-Z0-9_-]{8,80}$/.test(candidate) ? candidate : crypto.randomUUID()
@@ -11,9 +24,8 @@ export function requestId(request: NextRequest) {
 export function isAllowedOrigin(request: NextRequest) {
   const origin = request.headers.get('origin')
   if (!origin) return process.env.NODE_ENV !== 'production'
-  const allowed = new Set([siteConfig.url, ...(process.env.ALLOWED_ORIGINS ?? '').split(',').map(value => value.trim()).filter(Boolean)])
+  const allowed = new Set(configuredOrigins())
   if (process.env.NODE_ENV !== 'production') for (const value of localOrigins) allowed.add(value)
-  if (process.env.VERCEL_URL) allowed.add(`https://${process.env.VERCEL_URL}`)
   return allowed.has(origin)
 }
 
