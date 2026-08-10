@@ -27,6 +27,7 @@ import {
   type CareerApplication,
 } from "@/lib/careers";
 import SubmissionReviewDialog from "@/components/forms/SubmissionReviewDialog";
+import { trackEvent } from "@/lib/analytics/dataLayer";
 
 const processSteps = [
   "Apply",
@@ -66,6 +67,7 @@ export default function CareersPage() {
   const [formResetKey, setFormResetKey] = useState(0);
   const formRef = useRef<HTMLDivElement>(null);
   const idempotencyKey = useRef<string | null>(null);
+  const hasStarted = useRef(false);
   const {
     register,
     handleSubmit,
@@ -78,7 +80,14 @@ export default function CareersPage() {
     defaultValues: careerInitialValues,
   });
 
+  const trackCareerStart = () => {
+    if (hasStarted.current) return;
+    hasStarted.current = true;
+    trackEvent("career_application_start", { form_type: "career_application" });
+  };
+
   const applyFor = (position: string) => {
+    trackCareerStart();
     setValue("position", position, { shouldValidate: true });
     formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
@@ -86,6 +95,7 @@ export default function CareersPage() {
   const onSubmit = async (values: CareerApplication) => {
     if (!resume) {
       setResumeError("Please upload your resume.");
+      trackEvent("career_application_error", { form_type: "career_application", error_stage: "validation" });
       return;
     }
     setPendingApplication(values);
@@ -95,6 +105,7 @@ export default function CareersPage() {
   const confirmApplication = async () => {
     if (!resume || !pendingApplication) return;
     setIsSending(true);
+    trackEvent("career_application_submit", { form_type: "career_application" });
     const formData = new FormData();
     Object.entries(pendingApplication).forEach(([key, value]) =>
       formData.append(key, value ?? ""),
@@ -109,12 +120,14 @@ export default function CareersPage() {
       });
       const result = await response.json().catch(() => null);
       if (!response.ok) {
+        trackEvent("career_application_error", { form_type: "career_application", error_stage: "response" });
         toast.error(result?.message || "Could not submit your application.");
         return;
       }
       toast.success(
         "Application confirmed. A copy has been sent to your email.",
       );
+      trackEvent("career_application_success", { form_type: "career_application" });
       setIsReviewOpen(false);
       idempotencyKey.current = null;
       setPendingApplication(null);
@@ -122,7 +135,9 @@ export default function CareersPage() {
       setResume(null);
       setResumeError("");
       setFormResetKey((current) => current + 1);
+      hasStarted.current = false;
     } catch {
+      trackEvent("career_application_error", { form_type: "career_application", error_stage: "network" });
       toast.error("Could not submit your application. Please try again.");
     } finally {
       setIsSending(false);
@@ -443,7 +458,8 @@ export default function CareersPage() {
           </div>
           <form
             key={formResetKey}
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(onSubmit, () => trackEvent("career_application_error", { form_type: "career_application", error_stage: "validation" }))}
+            onChangeCapture={trackCareerStart}
             className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm sm:rounded-3xl sm:p-6"
             noValidate
           >

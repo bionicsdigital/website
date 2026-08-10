@@ -8,6 +8,7 @@ import Assistant from '@/components/assistant/Assistant'
 import ToastProvider from '@/components/forms/ToastProvider'
 import CookieConsent from '@/components/cookies/CookieConsent'
 import GlobalSearch from '@/components/search/GlobalSearch'
+import GoogleTagManager from '@/components/analytics/GoogleTagManager'
 import { siteConfig } from '@/lib/site'
 
 import './globals.css'
@@ -52,6 +53,7 @@ export default function RootLayout({
     <html lang="en" className={poppins.className}>
       <head><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" /><link rel="dns-prefetch" href="https://fonts.googleapis.com" /></head>
       <body className="overflow-x-hidden bg-white text-slate-600 antialiased">
+        <GoogleTagManager />
         <BackgroundParticles />
         <ToastProvider />
         <GlobalSearch />

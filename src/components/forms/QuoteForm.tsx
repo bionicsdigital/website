@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import PhoneInput from 'react-phone-number-input'
 import flags from 'react-phone-number-input/flags'
 import type { Country } from 'react-phone-number-input'
@@ -8,6 +8,7 @@ import { isValidPhoneNumber } from 'libphonenumber-js'
 import { AlertCircle, CheckCircle2, Loader2, Mail, PhoneCall, Sparkles } from 'lucide-react'
 import type { QuoteFormValues } from '@/components/forms/QuoteModal'
 import { emailRegex, quoteProducts } from '@/lib/request-quote'
+import { trackEvent } from '@/lib/analytics/dataLayer'
 
 const plantTypes = ['ETP', 'STP', 'CETP', 'Anaerobic Digester', 'Composting Plant', 'Other']
 const industries = ['Sugar', 'Distillery', 'Textile', 'Dye Processing', 'Food & Beverage', 'Dairy', 'Pharmaceutical', 'Chemical', 'Pulp & Paper', 'Municipal', 'Hospitality', 'Other']
@@ -91,6 +92,13 @@ export default function QuoteForm({
     const [errors, setErrors] = useState<FormErrors>({})
     const [submitted, setSubmitted] = useState(false)
     const [phoneCountry, setPhoneCountry] = useState<Country>('IN')
+    const hasStarted = useRef(false)
+
+    const trackStart = () => {
+        if (hasStarted.current) return
+        hasStarted.current = true
+        trackEvent('quote_form_start', { form_type: 'request_quote' })
+    }
 
     useEffect(() => {
         if (showSuccess) {
@@ -111,15 +119,18 @@ export default function QuoteForm({
 
         if (!isFormValid) {
             setErrors(liveErrors)
+            trackEvent('quote_form_error', { form_type: 'request_quote', error_stage: 'validation' })
             return
         }
 
         setErrors({})
+        trackEvent('quote_form_submit', { form_type: 'request_quote' })
         await onSubmit()
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target
+        if (name !== 'website') trackStart()
         setFormData((current) => ({ ...current, [name]: value }))
         setErrors((current) => {
             const next = { ...current }
@@ -129,6 +140,7 @@ export default function QuoteForm({
     }
 
     const handlePhoneChange = (value?: string) => {
+        trackStart()
         const nextValue = value ?? ''
         const allDigits = nextValue.replace(/\D/g, '')
         const isIndiaNumber = allDigits.startsWith('91')

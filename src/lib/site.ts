@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const siteConfig = {
   name: "Bionics Enviro Tech Pvt. Ltd.",
   shortName: "Bionics Enviro Tech",
+  gtmId: process.env.NEXT_PUBLIC_GTM_ID || "GTM-WT287NJ5",
   url: "https://www.bionicsenvirotech.com",
   description:
     "Scientific Nanozyme bioculture manufacturer for industrial and municipal wastewater treatment, ETP, STP and CETP applications in India.",

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { isValidPhoneNumber } from "libphonenumber-js";
 import { toast } from "react-hot-toast";
 import CompanyForm from "@/components/forms/CompanyForm";
@@ -12,6 +12,7 @@ import ScrollToTop from "@/components/home/ScrollToTop";
 import SubmissionReviewDialog from "@/components/forms/SubmissionReviewDialog";
 import { emailRegex } from "@/lib/request-quote";
 import { siteConfig } from "@/lib/site";
+import { trackEvent } from "@/lib/analytics/dataLayer";
 
 const initialValues: OrderFormValues = {
   companyName: "",
@@ -37,6 +38,10 @@ export default function BuyProductPage() {
   const [formResetKey, setFormResetKey] = useState(0);
   const idempotencyKey = useRef<string | null>(null);
   const [website, setWebsite] = useState("");
+
+  useEffect(() => {
+    trackEvent("order_form_view", { form_type: "product_order" });
+  }, []);
 
   const subtotal = formData.quantity * formData.unitPrice;
   const isTamilNadu =
@@ -81,13 +86,17 @@ export default function BuyProductPage() {
   };
 
   const handlePlaceOrder = () => {
-    if (!validateForm()) return;
+    if (!validateForm()) {
+      trackEvent("order_error", { form_type: "product_order", error_stage: "validation" });
+      return;
+    }
 
     setIsReviewOpen(true);
   };
 
   const confirmOrder = async () => {
     setIsSubmitting(true);
+    trackEvent("order_submit", { form_type: "product_order" });
     try {
       idempotencyKey.current ??= crypto.randomUUID().replace(/-/g, "");
       const response = await fetch("/api/orders", {
@@ -97,10 +106,12 @@ export default function BuyProductPage() {
       });
       const result = await response.json().catch(() => null);
       if (!response.ok) {
+        trackEvent("order_error", { form_type: "product_order", error_stage: "response" });
         toast.error(result?.message || "Could not place the order.");
         return;
       }
       setIsReviewOpen(false);
+      trackEvent("order_success", { form_type: "product_order" });
       idempotencyKey.current = null;
       setFormData({ ...initialValues });
       setWebsite("");
@@ -108,6 +119,7 @@ export default function BuyProductPage() {
       setFormResetKey((current) => current + 1);
       toast.success("Order confirmed. A copy has been sent to your email.");
     } catch {
+      trackEvent("order_error", { form_type: "product_order", error_stage: "network" });
       toast.error("Could not place the order. Please try again.");
     } finally {
       setIsSubmitting(false);

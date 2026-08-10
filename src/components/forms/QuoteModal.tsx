@@ -5,6 +5,7 @@ import { X } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import QuoteForm from '@/components/forms/QuoteForm'
 import { toast } from 'react-hot-toast'
+import { trackEvent } from '@/lib/analytics/dataLayer'
 
 export type QuoteFormValues = {
     plantType: string
@@ -46,6 +47,7 @@ export default function QuoteModal({ open, onClose }: { open: boolean; onClose: 
     const idempotencyKey = useRef<string | null>(null)
 
     useEffect(() => {
+        if (open) trackEvent('quote_form_view', { form_type: 'request_quote' })
         if (!open) {
             setFormData(initialValues)
             setShowSuccess(false)
@@ -82,16 +84,19 @@ export default function QuoteModal({ open, onClose }: { open: boolean; onClose: 
             })
 
             if (!response.ok) {
+                trackEvent('quote_form_error', { form_type: 'request_quote', error_stage: 'response' })
                 toast.error('Something went wrong. Please try again.')
                 return
             }
 
             setShowSuccess(true)
+            trackEvent('quote_form_success', { form_type: 'request_quote' })
             idempotencyKey.current = null
             setFormData({ ...initialValues })
             setFormResetKey((current) => current + 1)
             toast.success('Thank you! Our technical team will contact you shortly.')
         } catch {
+            trackEvent('quote_form_error', { form_type: 'request_quote', error_stage: 'network' })
             toast.error('Something went wrong. Please try again.')
         } finally {
             setIsSubmitting(false)
