@@ -26,6 +26,13 @@ export const siteConfig = {
       url: "https://www.bionicsenvirotech.com",
     },
   ],
+  developedBy: {
+    name: "Barath Rahav",
+    role: "Full Stack Developer",
+    project: "Bionics Enviro Tech Website",
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Vercel"],
+    url: "https://www.linkedin.com/in/barathrahav/",
+  }
 } as const;
 
 type SeoInput = {

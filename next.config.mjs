@@ -107,7 +107,7 @@ const nextConfig = {
       "img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://www.google.com https://www.google.co.in https://googleads.g.doubleclick.net https://stats.g.doubleclick.net",
       "font-src 'self' data:",
       "media-src 'self' blob:",
-      "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com https://www.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net",
+      "connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com https://www.google.com https://www.googleadservices.com https://ad.doubleclick.net https://googleads.g.doubleclick.net https://stats.g.doubleclick.net",
       "frame-src 'self' https://www.googletagmanager.com https://www.google.com https://td.doubleclick.net",
       "worker-src 'self' blob:",
       "manifest-src 'self'",
