@@ -3,7 +3,7 @@ import CareersPage from '@/components/careers/CareersPage'
 import { jobs } from '@/data/careers'
 import { createMetadata, siteConfig } from '@/lib/site'
 
-export const metadata: Metadata = createMetadata({ title: 'Environmental Biotechnology Careers | Bionics', description: "Join Bionics Enviro Tech and build your career in Nanozyme bioculture, environmental biotechnology and wastewater treatment. View current openings.", path: '/careers', keywords: ['Environmental Biotechnology Careers','Wastewater Treatment Jobs','Biotechnology Jobs India','Bionics Enviro Tech Careers'] })
+export const metadata: Metadata = createMetadata({ title: 'Careers | Bionics Enviro Tech', description: "Join Bionics Enviro Tech and build your career in Nanozyme bioculture, environmental biotechnology and wastewater treatment. View current openings.", path: '/careers', keywords: ['Environmental Biotechnology Careers','Wastewater Treatment Jobs','Biotechnology Jobs India','Bionics Enviro Tech Careers'] })
 
 export default function Page() {
   const schemas = [

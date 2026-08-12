@@ -1,4 +1,4 @@
-import { Award, CheckCircle2, Download, FlaskConical, Globe2, Leaf, Microscope } from 'lucide-react'
+import { ArrowRight, Award, CheckCircle2, Download, FlaskConical, Globe2, Leaf, Microscope } from 'lucide-react'
 import Link from 'next/link'
 import { siteConfig } from '@/lib/site'
 
@@ -35,6 +35,18 @@ export default function About() {
           <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-white/10">{stats.map((stat) => <div key={stat.label} className="bg-white/[.05] p-4"><strong className="block text-2xl font-black text-emerald-300">{stat.value}</strong><span className="mt-1 block text-xs text-slate-300">{stat.label}</span></div>)}</div>
         </aside>
       </div>
+
+      <article className="mt-5 rounded-2xl border border-emerald-100 bg-gradient-to-r from-emerald-50/80 via-white to-cyan-50/70 p-5 shadow-sm sm:p-7">
+        <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+          <p className="text-xs font-black uppercase tracking-[.18em] text-emerald-700">Scientific leadership</p>
+          <h3 className="mt-2 text-xl font-black text-slate-950 sm:text-2xl">Dr. M. Parameswari Sasikumar</h3>
+          <p className="mt-1 text-sm font-bold text-emerald-800">Executive Director — Research &amp; Development</p>
+          <p className="mt-3 max-w-4xl text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">Leads Bionics research and development, drawing on more than 20 years of university and industrial wastewater-treatment experience.</p>
+          </div>
+          <Link href="/company/executive-director" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-5 text-sm font-bold text-white shadow-lg shadow-emerald-600/20 transition hover:bg-emerald-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2">View Executive Profile<ArrowRight className="h-4 w-4" /></Link>
+        </div>
+      </article>
 
       <div className="mt-5 grid gap-4 md:grid-cols-3">{pillars.map(({ icon: Icon, title, text }) => <article key={title} className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"><div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-cyan-50 text-cyan-700"><Icon className="h-5 w-5"/></div><div><h3 className="font-black text-slate-950">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-600">{text}</p></div></article>)}</div>
     </div>
