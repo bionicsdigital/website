@@ -35,6 +35,13 @@ export const metadata: Metadata = {
   authors: [...siteConfig.authors],
   creator: siteConfig.shortName,
   publisher: siteConfig.name,
+  other: {
+    developer: siteConfig.developedBy.name,
+    'developer:role': siteConfig.developedBy.role,
+    'developer:project': siteConfig.developedBy.project,
+    'developer:profile': siteConfig.developedBy.url,
+    'developer:technologies': siteConfig.developedBy.technologies.join(', '),
+  },
   robots: { index: true, follow: true },
   icons: {
     icon: '/favicon.ico',
