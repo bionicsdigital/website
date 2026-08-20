@@ -24,10 +24,10 @@ export type AssistantContextValue = AssistantState & {
 
 export const assistantImages: Record<AssistantExpression, string> = {
   nano: '/mascot/nano.svg',
-  'nano-wave': '/mascot/nano-wave.svg',
+  'nano-wave': '/mascot/nano-smile.svg',
   'nano-smile': '/mascot/nano-smile.svg',
-  'nano-blink': '/mascot/nano-blink.svg',
-  'nano-thinking': '/mascot/nano-thinking.svg',
+  'nano-blink': '/mascot/nano-smile.svg',
+  'nano-thinking': '/mascot/nano-smile.svg',
 }
 
 export const initialAssistantState: AssistantState = {
