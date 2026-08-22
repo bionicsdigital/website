@@ -1,12 +1,103 @@
-'use client'
+"use client";
 
-import { Cog, Mail, MessageCircle, Phone, Send } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { Cog, Mail, MessageCircle, Phone, Send } from "lucide-react";
+import { useEffect, useState } from "react";
+import { primaryInquiryEmail } from "@/lib/email-recipients";
 
-const endTime = Date.now() + 2 * 60 * 60 * 1000
+const endTime = Date.now() + 2 * 60 * 60 * 1000;
 export default function MaintenancePage() {
-  const [remaining, setRemaining] = useState(endTime - Date.now())
-  useEffect(() => { const timer = setInterval(() => setRemaining(Math.max(0, endTime - Date.now())), 1000); return () => clearInterval(timer) }, [])
-  const hours = Math.floor(remaining / 3600000), minutes = Math.floor((remaining % 3600000) / 60000), seconds = Math.floor((remaining % 60000) / 1000)
-  return <main className="relative z-10 flex min-h-screen items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#043c32,#075985)] px-5 py-28 text-white"><div className="absolute inset-0 opacity-20" aria-hidden="true">{[...Array(12)].map((_, index) => <span key={index} className="absolute h-3 w-3 animate-pulse rounded-full bg-cyan-200" style={{ left: `${5 + index * 8}%`, top: `${12 + (index % 5) * 18}%` }} />)}</div><section className="relative w-full max-w-3xl rounded-[2rem] border border-white/15 bg-white/10 p-6 text-center shadow-2xl backdrop-blur-xl sm:p-10"><div className="mx-auto flex w-fit items-center"><Cog className="h-14 w-14 animate-[spin_8s_linear_infinite] text-emerald-300" /><Cog className="-ml-2 mt-10 h-9 w-9 animate-[spin_6s_linear_infinite_reverse] text-cyan-300" /></div><p className="mt-7 text-xs font-bold uppercase tracking-[.2em] text-emerald-300">Server Maintenance</p><h1 className="mt-3 text-3xl font-extrabold sm:text-5xl">We&apos;re Performing Scheduled Maintenance</h1><p className="mx-auto mt-4 max-w-xl text-white/70">We&apos;re improving the Bionics experience and will be back shortly.</p><p className="mt-8 text-xs font-bold uppercase tracking-wider text-white/60">Estimated time remaining</p><div className="mt-3 flex justify-center gap-3">{[[hours, 'Hours'], [minutes, 'Minutes'], [seconds, 'Seconds']].map(([value, label]) => <div key={label} className="min-w-20 rounded-2xl border border-white/15 bg-white/10 p-3"><strong className="block text-2xl">{String(value).padStart(2, '0')}</strong><span className="text-[10px] uppercase text-white/60">{label}</span></div>)}</div><div className="mt-8 flex flex-wrap justify-center gap-3"><a href="mailto:bionicsenvirotech@gmail.com?subject=Notify me when the website is available" className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#00C853] to-[#00B4D8] px-5 py-3 text-sm font-bold text-white"><Send className="h-4 w-4" />Notify Me</a><a href="mailto:bionicsenvirotech@gmail.com" aria-label="Email Bionics" className="rounded-xl border border-white/20 p-3"><Mail className="h-5 w-5" /></a><a href="tel:+919095000090" aria-label="Call Bionics" className="rounded-xl border border-white/20 p-3"><Phone className="h-5 w-5" /></a><a href="https://wa.me/919095000090" aria-label="WhatsApp Bionics" className="rounded-xl border border-white/20 p-3"><MessageCircle className="h-5 w-5" /></a></div></section></main>
+  const [remaining, setRemaining] = useState(endTime - Date.now());
+  useEffect(() => {
+    const timer = setInterval(
+      () => setRemaining(Math.max(0, endTime - Date.now())),
+      1000,
+    );
+    return () => clearInterval(timer);
+  }, []);
+  const hours = Math.floor(remaining / 3600000),
+    minutes = Math.floor((remaining % 3600000) / 60000),
+    seconds = Math.floor((remaining % 60000) / 1000);
+  return (
+    <main className="relative z-10 flex min-h-screen items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#043c32,#075985)] px-5 py-28 text-white">
+      <div className="absolute inset-0 opacity-20" aria-hidden="true">
+        {[...Array(12)].map((_, index) => (
+          <span
+            key={index}
+            className="absolute h-3 w-3 animate-pulse rounded-full bg-cyan-200"
+            style={{
+              left: `${5 + index * 8}%`,
+              top: `${12 + (index % 5) * 18}%`,
+            }}
+          />
+        ))}
+      </div>
+      <section className="relative w-full max-w-3xl rounded-[2rem] border border-white/15 bg-white/10 p-6 text-center shadow-2xl backdrop-blur-xl sm:p-10">
+        <div className="mx-auto flex w-fit items-center">
+          <Cog className="h-14 w-14 animate-[spin_8s_linear_infinite] text-emerald-300" />
+          <Cog className="-ml-2 mt-10 h-9 w-9 animate-[spin_6s_linear_infinite_reverse] text-cyan-300" />
+        </div>
+        <p className="mt-7 text-xs font-bold uppercase tracking-[.2em] text-emerald-300">
+          Server Maintenance
+        </p>
+        <h1 className="mt-3 text-3xl font-extrabold sm:text-5xl">
+          We&apos;re Performing Scheduled Maintenance
+        </h1>
+        <p className="mx-auto mt-4 max-w-xl text-white/70">
+          We&apos;re improving the Bionics experience and will be back shortly.
+        </p>
+        <p className="mt-8 text-xs font-bold uppercase tracking-wider text-white/60">
+          Estimated time remaining
+        </p>
+        <div className="mt-3 flex justify-center gap-3">
+          {[
+            [hours, "Hours"],
+            [minutes, "Minutes"],
+            [seconds, "Seconds"],
+          ].map(([value, label]) => (
+            <div
+              key={label}
+              className="min-w-20 rounded-2xl border border-white/15 bg-white/10 p-3"
+            >
+              <strong className="block text-2xl">
+                {String(value).padStart(2, "0")}
+              </strong>
+              <span className="text-[10px] uppercase text-white/60">
+                {label}
+              </span>
+            </div>
+          ))}
+        </div>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <a
+            href={`mailto:${primaryInquiryEmail}?subject=Notify me when the website is available`}
+            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#00C853] to-[#00B4D8] px-5 py-3 text-sm font-bold text-white"
+          >
+            <Send className="h-4 w-4" />
+            Notify Me
+          </a>
+          <a
+            href={`mailto:${primaryInquiryEmail}`}
+            aria-label="Email Bionics"
+            className="rounded-xl border border-white/20 p-3"
+          >
+            <Mail className="h-5 w-5" />
+          </a>
+          <a
+            href="tel:+919095000090"
+            aria-label="Call Bionics"
+            className="rounded-xl border border-white/20 p-3"
+          >
+            <Phone className="h-5 w-5" />
+          </a>
+          <a
+            href="https://wa.me/919095000090"
+            aria-label="WhatsApp Bionics"
+            className="rounded-xl border border-white/20 p-3"
+          >
+            <MessageCircle className="h-5 w-5" />
+          </a>
+        </div>
+      </section>
+    </main>
+  );
 }

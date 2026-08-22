@@ -4,6 +4,7 @@ import PageBreadcrumb from '@/components/ui/PageBreadcrumb'
 import type { LegalPageData } from '@/data/legal-pages'
 import LegalToc from './LegalToc'
 import { siteConfig } from '@/lib/site'
+import { primaryInquiryEmail } from '@/lib/email-recipients'
 
 const siteUrl = siteConfig.url
 
@@ -39,7 +40,7 @@ export default function LegalPage({ page }: { page: LegalPageData }) {
       </article>
     </div>
 
-    <section className="mx-auto max-w-7xl px-5 pb-12 sm:px-8 lg:px-10 lg:pb-16"><div className="overflow-hidden rounded-3xl bg-[linear-gradient(135deg,#00C853,#00B4D8)] p-6 text-white shadow-xl shadow-emerald-900/10 sm:flex sm:items-center sm:justify-between sm:p-8"><div><p className="flex items-center gap-2 text-sm font-bold uppercase tracking-[.13em]"><Sparkles className="h-4 w-4" />Need help?</p><h2 className="mt-2 text-2xl font-bold">Talk with the Bionics team</h2><p className="mt-2 max-w-xl text-sm text-white/85">For policy questions, quotations or technical assistance, contact our team directly.</p></div><div className="mt-5 flex flex-wrap gap-3 sm:mt-0 sm:justify-end"><a href="mailto:bionicsenvirotech@gmail.com" className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-bold text-emerald-700 shadow-sm"><Mail className="h-4 w-4" />Email Us</a><a href="tel:+919095000090" className="inline-flex items-center gap-2 rounded-xl border border-white/40 bg-white/10 px-4 py-3 text-sm font-bold text-white"><Phone className="h-4 w-4" />Call Us</a><Link href="/#contact" className="inline-flex items-center rounded-xl border border-white/40 bg-white/10 px-4 py-3 text-sm font-bold text-white">Request Quote</Link></div></div></section>
+    <section className="mx-auto max-w-7xl px-5 pb-12 sm:px-8 lg:px-10 lg:pb-16"><div className="overflow-hidden rounded-3xl bg-[linear-gradient(135deg,#00C853,#00B4D8)] p-6 text-white shadow-xl shadow-emerald-900/10 sm:flex sm:items-center sm:justify-between sm:p-8"><div><p className="flex items-center gap-2 text-sm font-bold uppercase tracking-[.13em]"><Sparkles className="h-4 w-4" />Need help?</p><h2 className="mt-2 text-2xl font-bold">Talk with the Bionics team</h2><p className="mt-2 max-w-xl text-sm text-white/85">For policy questions, quotations or technical assistance, contact our team directly.</p></div><div className="mt-5 flex flex-wrap gap-3 sm:mt-0 sm:justify-end"><a href={`mailto:${primaryInquiryEmail}`} className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-bold text-emerald-700 shadow-sm"><Mail className="h-4 w-4" />Email Us</a><a href="tel:+919095000090" className="inline-flex items-center gap-2 rounded-xl border border-white/40 bg-white/10 px-4 py-3 text-sm font-bold text-white"><Phone className="h-4 w-4" />Call Us</a><Link href="/#contact" className="inline-flex items-center rounded-xl border border-white/40 bg-white/10 px-4 py-3 text-sm font-bold text-white">Request Quote</Link></div></div></section>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
   </main>
 }

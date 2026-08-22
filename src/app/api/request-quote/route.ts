@@ -8,6 +8,7 @@ import {
 import { rateLimit } from '@/lib/security/rate-limit'
 import { releaseIdempotency, requestHash, reserveIdempotency, validIdempotencyKey } from '@/lib/security/idempotency'
 import { exceedsContentLength, getTrustedClientIp, isAllowedOrigin, logSecurity, logServerError, requestId } from '@/lib/security/request'
+import { internalInquiryRecipients, primaryInquiryEmail } from '@/lib/email-recipients'
 
 function fieldRow(label: string, value: string, index: number) {
   return `
@@ -106,7 +107,7 @@ function buildEmailHtml(payload: RequestQuotePayload) {
                     <p style="margin:4px 0 12px;color:#6B7280;font-size:12px;line-height:1.5;">Scientific Manufacturer of Nanozyme Bioculture</p>
                     <p style="margin:0;color:#4B5563;font-size:12px;line-height:1.7;">
                       <a href="https://www.bionicsenvirotech.com" style="color:#047857;text-decoration:none;">www.bionicsenvirotech.com</a><br />
-                      <a href="mailto:bionicsenvirotech@gmail.com" style="color:#047857;text-decoration:none;">bionicsenvirotech@gmail.com</a>
+                      <a href="mailto:${primaryInquiryEmail}" style="color:#047857;text-decoration:none;">${primaryInquiryEmail}</a>
                     </p>
                   </td>
                 </tr>
@@ -161,7 +162,7 @@ export async function POST(request: NextRequest) {
   const fromEmail = process.env.FROM_EMAIL
   const toEmail = process.env.TO_EMAIL
 
-  if (!apiKey || !fromEmail || !toEmail) {
+  if (!apiKey || !fromEmail) {
     await releaseIdempotency('quote', idempotencyKey!).catch(() => undefined)
     return NextResponse.json(
       { ok: false, message: 'Email service is not configured.' },
@@ -174,7 +175,7 @@ export async function POST(request: NextRequest) {
   try {
     const result = await resend.emails.send({
       from: fromEmail,
-      to: toEmail,
+      to: internalInquiryRecipients(toEmail),
       subject: `New Quote Request | ${payload.companyName.replace(/[\r\n]/g, ' ')} | ${payload.industry}`,
       replyTo: payload.email,
       html: buildEmailHtml(payload),

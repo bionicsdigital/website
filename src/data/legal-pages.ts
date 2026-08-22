@@ -1,5 +1,6 @@
 import type { LucideIcon } from 'lucide-react'
 import { Cookie, FileCheck2, RotateCcw, Scale, ShieldCheck, Truck } from 'lucide-react'
+import { primaryInquiryEmail } from '@/lib/email-recipients'
 
 export type LegalSection = { id: string; title: string; paragraphs?: string[]; bullets?: string[]; notice?: string }
 export type LegalPageData = { slug: string; title: string; subtitle: string; description: string; updated: string; readingTime: string; icon: LucideIcon; status?: string; sections: LegalSection[] }
@@ -17,7 +18,7 @@ export const legalPages: Record<string, LegalPageData> = {
       { id: 'security-retention', title: 'Security and Data Retention', paragraphs: ['We use reasonable administrative, technical and organizational safeguards appropriate to the nature of the information. No internet transmission or storage system can be guaranteed completely secure.', 'Information is retained only for as long as reasonably necessary for its original purpose, legal obligations, dispute resolution, security and legitimate business records. Retention periods vary by record type and applicable law.'] },
       { id: 'rights', title: 'Your Privacy Rights', paragraphs: ['Depending on your location and applicable law, you may have rights to request access, correction, deletion, restriction, portability or objection, and to withdraw consent where processing relies on consent. We may need to verify identity and may retain information where legally permitted or required.'], bullets: ['GDPR rights may apply to individuals in the European Economic Area where the processing falls within GDPR scope', 'California privacy rights, including CCPA/CPRA rights, apply only where the law covers the business and processing concerned', 'Exercising an applicable privacy right will not result in unlawful discrimination'] },
       { id: 'children-transfers', title: "Children's Privacy and International Transfers", paragraphs: ['The website is intended for business users and is not directed to children. We do not knowingly collect personal information from children through this website.', 'Service providers may process information in countries other than your own. Where required, appropriate contractual or legal safeguards are used for international transfers.'] },
-      { id: 'changes-contact', title: 'Changes and Contact', paragraphs: ['We may update this policy to reflect service, legal or operational changes. The revised version will show a new “Last Updated” date.', 'For privacy questions or applicable rights requests, contact Bionics Enviro Tech at bionicsenvirotech@gmail.com or +91 90950 00090.'] },
+      { id: 'changes-contact', title: 'Changes and Contact', paragraphs: ['We may update this policy to reflect service, legal or operational changes. The revised version will show a new “Last Updated” date.', `For privacy questions or applicable rights requests, contact Bionics Enviro Tech at ${primaryInquiryEmail} or +91 90950 00090.`] },
     ],
   },
   'terms-and-conditions': {
@@ -31,7 +32,7 @@ export const legalPages: Record<string, LegalPageData> = {
       { id: 'prohibited-activities', title: 'Prohibited Activities', bullets: ['Attempting unauthorized access, interference or security testing', 'Uploading malicious code or using automated tools that burden the website', 'Misrepresenting identity or submitting fraudulent information', 'Copying, scraping or commercially exploiting protected content without permission', 'Using the website in violation of law or third-party rights'] },
       { id: 'disclaimers-liability', title: 'Disclaimers and Limitation of Liability', paragraphs: ['The website is provided on an “as available” basis. To the extent permitted by law, Bionics disclaims implied warranties regarding website availability, completeness and fitness for a particular purpose.', 'Bionics will not be liable for indirect, incidental, consequential or special loss arising solely from website use. Nothing excludes liability that cannot lawfully be excluded.'] },
       { id: 'termination-force-majeure', title: 'Termination and Force Majeure', paragraphs: ['Access may be restricted or terminated where these terms are breached or security and operational needs require it.', 'Bionics is not responsible for delay or failure caused by events beyond reasonable control, including natural events, transport disruption, utility failure, governmental action, labour events or supply-chain interruption.'] },
-      { id: 'law-contact', title: 'Governing Law, Jurisdiction and Contact', paragraphs: ['These website terms are governed by the laws of India. Subject to mandatory law and any written commercial agreement, courts with competent jurisdiction in Tamil Nadu, India will have jurisdiction.', 'Questions may be sent to bionicsenvirotech@gmail.com or +91 90950 00090.'] },
+      { id: 'law-contact', title: 'Governing Law, Jurisdiction and Contact', paragraphs: ['These website terms are governed by the laws of India. Subject to mandatory law and any written commercial agreement, courts with competent jurisdiction in Tamil Nadu, India will have jurisdiction.', `Questions may be sent to ${primaryInquiryEmail} or +91 90950 00090.`] },
     ],
   },
   'cookie-policy': {
@@ -43,7 +44,7 @@ export const legalPages: Record<string, LegalPageData> = {
       { id: 'marketing-preferences', title: 'Marketing and Preference Cookies', paragraphs: ['Preference cookies remember choices such as language or interface settings. Marketing cookies, if introduced, would support campaign measurement or relevant advertising and would be used subject to required consent.'] },
       { id: 'third-party', title: 'Third-Party Cookies', paragraphs: ['Embedded or connected services may place cookies independently. Bionics does not control third-party cookies and recommends reviewing the relevant provider policy.'] },
       { id: 'management', title: 'Cookie Management and Browser Settings', paragraphs: ['You can delete or block cookies using browser settings. Where a consent control is available, use it to update optional cookie choices. Blocking some cookies may affect functionality. Browser help pages explain private browsing, deletion and site-specific permissions.'] },
-      { id: 'changes-contact', title: 'Changes and Contact', paragraphs: ['This policy may change as website technologies evolve. Questions can be sent to bionicsenvirotech@gmail.com.'] },
+      { id: 'changes-contact', title: 'Changes and Contact', paragraphs: [`This policy may change as website technologies evolve. Questions can be sent to ${primaryInquiryEmail}.`] },
     ],
   },
   disclaimer: {
@@ -65,7 +66,7 @@ export const legalPages: Record<string, LegalPageData> = {
       { id: 'cancellation', title: 'Cancellation', paragraphs: ['Cancellation requests must be submitted promptly in writing with the quotation or order reference. Costs already incurred for customization, production, testing, packaging, documentation, freight or third-party commitments may be deducted or may make the order non-cancellable.'] },
       { id: 'process', title: 'Refund Process', paragraphs: ['Contact us with the order reference, invoice, payment details, reason and supporting photographs or documents. Approved refunds are normally returned through an agreed banking method after verification. Bank, foreign-exchange and non-refundable third-party charges may be excluded where lawful.'] },
       { id: 'exceptions', title: 'Exceptions', bullets: ['Opened, used, contaminated, improperly stored or expired products', 'Custom-made or application-specific products after work begins', 'Damage caused by customer handling, storage or process conditions', 'Performance differences caused by wastewater variability or operation rather than a verified product defect'] },
-      { id: 'contact', title: 'Contact', paragraphs: ['Send refund or cancellation enquiries to bionicsenvirotech@gmail.com with the order and invoice reference.'] },
+      { id: 'contact', title: 'Contact', paragraphs: [`Send refund or cancellation enquiries to ${primaryInquiryEmail} with the order and invoice reference.`] },
     ],
   },
   'shipping-policy': {
@@ -77,7 +78,7 @@ export const legalPages: Record<string, LegalPageData> = {
       { id: 'inspection-damage', title: 'Inspection and Damage', paragraphs: ['Customers should inspect packaging, quantity and visible condition promptly on receipt. Record apparent damage on the carrier document and notify Bionics with photographs, invoice details and shipment references within the period stated in the contract.'] },
       { id: 'international', title: 'International Shipping', paragraphs: ['International orders may require export documents, customs clearance, duties, import permits and destination compliance. Responsibilities and Incoterms, where used, are specified in the quotation or contract.'] },
       { id: 'digital-content', title: 'Digital Content', paragraphs: ['Physical shipping is not applicable to downloadable materials or digital communications. Access or delivery terms for any digital item will be stated separately.'] },
-      { id: 'contact', title: 'Contact', paragraphs: ['For dispatch or freight questions, contact bionicsenvirotech@gmail.com or +91 90950 00090 with your quotation or order reference.'] },
+      { id: 'contact', title: 'Contact', paragraphs: [`For dispatch or freight questions, contact ${primaryInquiryEmail} or +91 90950 00090 with your quotation or order reference.`] },
     ],
   },
 }
