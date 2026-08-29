@@ -1,5 +1,6 @@
 export const primaryInquiryEmail = "bionicsenvirotech@gmail.com";
 export const digitalInquiryEmail = "bionicsdigital@gmail.com";
+export const careersInquiryEmail = "bionicshr@gmail.com";
 
 export const defaultInquiryRecipients = [
   primaryInquiryEmail,
@@ -14,5 +15,11 @@ export function internalInquiryRecipients(primary?: string | null) {
 
   return Array.from(
     new Set([...configuredRecipients, ...defaultInquiryRecipients]),
+  );
+}
+
+export function careerInquiryRecipients(primary?: string | null) {
+  return Array.from(
+    new Set([...internalInquiryRecipients(primary), careersInquiryEmail]),
   );
 }

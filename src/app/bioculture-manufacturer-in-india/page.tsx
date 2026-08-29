@@ -168,11 +168,31 @@ export default function BiocultureManufacturerPage() {
   const schemas = [
     {
       "@context": "https://schema.org",
-      "@type": "Product",
-      name: "Nanozyme Bioculture",
-      brand: { "@type": "Brand", name: siteConfig.shortName },
-      manufacturer: { "@type": "Organization", name: siteConfig.name },
+      "@type": "Service",
+      name: "Bioculture Manufacturer in India",
+      serviceType: "Nanozyme Bioculture Manufacturing and Application Support",
+      provider: {
+        "@type": "Organization",
+        name: siteConfig.name,
+        url: siteConfig.url,
+      },
+      areaServed: { "@type": "Country", name: "India" },
+      description:
+        "Nanozyme Bioculture manufacturing and application support for ETP, STP, CETP and CSTP wastewater treatment systems.",
       url: `${siteConfig.url}/bioculture-manufacturer-in-india`,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: "Bioculture Manufacturer in India",
+      description:
+        "Bionics Enviro Tech manufactures Nanozyme Bioculture for industrial and municipal biological wastewater treatment.",
+      url: `${siteConfig.url}/bioculture-manufacturer-in-india`,
+      isPartOf: {
+        "@type": "WebSite",
+        name: siteConfig.shortName,
+        url: siteConfig.url,
+      },
     },
     {
       "@context": "https://schema.org",

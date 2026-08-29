@@ -23,7 +23,7 @@ import {
 import { validateResumeFile } from "@/lib/security/upload";
 import { scanFile } from "@/lib/security/malware-scanner";
 import { createHash } from "node:crypto";
-import { internalInquiryRecipients } from "@/lib/email-recipients";
+import { careerInquiryRecipients } from "@/lib/email-recipients";
 
 export const runtime = "nodejs";
 
@@ -212,7 +212,7 @@ export async function POST(request: NextRequest) {
     const careersInbox = process.env.CAREERS_EMAIL || process.env.TO_EMAIL;
     const hrResult = await resend.emails.send({
       from,
-      to: internalInquiryRecipients(careersInbox),
+      to: careerInquiryRecipients(careersInbox),
       replyTo: data.email,
       subject: `New Career Application - ${data.position} - ${data.fullName}`
         .replace(/[\r\n]/g, " ")
