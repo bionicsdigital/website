@@ -25,12 +25,15 @@ export default function Hero() {
           z-10
           mx-auto
           grid
+          w-full
           max-w-7xl
           items-center
           gap-7
-          px-5
+          overflow-hidden
+          px-4
           pt-20
           pb-10
+          min-[360px]:px-5
           sm:px-8
           sm:pt-24
           sm:pb-16

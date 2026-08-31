@@ -25,7 +25,7 @@ const MotionHeading =
 
   return (
     <MotionDiv
-      className="w-full text-center lg:text-left"
+      className="mx-auto w-full max-w-[min(100%,22rem)] text-center sm:max-w-2xl lg:mx-0 lg:max-w-none lg:text-left"
       initial="hidden"
       animate="visible"
       variants={{
@@ -42,18 +42,22 @@ const MotionHeading =
         transition={{ duration: 0.6 }}
         className="
           mt-2
-          max-w-full
+          mx-auto
+          max-w-[18rem]
           overflow-wrap-anywhere
 
-          text-[31px]
+          text-[clamp(2rem,9.2vw,2.45rem)]
           leading-[1.02]
           tracking-normal
           font-black
           text-slate-900
 
-          min-[360px]:text-[36px]
+          min-[360px]:max-w-[21rem]
+          min-[360px]:text-[clamp(2.15rem,9vw,2.8rem)]
           sm:text-6xl
           sm:tracking-[-0.02em]
+          lg:mx-0
+          lg:max-w-none
           lg:text-7xl
           xl:text-[76px]
         "

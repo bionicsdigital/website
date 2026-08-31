@@ -49,7 +49,12 @@ export const metadata: Metadata = {
   alternates: { types: { 'application/rss+xml': '/feed.xml' } },
 }
 
-export const viewport: Viewport = { themeColor: '#064e3b', colorScheme: 'light' }
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#064e3b',
+  colorScheme: 'light',
+}
 
 export default function RootLayout({
   children,
