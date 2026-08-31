@@ -3,14 +3,9 @@
 import { motion } from 'framer-motion'
 import type { MotionProps } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ComponentType } from 'react'
+import type { ButtonHTMLAttributes, ComponentType } from 'react'
 import { useState } from 'react'
 import QuoteModal from '@/components/forms/QuoteModal'
-
-const MotionAnchor =
-  motion.a as unknown as ComponentType<
-    AnchorHTMLAttributes<HTMLAnchorElement> & MotionProps
-  >
 
 const MotionButton =
   motion.button as unknown as ComponentType<
@@ -30,6 +25,7 @@ export default function HeroButtons() {
           whileTap={{ scale: 0.97 }}
           className="
             inline-flex
+            w-full
             min-h-[50px]
             items-center
             justify-center
@@ -45,6 +41,7 @@ export default function HeroButtons() {
             shadow-blue-500/25
             transition-all
             hover:shadow-cyan-500/35
+            sm:w-auto
           "
         >
           Get Quote

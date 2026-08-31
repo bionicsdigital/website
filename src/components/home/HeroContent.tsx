@@ -42,14 +42,18 @@ const MotionHeading =
         transition={{ duration: 0.6 }}
         className="
           mt-2
+          max-w-full
+          overflow-wrap-anywhere
 
-          text-[40px]
-          leading-[0.95]
-          tracking-[-0.03em]
+          text-[31px]
+          leading-[1.02]
+          tracking-normal
           font-black
           text-slate-900
 
+          min-[360px]:text-[36px]
           sm:text-6xl
+          sm:tracking-[-0.02em]
           lg:text-7xl
           xl:text-[76px]
         "
@@ -73,9 +77,11 @@ const MotionHeading =
         variants={item}
         className="
           mt-4
-          text-lg
+          text-base
+          leading-6
           font-semibold
           text-[#16A34A]
+          min-[360px]:text-lg
           sm:text-2xl
         "
       >
@@ -90,14 +96,16 @@ const MotionHeading =
         className="
           mx-auto
           mt-5
-          max-w-[360px]
+          max-w-[320px]
 
           space-y-3
 
-          text-[15px]
+          text-sm
           leading-6
           text-slate-600
 
+          min-[360px]:max-w-[340px]
+          min-[360px]:text-[15px]
           sm:max-w-[620px]
           sm:text-lg
 
@@ -105,7 +113,7 @@ const MotionHeading =
         "
       >
         <p>
-          World's Best Scientific Manufacturer of Nanozyme Bioculture for ETP,
+          World&apos;s Best Scientific Manufacturer of Nanozyme Bioculture for ETP,
           STP, CETP and Industrial Wastewater Treatment.
         </p>
 
@@ -117,14 +125,14 @@ const MotionHeading =
 
       <MotionDiv
         variants={item}
-        className="mt-6"
+        className="mx-auto mt-6 max-w-[320px] sm:max-w-none lg:mx-0"
       >
         <HeroButtons />
       </MotionDiv>
 
       <MotionDiv
         variants={item}
-        className="mt-6"
+        className="mx-auto mt-5 max-w-[320px] sm:max-w-none lg:mx-0 lg:mt-6"
       >
         <HeroTrustBar />
       </MotionDiv>

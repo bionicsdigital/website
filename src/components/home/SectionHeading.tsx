@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import type { MotionProps } from 'framer-motion'
 import type { ComponentType, HTMLAttributes } from 'react'
 
@@ -63,12 +63,13 @@ export default function SectionHeading({
       <h2
         className="
           mt-4
-          text-2xl
+          text-[1.7rem]
           font-black
           leading-tight
-          tracking-[-0.03em]
+          tracking-normal
           text-slate-900
           sm:text-4xl
+          sm:tracking-[-0.02em]
           lg:text-[2.75rem]
         "
       >
@@ -100,10 +101,12 @@ export default function SectionHeading({
         <p
           className="
             mt-4
-            text-[15px]
-            leading-7
+            text-sm
+            leading-6
             text-slate-600
+            min-[360px]:text-[15px]
             sm:text-lg
+            sm:leading-7
           "
         >
           {description}

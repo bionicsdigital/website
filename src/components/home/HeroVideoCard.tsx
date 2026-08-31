@@ -54,8 +54,9 @@ export default function HeroVideoCard() {
       className="
         mx-auto
         w-full
-        max-w-[400px]
+        max-w-[320px]
 
+        min-[360px]:max-w-[360px]
         sm:max-w-[600px]
 
         lg:w-[112%]
@@ -101,8 +102,9 @@ export default function HeroVideoCard() {
 
             aspect-video
 
-            max-h-[245px]
+            max-h-[205px]
 
+            min-[360px]:max-h-[225px]
             sm:max-h-[380px]
 
             lg:max-h-none

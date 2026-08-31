@@ -1,7 +1,7 @@
 'use client'
 
 import { CheckCircle2 } from 'lucide-react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import type { MotionProps } from 'framer-motion'
 import type { ComponentType, HTMLAttributes } from 'react'
 
@@ -27,7 +27,7 @@ const MotionLi =
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.5 }}
       aria-label="Bionics Enviro Tech credentials"
-      className="flex flex-wrap justify-center gap-3 lg:justify-start"
+      className="grid grid-cols-1 gap-2 min-[360px]:grid-cols-2 min-[360px]:gap-3 sm:flex sm:flex-wrap sm:justify-center lg:justify-start"
     >
       {points.map((point) => (
         <MotionLi   
@@ -36,15 +36,17 @@ const MotionLi =
           transition={{ duration: 0.2 }}
           className="
             inline-flex
+            min-w-0
             items-center
+            justify-center
             gap-2
             rounded-full
             border
             border-slate-200
             bg-white
-            px-4
-            py-2.5
-            text-sm
+            px-3
+            py-2
+            text-[12px]
             font-semibold
             text-slate-700
             shadow-sm
@@ -53,6 +55,9 @@ const MotionLi =
             hover:border-[#00C853]
             hover:bg-green-50
             hover:shadow-lg
+            sm:px-4
+            sm:py-2.5
+            sm:text-sm
           "
         >
           <CheckCircle2
@@ -60,7 +65,7 @@ const MotionLi =
             className="text-[#00C853]"
           />
 
-          <span>{point}</span>
+          <span className="min-w-0 truncate sm:whitespace-normal">{point}</span>
         </MotionLi>
       ))}
     </MotionUl>
