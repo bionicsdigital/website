@@ -226,14 +226,14 @@ export default function CareersPage() {
   );
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-cyan-900 px-4 pb-10 pt-28 text-white sm:px-8 lg:pb-12 lg:pt-32">
+    <main className="min-h-screen w-full max-w-full overflow-x-hidden bg-slate-50">
+      <section className="relative w-full max-w-full overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-cyan-900 px-4 pb-10 pt-28 text-white sm:px-8 lg:pb-12 lg:pt-32">
         <div className="absolute inset-0 opacity-30 [background-image:radial-gradient(circle_at_20%_30%,#38bdf8_0,transparent_28%),radial-gradient(circle_at_85%_25%,#22d3ee_0,transparent_24%)]" />
-        <div className="relative mx-auto max-w-7xl">
+        <div className="relative mx-auto w-full max-w-7xl">
           <MotionP
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-xs font-bold uppercase tracking-[.22em] text-cyan-300"
+            className="text-xs font-bold uppercase tracking-[.18em] text-cyan-300 min-[360px]:tracking-[.22em]"
           >
             Careers at Bionics
           </MotionP>
@@ -241,11 +241,11 @@ export default function CareersPage() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08 }}
-            className="mt-4 max-w-4xl text-4xl font-black tracking-tight sm:text-6xl"
+            className="mt-4 max-w-[20rem] text-[clamp(2.35rem,11vw,3.3rem)] font-black leading-[1.05] tracking-tight min-[360px]:max-w-[23rem] sm:max-w-4xl sm:text-6xl"
           >
             Join Bionics Enviro Tech
           </MotionH1>
-          <p className="mt-3 max-w-2xl text-sm leading-6 text-blue-100 sm:text-lg sm:leading-7">
+          <p className="mt-4 max-w-[19rem] text-base leading-7 text-blue-100 min-[360px]:max-w-[22rem] sm:max-w-2xl sm:text-lg sm:leading-7">
             Help build the future of Nanozyme Bioculture and Wastewater
             Treatment Technology.
           </p>
@@ -258,12 +258,12 @@ export default function CareersPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-8 lg:px-10 lg:py-10">
+      <section className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-8 lg:px-10 lg:py-10">
         <div className="max-w-3xl">
-          <p className="text-xs font-bold uppercase tracking-[.2em] text-blue-700">
+          <p className="text-xs font-bold uppercase tracking-[.18em] text-blue-700 min-[360px]:tracking-[.2em]">
             Why work with us
           </p>
-          <h2 className="mt-3 text-3xl font-black text-slate-950 sm:text-4xl">
+          <h2 className="mt-3 max-w-[20rem] text-[clamp(2rem,9.8vw,3rem)] font-black leading-[1.1] text-slate-950 min-[360px]:max-w-[23rem] sm:max-w-3xl sm:text-4xl">
             Meaningful work. Modern tools. Real growth.
           </h2>
         </div>
