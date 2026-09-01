@@ -12,6 +12,7 @@ import ScrollToTop from '@/components/home/ScrollToTop'
 import { createMetadata, siteConfig } from '@/lib/site'
 import { testimonials } from '@/data/resource-content'
 import TestimonialCard from '@/components/testimonials/TestimonialCard'
+import { PRODUCT_PRICE, products as orderProducts } from '@/components/forms/products-data'
 
 const productSeo: Record<string, { title: string; description: string; keywords: string[] }> = {
     'aerobic-bioculture': { title: 'Aerobic Bioculture Manufacturer | Bionics Enviro Tech', description: 'Aerobic bioculture for activated sludge, ETP and STP systems. Improve COD and BOD removal with scientific microbial treatment. Request guidance.', keywords: ['Aerobic Bioculture Manufacturer', 'Aerobic Wastewater Treatment', 'Activated Sludge Culture', 'ETP Aerobic Culture'] },
@@ -78,14 +79,17 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     const verifiedPerformance = performanceByProduct[product.slug]
 
     const productUrl = `${siteConfig.url}/products/${product.slug}`
+    const schemaPrice = orderProducts.find((item) => item.name === product.title)?.price ?? PRODUCT_PRICE
     const productOffer = {
         '@type': 'Offer',
         url: productUrl,
         availability: 'https://schema.org/InStock',
         itemCondition: 'https://schema.org/NewCondition',
+        price: schemaPrice,
         priceCurrency: 'INR',
         priceSpecification: {
             '@type': 'PriceSpecification',
+            price: schemaPrice,
             priceCurrency: 'INR',
             description: 'Price and dosage are supplied through a written quotation after wastewater analysis and application assessment.',
         },
