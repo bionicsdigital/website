@@ -78,8 +78,25 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     const verifiedPerformance = performanceByProduct[product.slug]
 
     const productUrl = `${siteConfig.url}/products/${product.slug}`
+    const productOffer = {
+        '@type': 'Offer',
+        url: productUrl,
+        availability: 'https://schema.org/InStock',
+        itemCondition: 'https://schema.org/NewCondition',
+        priceCurrency: 'INR',
+        priceSpecification: {
+            '@type': 'PriceSpecification',
+            priceCurrency: 'INR',
+            description: 'Price and dosage are supplied through a written quotation after wastewater analysis and application assessment.',
+        },
+        seller: {
+            '@type': 'Organization',
+            name: siteConfig.name,
+            url: siteConfig.url,
+        },
+    }
     const schemas = [
-        { '@context': 'https://schema.org', '@type': 'Product', '@id': `${productUrl}#product`, name: product.title, image: `${siteConfig.url}${product.image}`, description: product.overview, sku: `BET-${product.slug.toUpperCase().replace(/-/g, '-')}`, category: 'Wastewater Treatment Bioculture', material: 'Microbial bioculture formulation', brand: { '@type': 'Brand', name: siteConfig.shortName }, manufacturer: { '@type': 'Organization', name: siteConfig.name, url: siteConfig.url }, additionalProperty: [...product.specifications.map(item => ({ '@type': 'PropertyValue', name: item.label, value: item.value })), { '@type': 'PropertyValue', name: 'Industry', value: product.applications.join(', ') }, { '@type': 'PropertyValue', name: 'Application', value: product.subtitle }] },
+        { '@context': 'https://schema.org', '@type': 'Product', '@id': `${productUrl}#product`, name: product.title, image: `${siteConfig.url}${product.image}`, description: product.overview, sku: `BET-${product.slug.toUpperCase().replace(/-/g, '-')}`, category: 'Wastewater Treatment Bioculture', material: 'Microbial bioculture formulation', brand: { '@type': 'Brand', name: siteConfig.shortName }, manufacturer: { '@type': 'Organization', name: siteConfig.name, url: siteConfig.url }, offers: productOffer, additionalProperty: [...product.specifications.map(item => ({ '@type': 'PropertyValue', name: item.label, value: item.value })), { '@type': 'PropertyValue', name: 'Industry', value: product.applications.join(', ') }, { '@type': 'PropertyValue', name: 'Application', value: product.subtitle }] },
         { '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${productUrl}#webpage`, url: productUrl, name: product.title, description: product.overview, mainEntity: { '@id': `${productUrl}#product` }, isPartOf: { '@type': 'WebSite', url: siteConfig.url, name: siteConfig.shortName } },
         { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url }, { '@type': 'ListItem', position: 2, name: 'Products', item: `${siteConfig.url}/products` }, { '@type': 'ListItem', position: 3, name: product.title, item: productUrl }] },
         { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: product.faqs.map(item => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })) },
