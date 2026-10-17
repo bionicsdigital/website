@@ -11,11 +11,11 @@ const socials = [
   { label: "Website", href: siteConfig.url, icon: Globe2 },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/bionics-enviro-tech/",
+    href: "https://www.linkedin.com/company/bionicsenvirotech/",
     icon: FaLinkedinIn,
   },
-  { label: "Facebook", href: "https://www.facebook.com/BionicsEnviro1", icon: FaFacebookF },
-  { label: "Instagram", href: "https://www.instagram.com/bionicsenvirotech_0/", icon: FaInstagram },
+  { label: "Facebook", href: "https://www.facebook.com/bionics01", icon: FaFacebookF },
+  { label: "Instagram", href: "https://www.instagram.com/bionicsenvirotech/", icon: FaInstagram },
   {
     label: "YouTube",
     href: "https://www.youtube.com/@bioculturebybionics",
