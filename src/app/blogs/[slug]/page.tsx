@@ -26,7 +26,7 @@ export async function generateMetadata({
   const article = getBlogBySlug((await params).slug);
   if (!article) return { title: "Article not found" };
   const url = `${base}/blogs/${article.slug}`;
-  return createMetadata({ title: article.title.slice(0, 60), description: article.description, keywords: [...article.keywords, "Wastewater Treatment", "Bioculture", "ETP", "STP", "COD", "BOD", "Microbial Culture", "Activated Sludge", "Industrial Wastewater"], path: `/blogs/${article.slug}`, image: article.coverImage, type: "article", publishedTime: article.publishedDate, modifiedTime: article.updatedDate });
+  return createMetadata({ title: article.title, description: article.description, keywords: [...article.keywords, "Wastewater Treatment", "Bioculture", "ETP", "STP", "COD", "BOD", "Microbial Culture", "Activated Sludge", "Industrial Wastewater"], path: `/blogs/${article.slug}`, image: article.coverImage, type: "article", publishedTime: article.publishedDate, modifiedTime: article.updatedDate });
 }
 export default async function BlogDetail({
   params,
@@ -49,13 +49,14 @@ export default async function BlogDetail({
     author: { "@type": "Organization", name: article.author.name },
     publisher: {
       "@type": "Organization",
-      name: "Bionics Enviro Tech",
+      "@id": `${base}/#organization`,
+      name: siteConfig.shortName,
       logo: { "@type": "ImageObject", url: `${base}${siteConfig.logo}` },
       url: base,
     },
     mainEntityOfPage: urlFor(article.slug),
   };
-  const webpageSchema = { "@context": "https://schema.org", "@type": "WebPage", "@id": `${urlFor(article.slug)}#webpage`, url: urlFor(article.slug), name: article.title, description: article.description, isPartOf: { "@type": "WebSite", name: siteConfig.shortName, url: base }, mainEntity: { "@type": "Article", "@id": `${urlFor(article.slug)}#article` } };
+  const webpageSchema = { "@context": "https://schema.org", "@type": "WebPage", "@id": `${urlFor(article.slug)}#webpage`, url: urlFor(article.slug), name: article.title, description: article.description, isPartOf: { "@id": `${base}/#website` }, mainEntity: { "@type": "Article", "@id": `${urlFor(article.slug)}#article` } };
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

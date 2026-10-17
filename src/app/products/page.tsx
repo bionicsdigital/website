@@ -4,7 +4,7 @@ import PageBreadcrumb from '@/components/ui/PageBreadcrumb'
 import { createMetadata, siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = createMetadata({
-  title: 'Nanozyme Bioculture Products | Bionics Enviro Tech',
+  title: 'Nanozyme Bioculture Products',
   description: 'Explore Nanozyme bioculture products for aerobic, anaerobic, ETP, STP, sugar, distillery and organic composting applications.',
   path: '/products',
   keywords: ['Nanozyme Bioculture Products', 'ETP Bioculture', 'STP Bioculture'],

@@ -6,7 +6,7 @@ import PageBreadcrumb from '@/components/ui/PageBreadcrumb'
 import { createMetadata, siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = createMetadata({
-  title: 'Dr. M. Parameswari Sasikumar | Bionics Enviro Tech',
+  title: 'Dr. M. Parameswari Sasikumar',
   description: 'Learn about Dr. M. Parameswari Sasikumar, Executive Director of Research and Development at Bionics Enviro Tech, and her wastewater research work.',
   path: '/company/executive-director',
   keywords: ['Dr M Parameswari Sasikumar', 'Bionics Enviro Tech executive director', 'industrial wastewater research'],
@@ -48,7 +48,7 @@ export default function ExecutiveDirectorPage() {
         '@type': 'Person',
         name: 'Dr. M. Parameswari Sasikumar',
         jobTitle: 'Executive Director — Research & Development',
-        worksFor: { '@type': 'Organization', name: siteConfig.name, url: siteConfig.url },
+        worksFor: { '@type': 'Organization', '@id': `${siteConfig.url}/#organization`, name: siteConfig.shortName, url: siteConfig.url },
         knowsAbout: researchThemes,
       },
     },

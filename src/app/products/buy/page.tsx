@@ -11,7 +11,6 @@ import type { OrderFormValues } from "@/components/forms/OrderSummary";
 import ScrollToTop from "@/components/home/ScrollToTop";
 import SubmissionReviewDialog from "@/components/forms/SubmissionReviewDialog";
 import { emailRegex } from "@/lib/request-quote";
-import { siteConfig } from "@/lib/site";
 import { trackEvent } from "@/lib/analytics/dataLayer";
 
 const initialValues: OrderFormValues = {
@@ -171,19 +170,6 @@ export default function BuyProductPage() {
 
   return (
     <>
-      <title>Buy Wastewater Bioculture | Bionics Enviro Tech</title>
-      <meta name="description" content="Submit a bulk order request for Bionics Nanozyme bioculture products used in industrial ETP, STP, anaerobic treatment and organic composting." />
-      <meta name="keywords" content="buy bioculture, ETP bioculture order, STP bioculture order, Nanozyme products, wastewater treatment culture" />
-      <link rel="canonical" href={`${siteConfig.url}/products/buy`} />
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content="Buy Wastewater Bioculture | Bionics Enviro Tech" />
-      <meta property="og:description" content="Submit a bulk order request for Bionics Nanozyme bioculture products used in industrial ETP, STP, anaerobic treatment and organic composting." />
-      <meta property="og:url" content={`${siteConfig.url}/products/buy`} />
-      <meta property="og:image" content={`${siteConfig.url}${siteConfig.ogImage}`} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Buy Wastewater Bioculture | Bionics Enviro Tech" />
-      <meta name="twitter:description" content="Submit a bulk order request for Bionics Nanozyme bioculture products used in industrial ETP, STP, anaerobic treatment and organic composting." />
-      <meta name="twitter:image" content={`${siteConfig.url}${siteConfig.ogImage}`} />
       <main className="min-h-screen bg-slate-50 px-4 py-24 sm:px-6 lg:px-8">
         <input type="text" name="website" value={website} onChange={(event) => setWebsite(event.target.value)} tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
         <div className="mx-auto max-w-7xl">

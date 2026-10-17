@@ -44,6 +44,7 @@ type SeoInput = {
   type?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
+  titleIsAbsolute?: boolean;
 };
 
 export function createMetadata({
@@ -55,9 +56,10 @@ export function createMetadata({
   type = "website",
   publishedTime,
   modifiedTime,
+  titleIsAbsolute = false,
 }: SeoInput): Metadata {
-  const seoTitle =
-    title.length > 60 ? `${title.slice(0, 57).trimEnd()}...` : title;
+  const titleSuffix = ` | ${siteConfig.shortName}`;
+  const seoTitle = titleIsAbsolute ? title : `${title}${titleSuffix}`;
   const expandedDescription =
     description.length < 150
       ? `${description} Learn more from Bionics Enviro Tech and contact our technical team for application-specific guidance.`
@@ -71,7 +73,7 @@ export function createMetadata({
     ? image
     : `${siteConfig.url}${image}`;
   return {
-    title: { absolute: seoTitle },
+    title: titleIsAbsolute ? { absolute: seoTitle } : title,
     description: seoDescription,
     keywords,
     authors: [...siteConfig.authors],

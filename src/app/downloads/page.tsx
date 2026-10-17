@@ -6,7 +6,7 @@ import { downloads, type DownloadItem } from '@/data/resource-content'
 import { createMetadata, siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = createMetadata({
-  title: 'Wastewater Treatment Brochures & Downloads | Bionics Enviro Tech',
+  title: 'Wastewater Treatment Brochures & Downloads',
   description: 'Download Bionics company, textile, sugar, distillery, food, dairy and pharmaceutical wastewater treatment profiles and Nanozyme resources.',
   path: '/downloads',
   keywords: ['wastewater treatment brochure', 'Nanozyme brochure', 'industry wastewater profile', 'Bionics company profile'],

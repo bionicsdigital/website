@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Building2, Home, PackageSearch, Search } from 'lucide-react'
 
-export const metadata: Metadata = { title: 'Page Not Found | Bionics Enviro Tech', robots: { index: false, follow: true } }
+export const metadata: Metadata = { title: 'Page Not Found', robots: { index: false, follow: true } }
 
 const actions = [
   { label: 'Back Home', href: '/', icon: Home, primary: true },

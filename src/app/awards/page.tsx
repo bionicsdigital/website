@@ -5,7 +5,7 @@ import { awardRecords } from '@/data/awards'
 import { createMetadata, siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = createMetadata({
-  title: 'Awards and Certifications | Bionics Enviro Tech',
+  title: 'Awards and Certifications',
   description: 'Explore Bionics Enviro Tech awards, scientific recognitions, quality certificates and media features supporting our environmental biotechnology expertise.',
   path: '/awards',
   keywords: ['Bionics awards', 'ISO 9001 certificate', 'scientific recognition', 'environmental biotechnology awards'],

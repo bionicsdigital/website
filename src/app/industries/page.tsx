@@ -4,7 +4,7 @@ import PageBreadcrumb from '@/components/ui/PageBreadcrumb'
 import { createMetadata, siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = createMetadata({
-  title: 'Industrial Wastewater Treatment Industries | Bionics Enviro Tech',
+  title: 'Industrial Wastewater Treatment Industries',
   description: 'Explore Nanozyme wastewater solutions for textile, sugar, distillery, chemical, pharmaceutical, dairy, food, paper, ETP, STP and CETP plants.',
   path: '/industries',
   keywords: ['Industrial Wastewater Treatment', 'Industry Wastewater Solutions', 'Nanozyme Bioculture'],

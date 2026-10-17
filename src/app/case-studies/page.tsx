@@ -7,7 +7,7 @@ import { caseStudies } from "@/data/resource-content";
 import { createMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = createMetadata({
-  title: "Industrial Wastewater Case Studies | Bionics",
+  title: "Industrial Wastewater Case Studies",
   description:
     "Review representative Nanozyme wastewater treatment case studies covering textile ETP, distillery anaerobic digestion and dairy organic-load improvement.",
   path: "/case-studies",
@@ -26,8 +26,8 @@ export default function CaseStudiesPage() {
     headline: study.title,
     description: study.problem,
     image: `${siteConfig.url}${study.image}`,
-    author: { "@type": "Organization", name: siteConfig.name },
-    publisher: { "@type": "Organization", name: siteConfig.name },
+    author: { "@type": "Organization", "@id": `${siteConfig.url}/#organization`, name: siteConfig.shortName },
+    publisher: { "@type": "Organization", "@id": `${siteConfig.url}/#organization`, name: siteConfig.shortName },
     mainEntityOfPage: `${siteConfig.url}/case-studies#${study.slug}`,
   }));
   return (

@@ -5,7 +5,7 @@ import SearchExperience from '@/components/search/SearchExperience'
 import { createMetadata, siteConfig } from '@/lib/site'
 
 const siteUrl = siteConfig.url
-export const metadata: Metadata = createMetadata({ title: 'Search Products and Resources | Bionics Enviro Tech', description: 'Search Bionics Enviro Tech products, industry applications, wastewater treatment articles, frequently asked questions and current career openings.', path: '/search', keywords: ['Bionics search','wastewater treatment products','industry solutions','technical articles'] })
+export const metadata: Metadata = createMetadata({ title: 'Search Products and Resources', description: 'Search Bionics Enviro Tech products, industry applications, wastewater treatment articles, frequently asked questions and current career openings.', path: '/search', keywords: ['Bionics search','wastewater treatment products','industry solutions','technical articles'] })
 
 export default function SearchPage() {
   const schemas = [{ '@context': 'https://schema.org', '@type': 'WebPage', name: 'Search', url: `${siteUrl}/search`, potentialAction: { '@type': 'SearchAction', target: `${siteUrl}/search?q={search_term_string}`, 'query-input': 'required name=search_term_string' } }, { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl }, { '@type': 'ListItem', position: 2, name: 'Search', item: `${siteUrl}/search` }] }]

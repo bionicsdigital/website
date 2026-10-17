@@ -13,9 +13,9 @@ import QuoteCtaButton from "@/components/forms/QuoteCtaButton";
 import { createMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = createMetadata({
-  title: "Bioculture Manufacturer in India | Bionics Enviro Tech",
+  title: "Bioculture Manufacturer in India",
   description:
-    "Indian manufacturer of Nanozyme bioculture for ETP, STP, CETP and CSTP wastewater treatment. Compare performance and request a quote.",
+    "Bioculture Manufacturer in India for ETP, STP, CETP and CSTP wastewater treatment. Compare performance and request a quote.",
   path: "/bioculture-manufacturer-in-india",
   keywords: [
     "Bioculture Manufacturer in India",
@@ -173,7 +173,8 @@ export default function BiocultureManufacturerPage() {
       serviceType: "Nanozyme Bioculture Manufacturing and Application Support",
       provider: {
         "@type": "Organization",
-        name: siteConfig.name,
+        "@id": `${siteConfig.url}/#organization`,
+        name: siteConfig.shortName,
         url: siteConfig.url,
       },
       areaServed: { "@type": "Country", name: "India" },
@@ -189,9 +190,7 @@ export default function BiocultureManufacturerPage() {
         "Bionics Enviro Tech manufactures Nanozyme Bioculture for industrial and municipal biological wastewater treatment.",
       url: `${siteConfig.url}/bioculture-manufacturer-in-india`,
       isPartOf: {
-        "@type": "WebSite",
-        name: siteConfig.shortName,
-        url: siteConfig.url,
+        "@id": `${siteConfig.url}/#website`,
       },
     },
     {

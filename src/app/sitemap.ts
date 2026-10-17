@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: baseUrl, lastModified, changeFrequency: 'daily', priority: 1 },
     { url: `${baseUrl}/bioculture-manufacturer-in-india`, lastModified, changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${baseUrl}/company/executive-director`, lastModified, changeFrequency: 'monthly', priority: 0.7 },
     ...products.map((product) => ({ url: `${baseUrl}/products/${product.slug}`, lastModified, changeFrequency: 'weekly' as const, priority: 0.95 })),
     { url: `${baseUrl}/products`, lastModified, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/products/buy`, lastModified, changeFrequency: 'weekly', priority: 0.95 },

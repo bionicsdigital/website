@@ -31,7 +31,10 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: { default: siteConfig.shortName, template: `%s | ${siteConfig.shortName}` },
+  title: {
+    default: `${siteConfig.shortName} | Nanozyme Bioculture Manufacturer`,
+    template: `%s | ${siteConfig.shortName}`,
+  },
   authors: [...siteConfig.authors],
   creator: siteConfig.shortName,
   publisher: siteConfig.name,

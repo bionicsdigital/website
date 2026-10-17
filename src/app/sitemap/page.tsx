@@ -7,7 +7,7 @@ import industries from '@/data/industries'
 import { getAllBlogs } from '@/lib/blog'
 import { createMetadata } from '@/lib/site'
 
-export const metadata: Metadata = createMetadata({ title: 'Website Sitemap | Bionics Enviro Tech', description: 'Browse the complete Bionics Enviro Tech website directory, including Nanozyme products, industry wastewater solutions, blogs, careers and policies.', path: '/sitemap', keywords: ['Bionics Enviro Tech sitemap','wastewater treatment pages','Nanozyme products directory'] })
+export const metadata: Metadata = createMetadata({ title: 'Website Sitemap', description: 'Browse the complete Bionics Enviro Tech website directory, including Nanozyme products, industry wastewater solutions, blogs, careers and policies.', path: '/sitemap', keywords: ['Bionics Enviro Tech sitemap','wastewater treatment pages','Nanozyme products directory'] })
 
 const groups = [
   { title: 'Main Pages', icon: Home, links: [{ label: 'Home', href: '/' }, { label: 'About Bionics', href: '/#about' }, { label: 'Case Studies', href: '/case-studies' }, { label: 'Testimonials', href: '/testimonials' }, { label: 'Downloads', href: '/downloads' }, { label: 'Awards', href: '/awards' }, { label: 'Contact', href: '/#contact' }, { label: 'Careers', href: '/careers' }] },

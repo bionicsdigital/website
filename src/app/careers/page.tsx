@@ -4,7 +4,7 @@ import { jobs } from "@/data/careers";
 import { createMetadata, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = createMetadata({
-  title: "Careers | Bionics Enviro Tech",
+  title: "Careers",
   description:
     "Join Bionics Enviro Tech and build your career in Nanozyme bioculture, environmental biotechnology and wastewater treatment. View current openings.",
   path: "/careers",
@@ -18,13 +18,6 @@ export const metadata: Metadata = createMetadata({
 
 export default function Page() {
   const schemas = [
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-      logo: `${siteConfig.url}${siteConfig.logo}`,
-    },
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -51,7 +44,8 @@ export default function Page() {
       employmentType: "FULL_TIME",
       hiringOrganization: {
         "@type": "Organization",
-        name: siteConfig.name,
+        "@id": `${siteConfig.url}/#organization`,
+        name: siteConfig.shortName,
         sameAs: siteConfig.url,
         logo: `${siteConfig.url}${siteConfig.logo}`,
       },

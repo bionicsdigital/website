@@ -13,7 +13,7 @@ import Testimonials from "@/components/home/Testimonials";
 import Offices from "@/components/footer/Offices";
 import { createMetadata, siteConfig } from "@/lib/site";
 
-export const metadata: Metadata = createMetadata({ title: "Nanozyme Bioculture Manufacturer | Bionics Enviro Tech", description: "Scientific Nanozyme bioculture manufacturer in India for industrial wastewater, ETP, STP and CETP treatment. Request a technical consultation today.", path: "/", keywords: ["Scientific Bioculture Manufacturer","Nanozyme Bioculture Manufacturer","Wastewater Treatment Bioculture","Industrial Wastewater Treatment","ETP Bioculture","STP Bioculture","Wastewater Treatment Manufacturer India"] });
+export const metadata: Metadata = createMetadata({ title: "Bionics Enviro Tech | Nanozyme Bioculture Manufacturer", titleIsAbsolute: true, description: "Scientific Nanozyme bioculture manufacturer in India for industrial wastewater, ETP, STP and CETP treatment. Request a technical consultation today.", path: "/", keywords: ["Scientific Bioculture Manufacturer","Nanozyme Bioculture Manufacturer","Wastewater Treatment Bioculture","Industrial Wastewater Treatment","ETP Bioculture","STP Bioculture","Wastewater Treatment Manufacturer India"] });
 
 const schema = {
   "@context": "https://schema.org",
@@ -21,7 +21,7 @@ const schema = {
     {
       "@type": "Organization",
       "@id": `${siteConfig.url}/#organization`,
-      name: siteConfig.name,
+      name: siteConfig.shortName,
       url: siteConfig.url,
       logo: `${siteConfig.url}${siteConfig.logo}`,
       description:
@@ -30,7 +30,7 @@ const schema = {
     {
       "@type": "LocalBusiness",
       "@id": `${siteConfig.url}/#localbusiness`,
-      name: siteConfig.name,
+      name: siteConfig.shortName,
       url: siteConfig.url,
       image: `${siteConfig.url}${siteConfig.ogImage}`,
       telephone: siteConfig.phone,

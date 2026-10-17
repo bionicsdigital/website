@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     if (!industry) return { title: 'Industry Not Found', robots: { index: false, follow: false } }
     const detail = getIndustryDetail(slug)
     const primary = industryKeywords[slug]?.[0] ?? industry.name
-    const title = `${primary} | Bionics Enviro Tech`
+    const title = primary
     const descriptions: Record<string, string> = {
         'chemical-industry-wastewater-treatment': 'Advanced chemical industry wastewater treatment using Nanozyme bioculture to support COD, BOD, TSS, colour and odour reduction in chemical ETPs.',
         'food-processing-industry-wastewater-treatment': 'Food processing industry wastewater treatment with Nanozyme bioculture support for organic loads, FOG, BOD, COD and stable biological ETP operation.',
@@ -101,8 +101,8 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
     const industryTestimonial = isComposting ? testimonials.find(item => item.id === 'food-organics')! : testimonials.find(item => item.industry.toLowerCase().includes(industry.name.split(' ')[0].toLowerCase())) ?? testimonials[0]
     const industryUrl = `${siteConfig.url}/industries/${industry.slug}`
     const schemas = [
-        { '@context': 'https://schema.org', '@type': 'Service', '@id': `${industryUrl}#service`, name: detail.title, description: detail.description, url: industryUrl, image: `${siteConfig.url}${detail.heroImage}`, serviceType: usesCanonicalIndustryBreadcrumb ? detail.title : `${industry.name} wastewater treatment`, provider: { '@type': 'Organization', name: siteConfig.name, url: siteConfig.url }, areaServed: { '@type': 'Country', name: 'India' }, audience: { '@type': 'BusinessAudience', audienceType: `${industry.name} plant owners, engineers and operators` } },
-        { '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${industryUrl}#webpage`, url: industryUrl, name: detail.title, description: detail.description, mainEntity: { '@id': `${industryUrl}#service` }, isPartOf: { '@type': 'WebSite', url: siteConfig.url, name: siteConfig.shortName } },
+        { '@context': 'https://schema.org', '@type': 'Service', '@id': `${industryUrl}#service`, name: detail.title, description: detail.description, url: industryUrl, image: `${siteConfig.url}${detail.heroImage}`, serviceType: usesCanonicalIndustryBreadcrumb ? detail.title : `${industry.name} wastewater treatment`, provider: { '@type': 'Organization', '@id': `${siteConfig.url}/#organization`, name: siteConfig.shortName, url: siteConfig.url }, areaServed: { '@type': 'Country', name: 'India' }, audience: { '@type': 'BusinessAudience', audienceType: `${industry.name} plant owners, engineers and operators` } },
+        { '@context': 'https://schema.org', '@type': 'WebPage', '@id': `${industryUrl}#webpage`, url: industryUrl, name: detail.title, description: detail.description, mainEntity: { '@id': `${industryUrl}#service` }, isPartOf: { '@id': `${siteConfig.url}/#website` } },
         { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url }, { '@type': 'ListItem', position: 2, name: 'Industries', item: usesCanonicalIndustryBreadcrumb ? `${siteConfig.url}/industries` : `${siteConfig.url}/#industries` }, { '@type': 'ListItem', position: 3, name: usesCanonicalIndustryBreadcrumb ? detail.title : industry.name, item: industryUrl }] },
         { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: detail.faqs.map(item => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: item.answer } })) },
     ]

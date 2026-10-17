@@ -5,7 +5,7 @@ import PageBreadcrumb from '@/components/ui/PageBreadcrumb'
 import { createMetadata, siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = createMetadata({
-  title: 'Bioculture for Wastewater Treatment FAQs | Bionics Enviro Tech',
+  title: 'ETP and STP Bioculture FAQs',
   description: 'Answers about bioculture, aerobic and anaerobic bacteria, ETP, STP and septic-tank biological treatment from Bionics Enviro Tech.',
   path: '/faqs',
   keywords: ['what is bioculture', 'bioculture for ETP', 'bioculture for STP', 'aerobic bacteria culture', 'anaerobic bacteria culture'],

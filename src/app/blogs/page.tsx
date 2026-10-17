@@ -5,7 +5,7 @@ import { getAllBlogs, getBlogCategories } from "@/lib/blog";
 import ScrollToTop from '@/components/home/ScrollToTop'
 import { createMetadata } from '@/lib/site'
 
-export const metadata: Metadata = createMetadata({ title: "Wastewater Treatment Blog | Bionics Enviro Tech", description: "Read practical articles on bioculture, ETP, STP, COD, BOD, activated sludge and industrial wastewater treatment. Explore technical guidance today.", path: "/blogs", keywords: ["Wastewater Treatment","Bioculture","ETP","STP","COD","BOD","Microbial Culture","Activated Sludge","Industrial Wastewater"] });
+export const metadata: Metadata = createMetadata({ title: "Wastewater Treatment Blog", description: "Read practical articles on bioculture, ETP, STP, COD, BOD, activated sludge and industrial wastewater treatment. Explore technical guidance today.", path: "/blogs", keywords: ["Wastewater Treatment","Bioculture","ETP","STP","COD","BOD","Microbial Culture","Activated Sludge","Industrial Wastewater"] });
 export default function BlogsPage() {
   const articles = getAllBlogs();
   return (<>
