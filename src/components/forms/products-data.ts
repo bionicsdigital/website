@@ -24,6 +24,11 @@ export const products = [
         name: 'Organic Compost Bioculture',
         price: 1000,
     },
+    {
+        id: 6,
+        name: 'Bioculture for Solid Waste Management',
+        price: 1000,
+    },
 ]
 
 export const PRODUCT_PRICE = 1000

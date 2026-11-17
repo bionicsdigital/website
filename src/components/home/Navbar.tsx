@@ -38,6 +38,10 @@ const megaMenus = [
         label: "Organic Compost Culture",
         href: "/products/organic-compost-culture",
       },
+      {
+        label: "Bioculture for Solid Waste Management",
+        href: "/products/bioculture-for-solid-waste-management",
+      },
     ],
   },
   {

@@ -46,6 +46,13 @@ const products = [
       'Accelerates decomposition of organic solid waste into nutrient-rich compost while reducing odour and composting time through advanced microbial technology.',
     image: 'compost-culture.png',
   },
+  {
+    slug: 'bioculture-for-solid-waste-management',
+    name: 'Bioculture for Solid Waste Management',
+    description:
+      'Specialized microbial culture for efficient treatment of solid waste, reducing volume and improving compost quality through advanced biological processes.',
+    image: 'solid-waste-culture.png',
+  },
 ]
 
 export default function Products() {

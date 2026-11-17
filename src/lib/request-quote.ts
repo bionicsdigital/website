@@ -23,6 +23,7 @@ export const quoteProducts = [
   'STP Bioculture',
   'Sugar & Distillery Bioculture',
   'Organic Compost Bioculture',
+  'Bioculture for Solid Waste Management',
 ]
 
 export const quotePlantTypes = ['ETP', 'STP', 'CETP', 'Anaerobic Digester', 'Composting Plant', 'Other'] as const
