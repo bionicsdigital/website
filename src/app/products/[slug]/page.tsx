@@ -21,6 +21,7 @@ const productSeo: Record<string, { title: string; description: string; keywords:
     'etp-bioculture': { title: 'ETP Bioculture', description: 'ETP bioculture for industrial effluent treatment, COD and BOD reduction and stable biological operation. Request technical application support.', keywords: ['ETP Bioculture', 'Industrial Effluent Treatment', 'Industrial ETP Culture', 'Wastewater Treatment Bioculture', 'ETP biological treatment solution', 'ETP bacteria culture', 'ETP microbial culture', 'ETP sludge reduction', 'ETP wastewater treatment', 'Effluent treatment bacteria'] },
     'sugar-distillery-bioculture': { title: 'Sugar Industry ETP Culture', description: 'Bioculture for sugar industry ETP and distillery wastewater, molasses treatment, fermentation support and biogas production. Talk to our team.', keywords: ['Sugar Industry ETP', 'Distillery Wastewater Treatment', 'Molasses Wastewater', 'Fermentation Booster', 'Biogas Production', 'Sugar mill ETP biological treatment'] },
     'organic-compost-culture': { title: 'Organic Composting Culture', description: 'Composting culture for accelerated organic waste and municipal solid waste decomposition. Improve composting performance with technical support.', keywords: ['Composting Culture', 'Organic Compost Accelerator', 'Municipal Solid Waste Compost'] },
+    'bioculture-for-solid-waste-management': { title: 'Bioculture for Solid Waste Management', description: 'Bioculture for solid waste management, accelerating organic waste decomposition and controlling odours. Get technical support for your waste management needs.', keywords: ['Solid Waste Management', 'Organic Waste Decomposition', 'Odour Control', 'Bioculture for Solid Waste'] },
 }
 
 export function generateStaticParams() {
@@ -67,6 +68,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         'etp-bioculture': 'textile-colour',
         'sugar-distillery-bioculture': 'distillery-digester',
         'organic-compost-culture': 'food-organics',
+        'bioculture-for-solid-waste-management': 'municipal-solid-waste',
     }
     const productTestimonial = testimonials.find(item => item.id === testimonialIdByProduct[product.slug]) ?? testimonials[0]
     const performanceByProduct: Record<string, Array<{ label: string; value: string }>> = {
@@ -75,6 +77,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         'stp-bioculture': [{ label: 'COD reduction', value: '95–98%' }, { label: 'BOD reduction', value: '98–100%' }, { label: 'Colour reduction', value: 'Up to 100%' }, { label: 'TSS reduction', value: '98–100%' }, { label: 'Dissolved oxygen', value: '3–8 mg/L' }],
         'etp-bioculture': [{ label: 'COD reduction', value: '95–98%' }, { label: 'BOD reduction', value: '98–100%' }, { label: 'Colour reduction', value: '90–100%' }, { label: 'TSS reduction', value: '95–99%' }, { label: 'Dissolved oxygen', value: '3–8 mg/L' }],
         'sugar-distillery-bioculture': [{ label: 'COD and BOD reduction', value: '95–100%' }, { label: 'Colour reduction', value: '98–100%' }, { label: 'TSS reduction', value: '97–100%' }, { label: 'Dissolved oxygen', value: '4–6 mg/L' }],
+        'organic-compost-culture': [{ label: 'Organic matter degradation', value: '90–100%' }, { label: 'Odour control', value: '100%' }, { label: 'Composting time reduction', value: '30–50%' }],
+        'bioculture-for-solid-waste-management': [{ label: 'Organic matter degradation', value: '90–100%' }, { label: 'Odour control', value: '100%' }, { label: 'Composting time reduction', value: '30–50%' }],
     }
     const verifiedPerformance = performanceByProduct[product.slug]
 
