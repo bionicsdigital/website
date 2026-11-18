@@ -614,15 +614,10 @@ const products: ProductItem[] = [
         label: "Primary Function",
         value: "Organic waste degradation and odour control",
       },
-      { label: "Recommended pH", value: "To be confirmed" },
-      {
-        label: "Bacterial Colonies",
-        value: "Confirm product-specific CFU specification",
-      },
-      { label: "Available Form", value: "Confirm product-specific form" },
+      { label: "Available Form", value: "Semi-solid Paste Form" },
       {
         label: "Minimum Shelf Life",
-        value: "Confirm product-specific shelf life",
+        value: "1 Year",
       },
       {
         label: "Outcome",
