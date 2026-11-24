@@ -26,12 +26,12 @@ const actions = [
   },
   {
     label: 'Products',
-    href: '/#products',
+    href: '/products',
     icon: FlaskConical,
   },
   {
     label: 'Industries',
-    href: '/#industries',
+    href: '/industries',
     icon: Building2,
   },
   {
