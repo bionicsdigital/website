@@ -53,6 +53,20 @@ const products = [
       'Specialized microbial culture for efficient treatment of solid waste, reducing volume and improving compost quality through advanced biological processes.',
     image: 'solid-waste-culture.png',
   },
+  {
+    slug: 'odour-control-bioculture',
+    name: 'Odour Control Bioculture',
+    description:
+      'Advanced microbial culture for effective odour control in wastewater treatment plants, ensuring a pleasant environment and compliance with regulations.',
+    image: 'odour-control-culture.png',
+  },
+  {
+    slug: 'sludge-degradation-bioculture',
+    name: 'Sludge Degradation Bioculture',
+    description:
+      'Specialized microbial culture for efficient sludge degradation in wastewater treatment, reducing sludge volume and improving overall plant performance.',
+    image: 'sludge-degradation-culture.png',
+  },
 ]
 
 export default function Products() {

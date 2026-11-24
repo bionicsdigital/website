@@ -722,7 +722,7 @@ const products: ProductItem[] = [
     image: "/products/odour-control-culture.png",
 
     overview:
-      "Nanozyme Odour Control Bioculture contains beneficial microorganisms that support the biological breakdown of organic waste and help manage unpleasant odours in wastewater treatment systems. Designed for industrial, commercial and domestic applications, it supports improved biological activity and wastewater treatment performance.",
+      "Nanozyme Odour Control Bioculture supports organic waste breakdown, controls unpleasant odours and improves biological activity in wastewater treatment systems.",
 
     specifications: [
       {
@@ -866,7 +866,7 @@ const products: ProductItem[] = [
     image: "/products/sludge-degradation-culture.png",
 
     overview:
-      "Nanozyme Sludge Degradation Bioculture contains beneficial microorganisms that support the biological breakdown of biodegradable organic matter and sludge management in wastewater treatment systems. Its key merit is the Zero Sludge Process, which has been laboratory tested and proven under the tested conditions. It supports improved biological treatment performance and helps address sludge accumulation challenges.",
+      "Nanozyme Sludge Degradation Bioculture supports biological sludge breakdown and wastewater treatment. Its key merit is a laboratory-tested and proven Zero Sludge Process under tested conditions.",
 
     specifications: [
       {
@@ -969,7 +969,7 @@ const products: ProductItem[] = [
       { day: "Day 3", preparedBroth: "600 ml", dailyDosage: "3–4 L" },
       { day: "Day 4", preparedBroth: "800 ml", dailyDosage: "4–5 L" },
     ],
-    
+
     faqs: [
       {
         question: "What is Sludge Degradation Bioculture?",
