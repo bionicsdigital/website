@@ -29,6 +29,16 @@ export const products = [
         name: 'Bioculture for Solid Waste Management',
         price: 1000,
     },
+    {
+        id: 7,
+        name: 'Odour Control Bioculture',
+        price: 1000,
+    },
+    {
+        id: 8,
+        name: 'Sludge Degradation Bioculture',
+        price: 1000,
+    },
 ]
 
 export const PRODUCT_PRICE = 1000

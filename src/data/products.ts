@@ -11,6 +11,7 @@ import {
   Sparkles,
   TrendingUp,
   Waves,
+  Wind,
 } from "lucide-react";
 
 export type ProductFaq = {
@@ -583,8 +584,7 @@ const products: ProductItem[] = [
   {
     slug: "bioculture-for-solid-waste-management",
     title: "Bioculture for Solid Waste Management",
-    subtitle:
-      "Speeds up organic waste decomposition and helps control odour",
+    subtitle: "Speeds up organic waste decomposition and helps control odour",
 
     heroImage: "/products/solid-waste-culture.png",
     image: "/products/solid-waste-culture.png",
@@ -708,6 +708,308 @@ const products: ProductItem[] = [
         question: "What operating conditions should be monitored?",
         answer:
           "Moisture, aeration, temperature, pH, particle size and the composition of incoming waste should be monitored to maintain suitable microbial activity.",
+      },
+    ],
+  },
+
+  {
+    slug: "odour-control-bioculture",
+    title: "Odour Control Bioculture",
+    subtitle:
+      "Helps control unpleasant wastewater odour through advanced microbial technology",
+
+    heroImage: "/products/odour-control-culture.png",
+    image: "/products/odour-control-culture.png",
+
+    overview:
+      "Nanozyme Odour Control Bioculture contains beneficial microorganisms that support the biological breakdown of organic waste and help manage unpleasant odours in wastewater treatment systems. Designed for industrial, commercial and domestic applications, it supports improved biological activity and wastewater treatment performance.",
+
+    specifications: [
+      {
+        label: "Product Type",
+        value: "Odour Control Microbial Bioculture",
+      },
+      {
+        label: "Bacterial Cultures",
+        value: "Beneficial microbial strains",
+      },
+      {
+        label: "Application",
+        value: "Biological odour management in wastewater treatment systems",
+      },
+      {
+        label: "Target Waste",
+        value:
+          "Domestic sewage, industrial effluent and biodegradable organic waste",
+      },
+      {
+        label: "Process",
+        value:
+          "Microbial degradation of organic matter and biological odour management",
+      },
+      {
+        label: "Primary Function",
+        value:
+          "Unpleasant odour management and biological wastewater treatment support",
+      },
+      {
+        label: "Available Form",
+        value: "Microbial Bioculture",
+      },
+      {
+        label: "Application Areas",
+        value: "ETP, STP, CETP and septic tank systems",
+      },
+      {
+        label: "Outcome",
+        value:
+          "Improved biological activity and support for unpleasant wastewater odour management",
+      },
+    ],
+
+    benefits: [
+      {
+        title: "Effective Odour Management",
+        description:
+          "Helps manage unpleasant odours associated with organic waste decomposition in wastewater treatment systems.",
+        icon: Wind,
+      },
+      {
+        title: "Organic Waste Degradation",
+        description:
+          "Supports the biological breakdown of biodegradable organic matter responsible for wastewater treatment challenges.",
+        icon: Droplets,
+      },
+      {
+        title: "Improved Biological Activity",
+        description:
+          "Promotes beneficial microbial activity to support biological wastewater treatment processes.",
+        icon: Sparkles,
+      },
+      {
+        title: "Sludge Management Support",
+        description:
+          "Supports biological degradation and management of organic matter and biological sludge.",
+        icon: Leaf,
+      },
+    ],
+
+    applications: [
+      "Industrial Effluent Treatment Plants (ETP)",
+      "Sewage Treatment Plants (STP)",
+      "Common Effluent Treatment Plants (CETP)",
+      "Combined Sewage Treatment Plants (CSTP)",
+      "Domestic septic tanks",
+      "Commercial septic tanks",
+      "Hotels and resorts",
+      "Hospitals and healthcare facilities",
+      "Residential apartments",
+      "Commercial buildings",
+      "Industrial wastewater treatment facilities",
+      "Sewage and drainage treatment systems",
+    ],
+
+    dosage: [
+      { day: "Day 1", preparedBroth: "200 ml", dailyDosage: "1–2 L" },
+      { day: "Day 2", preparedBroth: "400 ml", dailyDosage: "2–3 L" },
+      { day: "Day 3", preparedBroth: "600 ml", dailyDosage: "3–4 L" },
+      { day: "Day 4", preparedBroth: "800 ml", dailyDosage: "4–5 L" },
+    ],
+
+    faqs: [
+      {
+        question: "What is Odour Control Bioculture?",
+        answer:
+          "Odour Control Bioculture is a microbial formulation containing beneficial microorganisms that support biological degradation of organic matter and help manage unpleasant odours in wastewater treatment systems.",
+      },
+      {
+        question: "How does Nanozyme Odour Control Bioculture work?",
+        answer:
+          "It introduces beneficial microorganisms that support the biological breakdown of biodegradable organic matter, helping manage odours associated with organic waste decomposition.",
+      },
+      {
+        question: "Can it be used in ETP and STP plants?",
+        answer:
+          "Yes. Nanozyme Odour Control Bioculture is designed for biological wastewater treatment applications, including ETP, STP and other suitable wastewater treatment systems.",
+      },
+      {
+        question: "Can it be used in domestic and commercial septic tanks?",
+        answer:
+          "Yes. It can be considered for domestic and commercial septic tank applications to support biological organic waste breakdown and odour management.",
+      },
+      {
+        question:
+          "Does it help control hydrogen sulphide and ammonia-related odour?",
+        answer:
+          "Nanozyme supports biological treatment and organic matter degradation. Its effectiveness against specific odorous compounds depends on their source, concentration and operating conditions.",
+      },
+      {
+        question: "Does Nanozyme completely eliminate unpleasant odour?",
+        answer:
+          "Nanozyme helps manage unpleasant odours through biological treatment. Actual results depend on wastewater characteristics, oxygen availability, treatment conditions and the source of odour.",
+      },
+      {
+        question: "How do I select the right dosage?",
+        answer:
+          "Dosage depends on wastewater generation, treatment capacity, wastewater characteristics and the existing biological treatment process. Contact our technical team for application-specific dosage recommendations.",
+      },
+    ],
+  },
+
+  {
+    slug: "sludge-degradation-bioculture",
+    title: "Sludge Degradation Bioculture",
+    subtitle:
+      "Laboratory-tested and proven Zero Sludge Process for biological wastewater treatment",
+
+    heroImage: "/products/sludge-degradation-culture.png",
+    image: "/products/sludge-degradation-culture.png",
+
+    overview:
+      "Nanozyme Sludge Degradation Bioculture contains beneficial microorganisms that support the biological breakdown of biodegradable organic matter and sludge management in wastewater treatment systems. Its key merit is the Zero Sludge Process, which has been laboratory tested and proven under the tested conditions. It supports improved biological treatment performance and helps address sludge accumulation challenges.",
+
+    specifications: [
+      {
+        label: "Product Type",
+        value: "Sludge Degradation Microbial Bioculture",
+      },
+      {
+        label: "Bacterial Cultures",
+        value: "Beneficial microbial strains",
+      },
+      {
+        label: "Application",
+        value: "Biological sludge management and wastewater treatment",
+      },
+      {
+        label: "Target Waste",
+        value: "Biodegradable organic matter and biological sludge",
+      },
+      {
+        label: "Process",
+        value: "Microbial degradation and biological sludge management",
+      },
+      {
+        label: "Primary Function",
+        value: "Sludge degradation and Zero Sludge Process",
+      },
+      {
+        label: "Key Merit",
+        value: "Zero Sludge Process – Laboratory Tested and Proven",
+      },
+      {
+        label: "Application Areas",
+        value: "ETP, STP, CETP and industrial wastewater treatment systems",
+      },
+      {
+        label: "Outcome",
+        value:
+          "Supports organic matter degradation, sludge management and improved biological treatment performance",
+      },
+    ],
+
+    benefits: [
+      {
+        title: "Zero Sludge Process",
+        description:
+          "A key merit of Nanozyme Microbial Bioculture, laboratory tested and proven under the tested conditions.",
+        icon: ShieldCheck,
+      },
+      {
+        title: "Biological Sludge Degradation",
+        description:
+          "Supports the biological breakdown of biodegradable organic matter and helps manage sludge accumulation.",
+        icon: Sparkles,
+      },
+      {
+        title: "Reduced Sludge Handling",
+        description:
+          "Supports improved biological sludge management and can help reduce sludge handling and disposal requirements.",
+        icon: Leaf,
+      },
+      {
+        title: "Improved Biological Treatment",
+        description:
+          "Promotes beneficial microbial activity to support organic pollutant degradation and wastewater treatment efficiency.",
+        icon: Droplets,
+      },
+      {
+        title: "COD & BOD Reduction Support",
+        description:
+          "Supports biological degradation of organic pollutants, helping improve COD and BOD treatment performance.",
+        icon: Activity,
+      },
+      {
+        title: "Odour Management",
+        description:
+          "Supports organic waste degradation and helps manage unpleasant odours associated with wastewater treatment.",
+        icon: Wind,
+      },
+    ],
+
+    applications: [
+      "Industrial Effluent Treatment Plants (ETP)",
+      "Sewage Treatment Plants (STP)",
+      "Common Effluent Treatment Plants (CETP)",
+      "Combined Sewage Treatment Plants (CSTP)",
+      "Textile and dyeing industries",
+      "Pharmaceutical and API industries",
+      "Chemical industries",
+      "Food and dairy industries",
+      "Sugar and distillery industries",
+      "Pulp and paper industries",
+      "Fertilizer industries",
+      "Leather industries",
+      "Industrial biological wastewater treatment facilities",
+    ],
+
+    dosage: [
+      { day: "Day 1", preparedBroth: "200 ml", dailyDosage: "1–2 L" },
+      { day: "Day 2", preparedBroth: "400 ml", dailyDosage: "2–3 L" },
+      { day: "Day 3", preparedBroth: "600 ml", dailyDosage: "3–4 L" },
+      { day: "Day 4", preparedBroth: "800 ml", dailyDosage: "4–5 L" },
+    ],
+    
+    faqs: [
+      {
+        question: "What is Sludge Degradation Bioculture?",
+        answer:
+          "Sludge Degradation Bioculture is a microbial formulation containing beneficial microorganisms that support the biological breakdown of biodegradable organic matter and sludge management in wastewater treatment systems.",
+      },
+      {
+        question: "What is the Zero Sludge Process in Nanozyme?",
+        answer:
+          "Zero Sludge Process is a key merit of Nanozyme Microbial Bioculture. It has been laboratory tested and proven under the tested conditions.",
+      },
+      {
+        question: "Is the Zero Sludge Process laboratory tested?",
+        answer:
+          "Yes. The Zero Sludge Process has been laboratory tested and proven. Results should be interpreted according to the specific test methodology and operating conditions documented in the laboratory report.",
+      },
+      {
+        question: "Can Nanozyme help reduce excess sludge in ETP plants?",
+        answer:
+          "Nanozyme supports biological degradation of organic matter and sludge management. Its effectiveness depends on wastewater characteristics, plant configuration and suitable application conditions.",
+      },
+      {
+        question: "Is it suitable for STP and CETP applications?",
+        answer:
+          "Yes. Nanozyme Sludge Degradation Bioculture is designed for biological wastewater treatment applications, including STP, CETP and other suitable treatment systems.",
+      },
+      {
+        question: "Does it support COD and BOD reduction?",
+        answer:
+          "Yes. Its beneficial microorganisms support biological degradation of organic pollutants and can contribute to COD and BOD reduction under suitable treatment conditions.",
+      },
+      {
+        question: "Does Nanozyme also help control unpleasant odour?",
+        answer:
+          "Nanozyme supports biological organic matter degradation, which can help manage unpleasant odours associated with organic waste decomposition.",
+      },
+      {
+        question: "How do I determine the correct dosage?",
+        answer:
+          "Dosage depends on plant capacity, wastewater characteristics, sludge conditions and the existing biological treatment process. Contact our technical team for suitable product selection and dosage guidance.",
       },
     ],
   },

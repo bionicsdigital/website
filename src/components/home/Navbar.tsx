@@ -42,6 +42,14 @@ const megaMenus = [
         label: "Bioculture for Solid Waste Management",
         href: "/products/bioculture-for-solid-waste-management",
       },
+      {
+        label: "Odour Control Bioculture",
+        href: "/products/odour-control-bioculture",
+      },
+      {
+        label: "Sludge Degradation Bioculture",
+        href: "/products/sludge-degradation-bioculture",
+      },
     ],
   },
   {
