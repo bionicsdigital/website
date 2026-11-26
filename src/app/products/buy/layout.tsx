@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     url: canonical,
     title: `${orderTitle} | ${siteConfig.shortName}`,
     description,
-    siteName: siteConfig.shortName,
+    siteName: siteConfig.name,
     images: [{ url: image }],
   },
   twitter: {

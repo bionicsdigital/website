@@ -96,7 +96,7 @@ export function createMetadata({
       url,
       title: seoTitle,
       description: seoDescription,
-      siteName: siteConfig.shortName,
+      siteName: siteConfig.name,
       images: [{ url: imageUrl, alt: seoTitle }],
       ...(type === "article" ? { publishedTime, modifiedTime } : {}),
     },

@@ -13,7 +13,7 @@ import Testimonials from "@/components/home/Testimonials";
 import Offices from "@/components/footer/Offices";
 import { createMetadata, siteConfig } from "@/lib/site";
 
-export const metadata: Metadata = createMetadata({ title: "Bionics Enviro Tech | Nanozyme Bioculture Manufacturer", titleIsAbsolute: true, description: "Scientific Nanozyme bioculture manufacturer in India for industrial wastewater, ETP, STP and CETP treatment. Request a technical consultation today.", path: "/", keywords: ["Scientific Bioculture Manufacturer","Nanozyme Bioculture Manufacturer","Wastewater Treatment Bioculture","Industrial Wastewater Treatment","ETP Bioculture","STP Bioculture","Wastewater Treatment Manufacturer India"] });
+export const metadata: Metadata = createMetadata({ title: "Bionics Enviro Tech Pvt. Ltd.", titleIsAbsolute: true, description: "Scientific Nanozyme bioculture manufacturer in India for industrial wastewater, ETP, STP and CETP treatment. Request a technical consultation today.", path: "/", keywords: ["Scientific Bioculture Manufacturer","Nanozyme Bioculture Manufacturer","Wastewater Treatment Bioculture","Industrial Wastewater Treatment","ETP Bioculture","STP Bioculture","Wastewater Treatment Manufacturer India"] });
 
 const schema = {
   "@context": "https://schema.org",
@@ -42,7 +42,8 @@ const schema = {
       "@type": "WebSite",
       "@id": `${siteConfig.url}/#website`,
       url: siteConfig.url,
-      name: siteConfig.shortName,
+      name: siteConfig.name,
+      alternateName: siteConfig.shortName,
       publisher: { "@id": `${siteConfig.url}/#organization` },
       potentialAction: { "@type": "SearchAction", target: `${siteConfig.url}/search?q={search_term_string}`, "query-input": "required name=search_term_string" },
     },
@@ -50,7 +51,7 @@ const schema = {
       "@type": "WebPage",
       "@id": `${siteConfig.url}/#webpage`,
       url: siteConfig.url,
-      name: "Nanozyme Bioculture Manufacturer",
+      name: siteConfig.name,
       description: siteConfig.description,
       isPartOf: { "@id": `${siteConfig.url}/#website` },
       about: { "@id": `${siteConfig.url}/#organization` },

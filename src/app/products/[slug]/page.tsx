@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const product = products.find(item => item.slug === slug)
     const seo = productSeo[slug]
     if (!product || !seo) return { title: 'Product Not Found', robots: { index: false, follow: false } }
-    return createMetadata({ ...seo, path: `/products/${slug}`, image: product.heroImage })
+    return createMetadata({ ...seo, title: product.title, path: `/products/${slug}`, image: product.heroImage })
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
