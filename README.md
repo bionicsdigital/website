@@ -183,6 +183,9 @@ Runs ESLint.
 - ETP Bioculture
 - Sugar & Distillery Bioculture
 - Organic Compost Culture
+- Bioculture for Solid Waste Management
+- Odour Control Bioculture
+- Sludge Degradation Bioculture
 
 ---
 
